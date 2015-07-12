@@ -12,13 +12,16 @@ class Admin_controller extends Oa_controller {
     $this->load->helper ('identity');
     $this->load->helper ('facebook');
 
+    if (!(identity ()->user () && in_array (identity ()->user ()->id, array (1))))
+      return redirect ();
+
     $this
          ->set_componemt_path ('component', 'admin')
          ->set_frame_path ('frame', 'admin')
          ->set_content_path ('content', 'admin')
          ->set_public_path ('public')
 
-         ->set_title ("OA's CI")
+         ->set_title ("後台管理系統 - Go! Taiwan")
 
          ->_add_meta ()
          ->_add_css ()

@@ -9,10 +9,16 @@ class GoalTagMap extends OaModel {
 
   static $table_name = 'goal_tag_maps';
 
+  static $validates_uniqueness_of = array (
+    array (array ('goal_id', 'goal_tag_id'), 'message' => 'columns(goal_id, goal_tag_id) Repeat!')
+  );
+
   static $has_one = array (
   );
 
   static $has_many = array (
+    array ('goals', 'class_name' => 'Goal'),
+    array ('tags', 'class_name' => 'GoalTag')
   );
 
   static $belongs_to = array (

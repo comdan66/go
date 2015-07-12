@@ -13,6 +13,8 @@ class User extends OaModel {
   );
 
   static $has_many = array (
+    array ('goals', 'class_name' => 'Goal'),
+    array ('comments', 'class_name' => 'GoalComment')
   );
 
   static $belongs_to = array (
