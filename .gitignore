@@ -19,6 +19,9 @@ upload/*
 
 assets/*
 
+vendor/*
+composer.lock
+
 command/compass/.sass-cache/*
 
 command/gulp/node_modules/*
