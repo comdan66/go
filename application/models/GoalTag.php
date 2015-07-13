@@ -25,8 +25,7 @@ class GoalTag extends OaModel {
     parent::__construct ($attributes, $guard_attributes, $instantiating_via_find, $new_record);
   }
   public function destroy () {
-    if ($old_tag_ids = column_array ($this->tag_goal_maps, 'goal_tag_id'))
-      GoalTagMap::delete_all (array ('conditions' => array ('tag_id IN (?)', $old_tag_ids)));
+    GoalTagMap::delete_all (array ('conditions' => array ('goal_tag_id = ?', $this->id)));
 
     return $this->delete ();
   }

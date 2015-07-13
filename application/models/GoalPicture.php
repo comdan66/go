@@ -24,4 +24,39 @@ class GoalPicture extends OaModel {
 
     OrmImageUploader::bind ('name', 'GoalPictureNameImageUploader');
   }
+  public function destroy () {
+    return $this->name->cleanAllFiles () && $this->delete ();
+  }
+  public function update_gradient () {
+    $image_utility = ImageUtility::create (FCPATH . implode('/', $this->name->path ()));
+    if (ImageUtility::verifyDimension ($dimension = $image_utility->getDimension ())) {
+      $this->gradient = gradient ($dimension['height'] / $dimension['width']);
+      $this->save ();
+    }
+  }
+
+  public function update_color () {
+    $image_utility = ImageUtility::create (FCPATH . implode('/', $this->name->path ()));
+    
+    if (($analysis_datas = $image_utility->resize (10, 10, 'w')->getAnalysisDatas (1)) && isset ($analysis_datas[0]['color']) && ($analysis_datas = $analysis_datas[0]['color']) && (isset ($analysis_datas['r']) && isset ($analysis_datas['g']) && isset ($analysis_datas['b']))) {
+      $this->color_red   = $analysis_datas['r'];
+      $this->color_green = $analysis_datas['g'];
+      $this->color_blue  = $analysis_datas['b'];
+      $this->save ();
+    }
+  }
+
+  public function update_gradient_and_color () {
+    $image_utility = ImageUtility::create (FCPATH . implode('/', $this->name->path ()));
+    
+    if (ImageUtility::verifyDimension ($dimension = $image_utility->getDimension ())) {
+      $this->gradient = gradient ($dimension['height'] / $dimension['width']);
+    }
+    if (($analysis_datas = $image_utility->resize (10, 10, 'w')->getAnalysisDatas (1)) && isset ($analysis_datas[0]['color']) && ($analysis_datas = $analysis_datas[0]['color']) && (isset ($analysis_datas['r']) && isset ($analysis_datas['g']) && isset ($analysis_datas['b']))) {
+      $this->color_red   = $analysis_datas['r'];
+      $this->color_green = $analysis_datas['g'];
+      $this->color_blue  = $analysis_datas['b'];
+    }
+    $this->save ();
+  }
 }

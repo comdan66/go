@@ -10,8 +10,7 @@ class GoalPictureNameImageUploader extends OrmImageUploader {
   public function getVersions () {
     return array (
         '' => array (),
-        '100w' => array ('resize', 100, 100, 'width'),
-        '120x80c' => array ('adaptiveResizeQuadrant', 120, 80, 'c')
+        '50x50c' => array ('adaptiveResizeQuadrant', 50, 50, 'c'),
       );
   }
 }

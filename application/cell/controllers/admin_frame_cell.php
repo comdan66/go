@@ -16,6 +16,7 @@ class Admin_frame_cell extends Cell_Controller {
         array ('name' => '首頁', 'href' => base_url (), 'is_login' => false),
         array ('name' => '會員管理', 'href' => base_url ('admin', 'users'), 'is_login' => true),
         array ('name' => '標籤管理', 'href' => base_url ('admin', 'goal_tags'), 'is_login' => true),
+        array ('name' => '景點管理', 'href' => base_url ('admin', 'goals'), 'is_login' => true),
       );
     $right_links = array (
         array ('name' => '登出', 'href' => base_url ('platform', 'sign_out'), 'is_login' => true),

@@ -10,8 +10,8 @@ class Main extends Delay_controller {
     parent::__construct ();
   }
 
-  public function index () {
-    $sec = $this->input_post ('sec');
-    sleep ($sec);
+  public function picture () {
+    if (($id = $this->input_post ('id')) && ($picture = GoalPicture::find_by_id ($id)))
+      $picture->update_gradient_and_color ();
   }
 }

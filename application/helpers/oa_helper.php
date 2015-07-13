@@ -5,6 +5,11 @@
  * @copyright   Copyright (c) 2015 OA Wu Design
  */
 
+if (!function_exists ('gradient')) {
+  function gradient ($gradient) {
+    return round ($gradient, 2);
+  }
+}
 if (!function_exists ('conditions')) {
   function conditions (&$columns, &$configs, $model_name, $inputs = null) {
     $inputs = $inputs === null ? $_GET : $inputs;

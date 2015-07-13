@@ -71,7 +71,7 @@
         @include opacity(0);
         @include border-radius(5px);
         @include box-sizing(border-box);
-        @include transition(all .4s ease-in-out);
+        @include transition(all .3s ease-in-out);
       }
     }
 

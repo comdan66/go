@@ -20,7 +20,3 @@
     </div>
   </div>
 </div>
-
-<div id='pop_up' class='hide'>
-  <div class='paper'></div>
-</div>
