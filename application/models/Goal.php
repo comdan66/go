@@ -10,6 +10,7 @@ class Goal extends OaModel {
   static $table_name = 'goals';
 
   static $has_one = array (
+    array ('view', 'class_name' => 'GoalView')
   );
 
   static $has_many = array (
@@ -29,9 +30,8 @@ class Goal extends OaModel {
   public function __construct ($attributes = array (), $guard_attributes = true, $instantiating_via_find = false, $new_record = true) {
     parent::__construct ($attributes, $guard_attributes, $instantiating_via_find, $new_record);
   }
-
-  public function picture ($width = 60, $height = 60, $zoom = 11) {
-    return "http://maps.googleapis.com/maps/api/staticmap?center=" . $this->latitude . "," . $this->longitude . "&zoom=" . $zoom . "&size=" . $width . 'x' . $height . "&sensor=false";
+  public function picture ($size = '60x60', $zoom = 11) {
+    return "http://maps.googleapis.com/maps/api/staticmap?center=" . $this->latitude . "," . $this->longitude . "&zoom=" . $zoom . "&size=" . $size . "&sensor=false";
   }
   public function destroy () {
     GoalTagMap::delete_all (array ('conditions' => array ('goal_id = ?', $this->id)));

@@ -28,7 +28,7 @@ $(function () {
   var _isGetPictures = false;
   var _getPicturesTimer = null;
 
-  function getWeathers () {
+  function getGoals () {
     clearTimeout (_getPicturesTimer);
 
     _getPicturesTimer = setTimeout (function () {
@@ -164,8 +164,8 @@ $(function () {
       initMarker (e.latLng);
     });
 
-    google.maps.event.addListener(_map, 'zoom_changed', getWeathers);
-    google.maps.event.addListener(_map, 'idle', getWeathers);
+    google.maps.event.addListener(_map, 'zoom_changed', getGoals);
+    google.maps.event.addListener(_map, 'idle', getGoals);
 
     $options.submit (function () {
 
@@ -222,7 +222,7 @@ $(function () {
     $loading.fadeOut (function () {
       $(this).hide (function () {
         $(this).remove ();
-        getWeathers ();
+        getGoals ();
       });
     });
   }

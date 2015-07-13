@@ -24,6 +24,8 @@ class Admin_controller extends Oa_controller {
          ->set_title ("後台管理系統 - Go! Taiwan")
 
          ->add_hidden (array ('id' => 'get_goals_url', 'value' => base_url ('admin', 'pub_method', 'get_goals')))
+         ->add_hidden (array ('id' => 'update_goal_position_url', 'value' => base_url ('admin', 'pub_method', 'update_goal_position')))
+         ->add_hidden (array ('id' => 'update_view_position_url', 'value' => base_url ('admin', 'pub_method', 'update_view_position')))
 
          ->_add_meta ()
          ->_add_css ()

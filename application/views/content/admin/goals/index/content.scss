@@ -130,6 +130,9 @@
           @include box-shadow(0 0 5px rgba(39, 40, 34, .2));
         }
       }
+      a {
+        @include a();
+      }
     }
   }
   ul.pagination {

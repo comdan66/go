@@ -264,7 +264,7 @@ class Goals extends Admin_controller {
     $this->pagination->initialize ($configs);
     $pagination = $this->pagination->create_links ();
 
-    $goals = Goal::find ('all', array ('include' => array ('pictures'), 'offset' => $offset, 'limit' => $limit, 'order' => 'id DESC', 'conditions' => $conditions));
+    $goals = Goal::find ('all', array ('include' => array ('pictures', 'view'), 'offset' => $offset, 'limit' => $limit, 'order' => 'id DESC', 'conditions' => $conditions));
 
     $message = identity ()->get_session ('_flash_message', true);
 
@@ -282,6 +282,88 @@ class Goals extends Admin_controller {
         'pagination' => $pagination,
         'goals' => $goals,
         'columns' => $columns
+      ));
+  }
+  public function panorama ($id = 0) {
+    if (!($goal = Goal::find_by_id ($id)))
+      return redirect (array ('admin', 'goals'));
+
+    if (!$this->has_post ())
+      return redirect (array ('admin', 'goals', 'view', $goal->id));
+
+    $latitude = trim ($this->input_post ('latitude'));
+    $longitude = trim ($this->input_post ('longitude'));
+    $heading = trim ($this->input_post ('heading'));
+    $pitch = trim ($this->input_post ('pitch'));
+    $zoom = trim ($this->input_post ('zoom'));
+  
+    if (!($latitude && $longitude && is_numeric ($heading) && is_numeric ($pitch) && is_numeric ($zoom)))
+      return identity ()->set_session ('_flash_message', '填寫資訊有少！', true)
+                        ->set_session ('latitude', $latitude, true)
+                        ->set_session ('longitude', $longitude, true)
+                        ->set_session ('heading', $heading, true)
+                        ->set_session ('pitch', $pitch, true)
+                        ->set_session ('zoom', $zoom, true)
+                        && redirect (array ('admin', 'goals', 'view', $goal->id), 'refresh');
+    
+    if ($goal->view) {
+      $goal->view->latitude = $latitude;
+      $goal->view->longitude = $longitude;
+      $goal->view->heading = $heading;
+      $goal->view->pitch = $pitch;
+      $goal->view->zoom = $zoom;
+
+      if (!$goal->view->save ())
+        return identity ()->set_session ('_flash_message', '設定失敗！', true)
+                        ->set_session ('latitude', $latitude, true)
+                        ->set_session ('longitude', $longitude, true)
+                        ->set_session ('heading', $heading, true)
+                        ->set_session ('pitch', $pitch, true)
+                        ->set_session ('zoom', $zoom, true)
+                        && redirect (array ('admin', 'goals', 'view', $goal->id), 'refresh');
+    } else {
+      $params = array (
+          'goal_id' => $goal->id,
+          'latitude' => $latitude,
+          'longitude' => $longitude,
+          'heading' => $heading,
+          'pitch' => $pitch,
+          'zoom' => $zoom,
+        );
+      if (!verifyCreateOrm ($goal = GoalView::create ($params)))
+        return identity ()->set_session ('_flash_message', '設定失敗！', true)
+                        ->set_session ('latitude', $latitude, true)
+                        ->set_session ('longitude', $longitude, true)
+                        ->set_session ('heading', $heading, true)
+                        ->set_session ('pitch', $pitch, true)
+                        ->set_session ('zoom', $zoom, true)
+                        && redirect (array ('admin', 'goals', 'view', $goal->id), 'refresh');
+    }
+
+    return identity ()->set_session ('_flash_message', '設定成功！', true)
+                      && redirect (array ('admin', 'goals'), 'refresh');
+  }
+  public function view ($id = 0) {
+    if (!($goal = Goal::find_by_id ($id)))
+      return redirect (array ('admin', 'goals'));
+    $message  = identity ()->get_session ('_flash_message', true);
+    
+    $latitude = identity ()->get_session ('latitude', true);
+    $longitude = identity ()->get_session ('longitude', true);
+    $heading = identity ()->get_session ('heading', true);
+    $pitch = identity ()->get_session ('pitch', true);
+    $zoom = identity ()->get_session ('zoom', true);
+
+    $this->add_js ('https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&language=zh-TW', false)
+         ->add_js (base_url ('resource', 'javascript', 'markerwithlabel_d2015_06_28', 'markerwithlabel.js'))
+         ->load_view (array (
+        'goal' => $goal,
+        'message' => $message,
+        'latitude' => $latitude,
+        'longitude' => $longitude,
+        'heading' => $heading,
+        'pitch' => $pitch,
+        'zoom' => $zoom,
       ));
   }
 }

@@ -1,6 +1,6 @@
 <?php echo render_cell ('admin_frame_cell', 'header'); ?>
 <div id='container'>
-  <div class="map">
+  <div class='map'>
     <i></i><i></i><i></i><i></i>
     <div id='map'></div>
     

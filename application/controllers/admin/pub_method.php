@@ -33,25 +33,72 @@ class Pub_method extends Admin_controller {
 
     return $this->output_json (array ('status' => true, 'goals' => $goals));
   }
-  public function map ($id = 0) {
+  public function view ($id = 0) {
     if (!($goal = Goal::find ('one', array ('conditions' => array ('id = ?', $id)))))
-      return redirect (array ('admin', 'goals'));
+      return show_404();
 
     $this->add_js ('https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&language=zh-TW', false)
          ->add_js (base_url ('resource', 'javascript', 'markerwithlabel_d2015_06_28', 'markerwithlabel.js'))
-         ->add_hidden (array ('id' => 'update_goal_position_url', 'value' => base_url ('admin', 'pub_method', 'update_goal_position')))
          ->load_view (array (
             'goal' => $goal
           ));
+  }
+  public function goal ($id = 0) {
+    if (!($goal = Goal::find ('one', array ('conditions' => array ('id = ?', $id)))))
+      return show_404();
+
+    $this->add_js ('https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&language=zh-TW', false)
+         ->add_js (base_url ('resource', 'javascript', 'markerwithlabel_d2015_06_28', 'markerwithlabel.js'))
+         ->load_view (array (
+            'goal' => $goal
+          ));
+  }
+  public function update_view_position ($id = 0) {
+    if (!$this->is_ajax (false))
+      return show_error ("It's not Ajax request!<br/>Please confirm your program again.");
+
+    $id = trim ($this->input_post ('id'));
+    $lat = trim ($this->input_post ('lat'));
+    $lng = trim ($this->input_post ('lng'));
+    $heading = trim ($this->input_post ('heading'));
+    $pitch = trim ($this->input_post ('pitch'));
+    $zoom = trim ($this->input_post ('zoom'));
+
+    if (!($id && $lat && $lng && is_numeric ($heading) && is_numeric ($pitch) && is_numeric ($zoom) && ($goal = Goal::find_by_id ($id))))
+      return $this->output_json (array ('status' => false));
+
+
+    if ($goal->view) {
+      $goal->view->latitude = $lat;
+      $goal->view->longitude = $lng;
+      $goal->view->heading = $heading;
+      $goal->view->pitch = $pitch;
+      $goal->view->zoom = $zoom;
+
+      if (!$goal->view->save ())
+        return $this->output_json (array ('status' => false));
+    } else {
+      $params = array (
+          'goal_id' => $goal->id,
+          'latitude' => $lat,
+          'longitude' => $lng,
+          'heading' => $heading,
+          'pitch' => $pitch,
+          'zoom' => $zoom,
+        );
+      if (!verifyCreateOrm ($goal = GoalView::create ($params)))
+        return $this->output_json (array ('status' => false));
+    }
+    return $this->output_json (array ('status' => true));
   }
   public function update_goal_position ($id = 0) {
     if (!$this->is_ajax (false))
       return show_error ("It's not Ajax request!<br/>Please confirm your program again.");
 
-    $id = $this->input_post ('id');
-    $lat = $this->input_post ('lat');
-    $lng = $this->input_post ('lng');
-    $address = $this->input_post ('addr');
+    $id = trim ($this->input_post ('id'));
+    $lat = trim ($this->input_post ('lat'));
+    $lng = trim ($this->input_post ('lng'));
+    $address = trim ($this->input_post ('addr'));
 
     if (!($id && $lat && $lng && ($goal = Goal::find_by_id ($id))))
       return $this->output_json (array ('status' => false));

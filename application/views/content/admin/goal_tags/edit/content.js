@@ -37,7 +37,7 @@ $(function () {
       }));
     }
   }
-  function getWeathers () {
+  function getGoals () {
     clearTimeout (_getPicturesTimer);
 
     _getPicturesTimer = setTimeout (function () {
@@ -204,8 +204,8 @@ $(function () {
       initMarker (e.latLng);
     });
 
-    google.maps.event.addListener(_map, 'zoom_changed', getWeathers);
-    google.maps.event.addListener(_map, 'dragend', getWeathers);
+    google.maps.event.addListener(_map, 'zoom_changed', getGoals);
+    google.maps.event.addListener(_map, 'dragend', getGoals);
 
     if ($lat.data ('val') && $lng.data ('val')) {
       _map.setCenter (new google.maps.LatLng ($lat.data ('val'), $lng.data ('val')));
@@ -226,7 +226,7 @@ $(function () {
     $loading.fadeOut (function () {
       $(this).hide (function () {
         $(this).remove ();
-        getWeathers ();
+        getGoals ();
       });
     });
   }
