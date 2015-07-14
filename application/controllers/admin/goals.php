@@ -33,6 +33,7 @@ class Goals extends Admin_controller {
     $introduction = identity ()->get_session ('introduction', true);
     $tag_ids = identity ()->get_session ('tag_ids', true);
     $links = identity ()->get_session ('links', true);
+    $picture_links = identity ()->get_session ('picture_links', true);
 
     $this->add_css (base_url ('resource', 'css', 'fancyBox_v2.1.5', 'jquery.fancybox.css'))
          ->add_css (base_url ('resource', 'css', 'fancyBox_v2.1.5', 'jquery.fancybox-buttons.css'))
@@ -55,6 +56,7 @@ class Goals extends Admin_controller {
         'introduction' => $introduction,
         'tag_ids' => $tag_ids,
         'links' => $links,
+        'picture_links' => $picture_links,
       ));
   }
 
@@ -75,6 +77,7 @@ class Goals extends Admin_controller {
 
     $old_links = ($old_links = $this->input_post ('old_links')) ? array_filter ($old_links, function ($t) { return trim ($t['value']); }) : array ();
     $links = ($links = $this->input_post ('links')) ? array_filter ($links) : array ();
+    $picture_links = ($picture_links = $this->input_post ('picture_links')) ? array_filter ($picture_links) : array ();
 
     $pic_ids = ($pic_ids = $this->input_post ('pic_ids')) ? array_filter ($pic_ids) : array ();
     $pictures = $this->input_post ('pictures[]', true);
@@ -88,6 +91,7 @@ class Goals extends Admin_controller {
                         ->set_session ('introduction', $introduction, true)
                         ->set_session ('tag_ids', $tag_ids, true)
                         ->set_session ('links', $links, true)
+                        ->set_session ('picture_links', $picture_links, true)
                         && redirect (array ('admin', 'goals', 'edit', $goal->id), 'refresh');
 
     $goal->title = $title;
@@ -108,6 +112,7 @@ class Goals extends Admin_controller {
                         ->set_session ('introduction', $introduction, true)
                         ->set_session ('tag_ids', $tag_ids, true)
                         ->set_session ('links', $links, true)
+                        ->set_session ('picture_links', $picture_links, true)
                         && redirect (array ('admin', 'goals', 'edit', $goal->id), 'refresh');
 
     $old_ids = column_array ($goal->tag_goal_maps, 'goal_tag_id');
@@ -140,8 +145,16 @@ class Goals extends Admin_controller {
 
     if ($pictures)
       foreach ($pictures as $picture)
-        if (verifyCreateOrm ($pic = GoalPicture::create (array ('goal_id' => $goal->id, 'name' => '', 'gradient' => 1, 'color_red' => '', 'color_green' => '', 'color_blue' => ''))))
+        if (verifyCreateOrm ($pic = GoalPicture::create (array ('goal_id' => $goal->id, 'name' => '', 'gradient' => 1, 'color_red' => '', 'color_green' => '', 'color_blue' => '', 'ori_url' => ''))))
           if (!$pic->name->put ($picture))
+            $pic->destroy ();
+          else
+            delay_job ('main', 'picture', array ('id' => $pic->id));
+
+    if ($picture_links)
+      foreach ($picture_links as $picture_link)
+        if (verifyCreateOrm ($pic = GoalPicture::create (array ('goal_id' => $goal->id, 'name' => '', 'gradient' => 1, 'color_red' => '', 'color_green' => '', 'color_blue' => '', 'ori_url' => $picture_link))))
+          if (!$pic->name->put_url ($picture_link))
             $pic->destroy ();
           else
             delay_job ('main', 'picture', array ('id' => $pic->id));
@@ -160,6 +173,7 @@ class Goals extends Admin_controller {
     $introduction = identity ()->get_session ('introduction', true);
     $tag_ids = identity ()->get_session ('tag_ids', true);
     $links = identity ()->get_session ('links', true);
+    $picture_links = identity ()->get_session ('picture_links', true);
 
     $this->add_js ('https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&language=zh-TW', false)
          ->add_js (base_url ('resource', 'javascript', 'markerwithlabel_d2015_06_28', 'markerwithlabel.js'))
@@ -172,6 +186,7 @@ class Goals extends Admin_controller {
         'introduction' => $introduction,
         'tag_ids' => $tag_ids,
         'links' => $links,
+        'picture_links' => $picture_links,
       ));
   }
 
@@ -187,6 +202,7 @@ class Goals extends Admin_controller {
 
     $tag_ids = $this->input_post ('tag_ids');
     $links = ($links = $this->input_post ('links')) ? array_filter ($links) : array ();
+    $picture_links = ($picture_links = $this->input_post ('picture_links')) ? array_filter ($picture_links) : array ();
     $pictures = $this->input_post ('pictures[]', true);
 
     if (!($title && $latitude && $longitude))
@@ -198,6 +214,7 @@ class Goals extends Admin_controller {
                         ->set_session ('introduction', $introduction, true)
                         ->set_session ('tag_ids', $tag_ids, true)
                         ->set_session ('links', $links, true)
+                        ->set_session ('picture_links', $picture_links, true)
                         && redirect (array ('admin', 'goals', 'add'), 'refresh');
 
     $params = array (
@@ -220,6 +237,7 @@ class Goals extends Admin_controller {
                         ->set_session ('introduction', $introduction, true)
                         ->set_session ('tag_ids', $tag_ids, true)
                         ->set_session ('links', $links, true)
+                        ->set_session ('picture_links', $picture_links, true)
                         && redirect (array ('admin', 'goals', 'add'), 'refresh');
 
     if ($tag_ids)
@@ -232,8 +250,16 @@ class Goals extends Admin_controller {
 
     if ($pictures)
       foreach ($pictures as $picture)
-        if (verifyCreateOrm ($pic = GoalPicture::create (array ('goal_id' => $goal->id, 'name' => '', 'gradient' => 1, 'color_red' => '', 'color_green' => '', 'color_blue' => ''))))
+        if (verifyCreateOrm ($pic = GoalPicture::create (array ('goal_id' => $goal->id, 'name' => '', 'gradient' => 1, 'color_red' => '', 'color_green' => '', 'color_blue' => '', 'ori_url' => ''))))
           if (!$pic->name->put ($picture))
+            $pic->destroy ();
+          else
+            delay_job ('main', 'picture', array ('id' => $pic->id));
+
+    if ($picture_links)
+      foreach ($picture_links as $picture_link)
+        if (verifyCreateOrm ($pic = GoalPicture::create (array ('goal_id' => $goal->id, 'name' => '', 'gradient' => 1, 'color_red' => '', 'color_green' => '', 'color_blue' => '', 'ori_url' => $picture_link))))
+          if (!$pic->name->put_url ($picture_link))
             $pic->destroy ();
           else
             delay_job ('main', 'picture', array ('id' => $pic->id));
@@ -364,6 +390,25 @@ class Goals extends Admin_controller {
         'heading' => $heading,
         'pitch' => $pitch,
         'zoom' => $zoom,
+      ));
+  }
+  public function show ($id = 0) {
+    if (!($goal = Goal::find_by_id ($id)))
+      return redirect (array ('admin', 'goals'));
+
+    $this->add_css (base_url ('resource', 'css', 'fancyBox_v2.1.5', 'jquery.fancybox.css'))
+         ->add_css (base_url ('resource', 'css', 'fancyBox_v2.1.5', 'jquery.fancybox-buttons.css'))
+         ->add_css (base_url ('resource', 'css', 'fancyBox_v2.1.5', 'jquery.fancybox-thumbs.css'))
+         ->add_css (base_url ('resource', 'css', 'fancyBox_v2.1.5', 'my.css'))
+         ->add_js ('https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&language=zh-TW', false)
+         ->add_js (base_url ('resource', 'javascript', 'markerwithlabel_d2015_06_28', 'markerwithlabel.js'))
+         ->add_js (base_url ('resource', 'javascript', 'fancyBox_v2.1.5', 'jquery.fancybox.js'))
+         ->add_js (base_url ('resource', 'javascript', 'fancyBox_v2.1.5', 'jquery.fancybox-buttons.js'))
+         ->add_js (base_url ('resource', 'javascript', 'fancyBox_v2.1.5', 'jquery.fancybox-thumbs.js'))
+         ->add_js (base_url ('resource', 'javascript', 'fancyBox_v2.1.5', 'jquery.fancybox-media.js'))
+         ->add_js (base_url ('resource', 'javascript', 'imgLiquid_v0.9.944', 'imgLiquid-min.js'))
+         ->load_view (array (
+        'goal' => $goal
       ));
   }
 }

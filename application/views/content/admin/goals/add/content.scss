@@ -138,6 +138,31 @@ $optionWidth: 325px;
           }
         }
       }
+      
+      #picture_links {
+        .picture_link {
+          margin-top: 10px;
+          @include split-right(50px);
+
+          .l {
+            input {
+              margin-top: 0;
+            }
+          }
+          .r {
+            margin-top: 1px;
+            button {
+              @include button('green');
+
+              svg {
+                width: 16px;
+                height: 16px;
+                @include svg-color(rgba(230, 230, 230, 1), rgba(230, 230, 230, 1));
+              }
+            }
+          }
+        }
+      }
       #pictures {
         .picture {
           margin-top: 10px;
@@ -195,6 +220,12 @@ $optionWidth: 325px;
           @include button();
           margin-left: 10px;
           padding: 5px 8px;
+        }
+        &.feature {
+          text-align: center;
+          button {
+            margin-left: 0;
+          }
         }
         &.control {
           border-top: 1px solid rgba(39, 40, 34, .1);

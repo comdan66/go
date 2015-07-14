@@ -19,6 +19,8 @@ class Migration_Add_goal_pictures extends CI_Migration {
         `color_green` varchar(5) COLLATE utf8_unicode_ci NOT NULL COMMENT 'RGB 綠',
         `color_blue` varchar(5) COLLATE utf8_unicode_ci NOT NULL COMMENT 'RGB 藍',
 
+        `ori_url` text  COMMENT '參考網址，圖片上傳則為空',
+
         `updated_at` datetime NOT NULL DEFAULT '" . date ('Y-m-d H:i:s') . "' COMMENT '新增時間',
         `created_at` datetime NOT NULL DEFAULT '" . date ('Y-m-d H:i:s') . "' COMMENT '更新時間',
         PRIMARY KEY (`id`),
