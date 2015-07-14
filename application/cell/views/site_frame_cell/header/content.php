@@ -1,22 +1,15 @@
 <div id="header_right_slide" class="close">
   <div class="right_slide_container">
-    <a class="sub" href="baishatun.html">白沙屯即時</a>
-    <a class="sub" href="literature.html">部分文獻</a>
-    <a class="sub" href="03-19.html">三月十九</a>
-    <a class="sub" href="position.html">交通資訊</a>
-    <a class="sub" href="food.html">旅遊美食</a>
-    <a class="sub" href="food.html">旅遊美食</a>
-    <a class="sub" href="food.html">旅遊美食</a>
-    <a class="sub" href="food.html">旅遊美食</a>
-    <a class="sub" href="food.html">旅遊美食</a>
-    <a class="sub" href="food.html">旅遊美食</a>
-    <a class="sub" href="food.html">旅遊美食</a>
-    <a class="sub" href="food.html">旅遊美食</a>
-    <a class="sub" href="food.html">旅遊美食</a>
-    <a class="sub" href="food.html">旅遊美食</a>
-    <a class="sub" href="food.html">旅遊美食</a>
-    <a class="sub" href="food.html">旅遊美食</a>
-    <a class="sub" href="food.html">旅遊美食</a>
+<?php foreach ($left_links as $link) {
+        if ($link['show']) {?>
+        <a class='sub<?php echo $link['href'] == current_url () ? " active" : '';?>' href="<?php echo $link['href'];?>"<?php echo isset ($link['target']) && $link['target'] ? ' target="_blank"' : '';?>><?php echo $link['name'];?></a>
+  <?php }
+      }?>
+<?php foreach (array_reverse ($right_links) as $link) {
+        if ($link['show']) {?>
+        <a class='sub<?php echo $link['href'] == current_url () ? " active" : '';?>' href="<?php echo $link['href'];?>"<?php echo isset ($link['target']) && $link['target'] ? ' target="_blank"' : '';?>><?php echo $link['name'];?></a>
+  <?php }
+      }?>
   </div>
 </div>
 
