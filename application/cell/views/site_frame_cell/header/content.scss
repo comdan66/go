@@ -7,104 +7,46 @@
 
 @include font-face("icomoon", font-files("icomoon/icomoon.eot", "icomoon/icomoon.woff", "icomoon/icomoon.ttf", "icomoon/icomoon.svg"));
 
-[class^="icon-"], [class*=" icon-"] {
-  font-family: 'icomoon';
-  speak: none;
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
-
-  @include font-smoothing(antialiased);
-}
-
-.icon-th-menu:before {
-  content: "\e600";
-}
-.icon-arrow-right:before {
-  content: "\e60e";
-}
-.icon-location:before {
-  content: "\e60c";
-}
-.icon-home:before {
-  content: "\e601";
-}
-.icon-link-external:before {
-  content: "\e605";
-}
-.icon-link:before {
-  content: "\e606";
-}
-.icon-fire:before {
-  content: "\e9a9";
-}
-.icon-sign-out:before {
-  content: "\e60f";
-}
-.icon-chevron-right:before {
-  content: "\e60a";
-}
-.icon-chevron-left:before {
-  content: "\e60b";
-}
-.icon-facebook-square:before {
-  content: "\e609";
-}
-.icon-star-1:before {
-  content: "\e602";
-}
-.icon-star-0:before {
-  content: "\e603";
-}
-.icon-star-2:before {
-  content: "\e604";
-}
-
-$borderBottomWidth: 3px;
 $navbarHeight: 35px;
 $navbarMobileHeight: 40px;
-$mobileWidth: 500px;
-$rightSlideWidth: 300px;
+
+$mobileWidth: 512px;
+$rightSlideWidth: 250px;
+$rightWidth: 200px;
 
 body {
-  padding-top: $navbarHeight + 20px;
+  @media screen and (min-width: 0px) and (max-width: #{$mobileWidth - 1px}) {
+    padding-top: $navbarMobileHeight + 20px;
+  }
+  @media screen and (min-width: #{$mobileWidth}) {
+    padding-top: $navbarHeight + 20px;
+  }
 }
 
 #right_slide {
   position: fixed;
-  display: inline-block;
   width: $rightSlideWidth;
 
   @media screen and (min-width: 0px) and (max-width: #{$mobileWidth - 1px}) {
-    height: calc(100% - #{$navbarMobileHeight});
+    display: inline-block;
     top: $navbarMobileHeight;
+    height: calc(100% - #{$navbarMobileHeight});
   }
   @media screen and (min-width: #{$mobileWidth}) {
-    height: calc(100% - #{$navbarHeight});
+    display: none;
     top: $navbarHeight;
+    height: calc(100% - #{$navbarHeight});
   }
 
   right: 0;
   z-index: 99999;
-  border-left: 6px solid rgba(85, 80, 140, 1);
-  padding-left: 2px;
-  @include transition(all .5s cubic-bezier(0.325, 0.825, 0.470, 1));
-  @include box-shadow(-2px 0 4px rgba(100, 100, 100, 1));
-  @include background-image(linear-gradient(
-    top, rgba(190, 110, 100, .93) 0%, rgba(200, 90, 90, .93) 100%));
+  border-left: 1px solid rgba(131, 131, 131, 1);
+  background-color: rgba(255, 255, 255, .9);
 
-  &:before {
-    content: " ";
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: inline-block;
-    width: 1px;
-    height: 100%;
-    border-left: 2px solid rgba(230, 200, 200, 1);
-  }
+  @include transition(all .5s cubic-bezier(0.325, 0.825, 0.470, 1));
+  @include box-shadow(-2px 0 8px rgba(39, 40, 34, .4));
+
+
   &.close {
     right: 0 - ($rightSlideWidth + 5px);
 
@@ -130,100 +72,50 @@ body {
       position: relative;
       display: block;
       padding: 10px 5px;
-      padding-left: 30px;
-      color: rgba(230, 230, 230, 1);
-      font-weight: bold;
+      padding-left: 10px;
+      color: rgba(120, 120, 120, 1);
       font-size: larger;
-      letter-spacing: 4px;
+      letter-spacing: 2px;
       text-decoration: none;
-      background-color: rgba(200, 90, 90, .25);
       cursor: pointer;
+      border-bottom: 2px solid rgba(39, 40, 34, .15);
+      background-color: rgba(255, 255, 255, .9);
+      background: image-url('bg/grunge2.png', false, false);
 
-      @include text-shadow(0 0 5px rgba(0, 0, 0, .4));
-      @include box-shadow(inset 0 -1px 2px rgba(100, 60, 55, .4));
       @include overflow-docx3();
+      @include box-shadow(inset 1px 2px 1px rgba(255, 255, 255, 1));
 
-      &:not(:first-child) {
-        @include box-shadow(inset 0 -1px 2px rgba(100, 60, 55, .4), inset 0 1px 2px rgba(230, 200, 200, .3));
-      }
-      &:before, &:after {
-        content: " ";
-        position: absolute;
-        top: calc(50% - 6px);
-        left: 5px;
-        display: inline-block;
-        width: 14px;
-        height: 14px;
-        border: 4px solid rgba(85, 80, 140, 1);
-        background-color: rgba(230, 230, 230, 1);
-        vertical-align: middle;
-
-        @include opacity(.2);
-        @include border-radius(50%);
-        @include transition(all .5s);
-        @include box-shadow(inset 0 -1px 2px rgba(100, 60, 55, .4), 0 0 2px rgba(39, 40, 34, .3));
-      }
-      &:after {
-        left: auto;
-        right: 5px;
-      }
       &.active, &:hover {
-        color: rgba(255, 255, 255, 1);
-        @include text-shadow(1px 1px 2px rgba(0, 0, 0, .6));
-
-        &:before {
-          @include opacity(1);
-        }
-        &:after {
-          @include opacity(1);
-        }
+        font-weight: bold;
+        color: rgba(100, 100, 100, 1);
       }
     }
     .sub {
       padding: 10px 5px;
-      padding-left: 45px;
+      padding-left: 35px;
       font-size: medium;
-      background-color: transparent;
-      background-color: rgba(150, 40, 40, .25);
-      border-top: 1px solid rgba(101, 59, 54, .2);
-      @include box-shadow(none);
-
-      &:not(:first-child) {
-        @include box-shadow(none);
-      }
-      &.hide {
-        height: 0;
-        padding: 0;
-        border-width: 0;
-      }
-      &:before {
-        left: 20px;
-        @include rotate(45deg);
-        @include border-radius(2px);
-      }
-      &:after {
-        display: none;
-      }
+      border-bottom: 1px solid rgba(39, 40, 34, .1);
     }
   }
 }
 
 #slide_cover {
   position: fixed;
-  display: inline-block;
   width: 100%;
   height: 100%;
-  @media screen and (min-width: 0px) and (max-width: #{$mobileWidth - 1px}) {
-    top: $navbarMobileHeight;
-  }
-  @media screen and (min-width: #{$mobileWidth}) {
-    top: $navbarHeight;
-  }
+  top: $navbarMobileHeight;
   left: -100%;
   z-index: 99998;
 
   background-color: rgba(0, 0, 0, .3);
   @include transition(all .4s);
+
+  @media screen and (min-width: 0px) and (max-width: #{$mobileWidth - 1px}) {
+    display: inline-block;
+  }
+  @media screen and (min-width: #{$mobileWidth}) {
+    display: none;
+  }
 }
 
 #header {
@@ -251,10 +143,10 @@ body {
   @include box-shadow(0 0 5px rgba(0, 0, 0, 0.8));
 
   .header_container {
-    @include clearfix ();
     height: 100%;
     max-width: $mainWidth;
     margin: 0 auto;
+    @include clearfix ();
 
     .l, .c, .r {
       float: left;
@@ -266,7 +158,7 @@ body {
       .l, .r {
         width: 50px;
         a {
-          @include a(rgba(122, 122, 122, 1));
+          @include a(rgba(120, 120, 120, 1));
           display: none;
 
           &.home, &.option {
@@ -282,7 +174,7 @@ body {
       .c {
         padding-top: 6px;
         width: calc(100% - 100px);
-        color: rgba(122, 122, 122, 1);
+        color: rgba(120, 120, 120, 1);
         font-weight: bold;
         font-size: large;
         @include background-image(radial-gradient(50% 50%, rgba(255, 255, 255, .3) 0px, transparent 100%));
@@ -295,59 +187,36 @@ body {
         @include opacity(0);
       }
       .l, .r {
-        float: left;
-        width: calc(100% - 100px);
-
-        // background-color: rgba(0, 0, 255, 0.2);
+        width: calc(100% - #{$rightWidth});
+        padding-top: 3px;
+        @include clearfix ();
 
         a {
-          @include a(rgba(122, 122, 122, 1));
-          
-          // color: rgba(240, 240, 240, 1);
-          // @include text-shadow(0 0 5px rgba(0, 0, 0, .4));
-
-          &:before {
-            z-index: -1;
-            content: " ";
-            position: absolute;
-            top: 4px;
-            left: 0;
-            display: inline-block;
-            width: 100%;
-            height: 100%;
-            @include transition(all .3s);
-            @include opacity(.5);
-            @include background-image(radial-gradient(50% 50%, rgba(255, 255, 255, .3) 0px, transparent 100%));
-          }
-          &.active, &:hover {
-            color: rgba(255, 255, 255, 1);
-            @include text-shadow(1px 1px 2px rgba(0, 0, 0, .6));
-
-            &:before {
-              @include opacity(1);
-              @include background-image(radial-gradient(50% 50%, rgba(255, 255, 255, .6) 0px, transparent 100%));
-            }
-          }
-
-          &.home {
-            display: none;
-          }
-
-          position: relative;
+          @include a(rgba(120, 120, 120, 1));
           float: left;
+          border-bottom-width: 3px;
           display: inline-block;
           padding: 4px 15px;
-          margin-top: 3px;
 
-          & + a {
-            margin-left: 5px;
+          &.active, &:hover {
+            color: rgba(100, 100, 100, 1);
+            border-bottom-width: 3px;
+            border-bottom-color: rgba(130, 130, 130, .6);
+          }
+
+          &.home, &.option {
+            display: none;
           }
         }
       }
       .r {
         float: right;
-        width: 100px;
+        width: $rightWidth;
         background-color: rgba(0, 128, 0, 0.2);
+        
+        a {
+          float: right;
+        }
       }
     }
   }
