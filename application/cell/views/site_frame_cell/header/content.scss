@@ -160,7 +160,10 @@ body {
         a {
           @include a(rgba(120, 120, 120, 1));
           display: none;
-
+          border-bottom-width: 0;
+          &:hover {
+            border-bottom-width: 0;
+          }
           &.home, &.option {
             margin-top: 7px;
             font-size: 28px;
