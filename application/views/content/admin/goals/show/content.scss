@@ -7,7 +7,7 @@
 
 #container {
   margin: 0 auto;
-  width: $mainWidth;
+  width: $mainAdminWidth;
 
   .error {
     padding: 10px;
@@ -82,6 +82,9 @@
       }
       .button {
         @include button('blue', false);
+      }
+      a {
+        @include a();
       }
       &[colspan="2"] {
         a {

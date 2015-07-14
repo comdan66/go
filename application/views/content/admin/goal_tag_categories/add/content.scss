@@ -20,6 +20,19 @@
     @include box-shadow(0 1px 10px 0 rgba(153, 153, 153, 0.6));
 
     td {
+      .tag {
+        float: left;
+        display: inline-block;
+        margin: 5px;
+        font-size: small;
+
+        @include checkbox('blue', false);
+        label {
+          float: right;
+          margin-top: 1px;
+          margin-left: 3px;
+        }
+      }
       label {
         margin-top: 4px;
         float: left;

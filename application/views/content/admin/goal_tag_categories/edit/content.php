@@ -18,6 +18,25 @@
             </td>
           </tr>
           <tr>
+            <th>標簽</th>
+            <td>
+        <?php foreach ($goal_tag_category->tags as $tag) { ?>
+                <div class='tag'>
+                  <input type='checkbox' name='tag_ids[]' id='tag_<?php echo $tag->id;?>' value='<?php echo $tag->id;?>'<?php echo !$tag_ids || ($tag_ids && in_array ($tag->id, $tag_ids)) ? ' checked' : ''?>/>
+                  <span class='ckb-check'></span>
+                  <label for='tag_<?php echo $tag->id;?>'><?php echo $tag->name;?></label>
+                </div>
+        <?php }
+              foreach (GoalTag::all (array ('conditions' => array ('goal_tag_category_id = ?', 0))) as $tag) { ?>
+                <div class='tag'>
+                  <input type='checkbox' name='tag_ids[]' id='tag_<?php echo $tag->id;?>' value='<?php echo $tag->id;?>'<?php echo $tag_ids && in_array ($tag->id, $tag_ids) ? ' checked' : ''?>/>
+                  <span class='ckb-check'></span>
+                  <label for='tag_<?php echo $tag->id;?>'><?php echo $tag->name;?></label>
+                </div>
+        <?php } ?>
+            </td>
+          </tr>
+          <tr>
             <td colspan='2'>
               <a href='<?php echo base_url ('admin', 'goal_tag_categories');?>'>回列表</a>
               <button type='reset' class='button'>重填</button>

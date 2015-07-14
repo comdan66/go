@@ -27,11 +27,13 @@ class Goal_tag_categories extends Admin_controller {
 
     $message  = identity ()->get_session ('_flash_message', true);
     $name = identity ()->get_session ('name', true);
+    $tag_ids = identity ()->get_session ('tag_ids', true);
 
     $this->load_view (array (
         'goal_tag_category' => $goal_tag_category,
         'message' => $message,
-        'name' => $name
+        'name' => $name,
+        'tag_ids' => $tag_ids
       ));
   }
 
@@ -43,10 +45,18 @@ class Goal_tag_categories extends Admin_controller {
       return redirect (array ('admin', 'goal_tag_categories', 'edit', $goal_tag_category->id));
 
     $name = trim ($this->input_post ('name'));
+    $tag_ids = ($tag_ids = $this->input_post ('tag_ids')) ? $tag_ids : array ();
 
     if (!$name)
       return identity ()->set_session ('_flash_message', '填寫資訊有少！', true)
                         ->set_session ('name', $name, true)
+                        ->set_session ('tag_ids', $tag_ids, true)
+                        && redirect (array ('admin', 'goal_tag_categories', 'edit', $goal_tag_category->id), 'refresh');
+
+    if (($cate = GoalTagCategory::find_by_name ($name)) && ($cate->id != $goal_tag_category->id))
+      return identity ()->set_session ('_flash_message', '名稱不能重複！', true)
+                        ->set_session ('name', $name, true)
+                        ->set_session ('tag_ids', $tag_ids, true)
                         && redirect (array ('admin', 'goal_tag_categories', 'edit', $goal_tag_category->id), 'refresh');
 
     $goal_tag_category->name = $name;
@@ -54,7 +64,15 @@ class Goal_tag_categories extends Admin_controller {
     if (!$goal_tag_category->save ())
       return identity ()->set_session ('_flash_message', '修改失敗！', true)
                         ->set_session ('name', $name, true)
+                        ->set_session ('tag_ids', $tag_ids, true)
                         && redirect (array ('admin', 'goal_tag_categories', 'edit', $goal_tag_category->id), 'refresh');
+    
+    $old_ids = column_array ($goal_tag_category->tags, 'id');
+    if ($del_ids = array_diff ($old_ids, $tag_ids))
+      GoalTag::update_all (array ('set' => 'goal_tag_category_id = 0', 'conditions' => array ('id IN (?)', $del_ids)));
+
+    if ($add_ids = array_diff ($tag_ids, $old_ids))
+      GoalTag::update_all (array ('set' => 'goal_tag_category_id = ' . $goal_tag_category->id, 'conditions' => array ('id IN (?)', $add_ids)));
 
     return identity ()->set_session ('_flash_message', '修改成功！', true)
                       && redirect (array ('admin', 'goal_tag_categories'), 'refresh');
@@ -64,10 +82,12 @@ class Goal_tag_categories extends Admin_controller {
     $message  = identity ()->get_session ('_flash_message', true);
     
     $name = identity ()->get_session ('name', true);
+    $tag_ids = identity ()->get_session ('tag_ids', true);
 
     $this->load_view (array (
         'message' => $message,
-        'name' => $name
+        'name' => $name,
+        'tag_ids' => $tag_ids
       ));
   }
 
@@ -76,10 +96,18 @@ class Goal_tag_categories extends Admin_controller {
       return redirect (array ('admin', 'goal_tag_categories', 'add'));
 
     $name = trim ($this->input_post ('name'));
+    $tag_ids = ($tag_ids = $this->input_post ('tag_ids')) ? $tag_ids : array ();
 
     if (!$name)
       return identity ()->set_session ('_flash_message', '填寫資訊有少！', true)
                         ->set_session ('name', $name, true)
+                        ->set_session ('tag_ids', $tag_ids, true)
+                        && redirect (array ('admin', 'goal_tag_categories', 'add'), 'refresh');
+
+    if (GoalTagCategory::find_by_name ($name))
+      return identity ()->set_session ('_flash_message', '名稱不能重複！', true)
+                        ->set_session ('name', $name, true)
+                        ->set_session ('tag_ids', $tag_ids, true)
                         && redirect (array ('admin', 'goal_tag_categories', 'add'), 'refresh');
 
     $params = array (
@@ -89,7 +117,11 @@ class Goal_tag_categories extends Admin_controller {
     if (!verifyCreateOrm ($goal_tag_category = GoalTagCategory::create ($params)))
       return identity ()->set_session ('_flash_message', '新增失敗！', true)
                         ->set_session ('name', $name, true)
+                        ->set_session ('tag_ids', $tag_ids, true)
                         && redirect (array ('admin', 'goal_tag_categories', 'add'), 'refresh');
+    
+    if ($tag_ids)
+      GoalTag::update_all (array ('set' => 'goal_tag_category_id = ' . $goal_tag_category->id, 'conditions' => array ('id IN (?)', $tag_ids)));
 
     return identity ()->set_session ('_flash_message', '新增成功！', true)
                       && redirect (array ('admin', 'goal_tag_categories'), 'refresh');

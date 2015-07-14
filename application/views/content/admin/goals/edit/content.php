@@ -26,13 +26,18 @@
       <textarea id='introduction' name='introduction' class='introduction' placeholder='請輸入介紹..'><?php echo $introduction ? $introduction : $goal->introduction;?></textarea>
       
       <div class='tags'>
-  <?php foreach (GoalTag::all () as $tag) {?>
-          <div class='tag'>
-            <input type='checkbox' name='tag_ids[]' id='tag_<?php echo $tag->id;?>' value='<?php echo $tag->id;?>'<?php echo in_array ($tag->id, $tag_ids ? $tag_ids : column_array ($goal->tag_goal_maps, 'goal_tag_id')) ? ' checked' : ''?>/>
-            <span class='ckb-check'></span>
-            <label for='tag_<?php echo $tag->id;?>'><?php echo $tag->name;?></label>
-          </div>
-  <?php } ?>
+  <?php foreach (GoalTagCategory::detail_tags () as $category => $tags) {
+          if ($category) { ?>
+            <div class='category'><?php echo $category;?></div>
+    <?php }
+          foreach ($tags as $tag) { ?>
+            <div class='tag'>
+              <input type='checkbox' name='tag_ids[]' id='tag_<?php echo $tag->id;?>' value='<?php echo $tag->id;?>'<?php echo in_array ($tag->id, $tag_ids ? $tag_ids : column_array ($goal->tag_goal_maps, 'goal_tag_id')) ? ' checked' : ''?>/>
+              <span class='ckb-check'></span>
+              <label for='tag_<?php echo $tag->id;?>'><?php echo $tag->name;?></label>
+            </div>
+    <?php }
+        } ?>
       </div>
 
       <div id='pics'>

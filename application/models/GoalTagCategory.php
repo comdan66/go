@@ -28,4 +28,12 @@ class GoalTagCategory extends OaModel {
 
     return $this->delete ();
   }
+  public static function detail_tags () {
+    $return = array ();
+    foreach (GoalTagCategory::all (array ('include' => array ('tags'))) as $category)
+      if ($category->tags)
+        $return = array_merge ($return, array ($category->name => $category->tags));
+
+    return array_merge ($return, array ($return ? '未分類' : '' => GoalTag::all (array ('conditions' => array ('goal_tag_category_id = ?', 0)))));
+  }
 }

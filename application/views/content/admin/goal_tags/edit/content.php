@@ -16,7 +16,7 @@
             <td>
               <select name='goal_tag_category_id'>
                 <option value='0'>未分類</option>
-          <?php if ($goal_tag_categories = GoalTagCategory::all ()) {
+          <?php if ($goal_tag_categories = GoalTagCategory::all (array ('order' => 'id DESC'))) {
                   foreach ($goal_tag_categories as $goal_tag_category) { ?>
                     <option value='<?php echo $goal_tag_category->id;?>'<?php echo $goal_tag_category->id == ($goal_tag_category_id ? $goal_tag_category_id : ($goal_tag->category ? $goal_tag->category->id : -1)) ? ' selected' : '';?>><?php echo $goal_tag_category->name;?></option>
             <?php }
