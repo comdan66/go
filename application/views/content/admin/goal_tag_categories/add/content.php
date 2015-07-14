@@ -8,22 +8,9 @@
 <?php
     } ?>
 
-    <form action='<?php echo base_url (array ('admin', 'goal_tags', 'create'));?>' method='post' enctype='multipart/form-data'>
+    <form action='<?php echo base_url (array ('admin', 'goal_tag_categories', 'create'));?>' method='post' enctype='multipart/form-data'>
       <table class='table-form'>
         <tbody>
-          <tr>
-            <th>分類</th>
-            <td>
-              <select name='goal_tag_category_id'>
-                <option value='0'>未分類</option>
-          <?php if ($goal_tag_categories = GoalTagCategory::all ()) {
-                  foreach ($goal_tag_categories as $goal_tag_category) { ?>
-                    <option value='<?php echo $goal_tag_category->id;?>'<?php echo $goal_tag_category->id == $goal_tag_category_id ? ' selected' : '';?>><?php echo $goal_tag_category->name;?></option>
-            <?php }
-                } ?>
-              </select>
-            </td>
-          </tr>
           <tr>
             <th>名稱</th>
             <td>
@@ -32,7 +19,7 @@
           </tr>
           <tr>
             <td colspan='2'>
-              <a href='<?php echo base_url ('admin', 'goal_tags');?>'>回列表</a>
+              <a href='<?php echo base_url ('admin', 'goal_tag_categories');?>'>回列表</a>
               <button type='reset' class='button'>重填</button>
               <button type='submit' class='button'>確定</button>
             </td>

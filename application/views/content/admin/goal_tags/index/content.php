@@ -25,6 +25,7 @@
       <tr>
         <th width='60'>ID</th>
         <th >名稱</th>
+        <th width='300'>分類</th>
         <th width='100'>編輯</th>
       </tr>
     </thead>
@@ -35,6 +36,7 @@
           <tr>
             <td><?php echo $goal_tag->id;?></td>
             <td><?php echo $goal_tag->name;?></td>
+            <td><?php echo $goal_tag->category ? $goal_tag->category->name : '(未分類)';?></td>
             <td class='edit'>
               <a href='<?php echo base_url ('admin', 'goal_tags', 'edit', $goal_tag->id);?>'><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="32" height="32" viewBox="0 0 32 32"><path fill="#444444" d="M12 20l4-2 14-14-2-2-14 14-2 4zM9.041 27.097c-0.989-2.085-2.052-3.149-4.137-4.137l3.097-8.525 4-2.435 12-12h-6l-12 12-6 20 20-6 12-12v-6l-12 12-2.435 4z"></path></svg></a>
               /

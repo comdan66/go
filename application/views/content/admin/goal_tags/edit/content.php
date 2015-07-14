@@ -12,6 +12,19 @@
       <table class='table-form'>
         <tbody>
           <tr>
+            <th>分類</th>
+            <td>
+              <select name='goal_tag_category_id'>
+                <option value='0'>未分類</option>
+          <?php if ($goal_tag_categories = GoalTagCategory::all ()) {
+                  foreach ($goal_tag_categories as $goal_tag_category) { ?>
+                    <option value='<?php echo $goal_tag_category->id;?>'<?php echo $goal_tag_category->id == ($goal_tag_category_id ? $goal_tag_category_id : ($goal_tag->category ? $goal_tag->category->id : -1)) ? ' selected' : '';?>><?php echo $goal_tag_category->name;?></option>
+            <?php }
+                } ?>
+              </select>
+            </td>
+          </tr>
+          <tr>
             <th>名稱</th>
             <td>
               <input type='text' name='name' value='<?php echo $name ? $name : $goal_tag->name;?>' placeholder='請輸入名稱..' maxlength='200' pattern='.{1,200}' required title='輸入 1~200 個字元!' />

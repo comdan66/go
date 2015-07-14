@@ -5,122 +5,111 @@
  * @copyright   Copyright (c) 2015 OA Wu Design
  */
 
-class Goal_tags extends Admin_controller {
+class Goal_tag_categories extends Admin_controller {
 
   public function __construct () {
     parent::__construct ();
   }
 
   public function destroy ($id = 0) {
-    if (!($goal_tag = GoalTag::find_by_id ($id)))
-      return redirect (array ('admin', 'goal_tags'));
+    if (!($goal_tag_category = GoalTagCategory::find_by_id ($id)))
+      return redirect (array ('admin', 'goal_tag_categories'));
 
-    $message = $goal_tag->destroy () ? '刪除成功！' : '刪除失敗！';
+    $message = $goal_tag_category->destroy () ? '刪除成功！' : '刪除失敗！';
 
     return identity ()->set_session ('_flash_message', $message, true)
-                    && redirect (array ('admin', 'goal_tags'), 'refresh');
+                    && redirect (array ('admin', 'goal_tag_categories'), 'refresh');
   }
 
   public function edit ($id = 0) {
-    if (!($goal_tag = GoalTag::find_by_id ($id)))
-      return redirect (array ('admin', 'goal_tags'));
+    if (!($goal_tag_category = GoalTagCategory::find_by_id ($id)))
+      return redirect (array ('admin', 'goal_tag_categories'));
 
     $message  = identity ()->get_session ('_flash_message', true);
-    $goal_tag_category_id = identity ()->get_session ('goal_tag_category_id', true);
     $name = identity ()->get_session ('name', true);
 
     $this->load_view (array (
-        'goal_tag' => $goal_tag,
+        'goal_tag_category' => $goal_tag_category,
         'message' => $message,
-        'goal_tag_category_id' => $goal_tag_category_id,
         'name' => $name
       ));
   }
 
   public function update ($id = 0) {
-    if (!($goal_tag = GoalTag::find_by_id ($id)))
-      return redirect (array ('admin', 'goal_tags'));
+    if (!($goal_tag_category = GoalTagCategory::find_by_id ($id)))
+      return redirect (array ('admin', 'goal_tag_categories'));
 
     if (!$this->has_post ())
-      return redirect (array ('admin', 'goal_tags', 'edit', $goal_tag->id));
+      return redirect (array ('admin', 'goal_tag_categories', 'edit', $goal_tag_category->id));
 
-    $goal_tag_category_id = trim ($this->input_post ('goal_tag_category_id'));
     $name = trim ($this->input_post ('name'));
 
     if (!$name)
       return identity ()->set_session ('_flash_message', '填寫資訊有少！', true)
-                        ->set_session ('goal_tag_category_id', $goal_tag_category_id, true)
                         ->set_session ('name', $name, true)
-                        && redirect (array ('admin', 'goal_tags', 'edit', $goal_tag->id), 'refresh');
-    $goal_tag->goal_tag_category_id = $goal_tag_category_id;
-    $goal_tag->name = $name;
+                        && redirect (array ('admin', 'goal_tag_categories', 'edit', $goal_tag_category->id), 'refresh');
 
-    if (!$goal_tag->save ())
+    $goal_tag_category->name = $name;
+
+    if (!$goal_tag_category->save ())
       return identity ()->set_session ('_flash_message', '修改失敗！', true)
-                        ->set_session ('goal_tag_category_id', $goal_tag_category_id, true)
                         ->set_session ('name', $name, true)
-                        && redirect (array ('admin', 'goal_tags', 'edit', $goal_tag->id), 'refresh');
+                        && redirect (array ('admin', 'goal_tag_categories', 'edit', $goal_tag_category->id), 'refresh');
 
     return identity ()->set_session ('_flash_message', '修改成功！', true)
-                      && redirect (array ('admin', 'goal_tags'), 'refresh');
+                      && redirect (array ('admin', 'goal_tag_categories'), 'refresh');
   }
 
   public function add () {
     $message  = identity ()->get_session ('_flash_message', true);
     
-    $goal_tag_category_id = identity ()->get_session ('goal_tag_category_id', true);
-    $name = trim (identity ()->get_session ('name', true));
+    $name = identity ()->get_session ('name', true);
 
     $this->load_view (array (
         'message' => $message,
-        'goal_tag_category_id' => $goal_tag_category_id,
         'name' => $name
       ));
   }
 
   public function create () {
     if (!$this->has_post ())
-      return redirect (array ('admin', 'goal_tags', 'add'));
+      return redirect (array ('admin', 'goal_tag_categories', 'add'));
 
     $name = trim ($this->input_post ('name'));
-    $goal_tag_category_id = trim ($this->input_post ('goal_tag_category_id'));
 
-    if (!($name && is_numeric ($goal_tag_category_id)))
+    if (!$name)
       return identity ()->set_session ('_flash_message', '填寫資訊有少！', true)
-                        ->set_session ('goal_tag_category_id', $goal_tag_category_id, true)
                         ->set_session ('name', $name, true)
-                        && redirect (array ('admin', 'goal_tags', 'add'), 'refresh');
+                        && redirect (array ('admin', 'goal_tag_categories', 'add'), 'refresh');
 
     $params = array (
-        'goal_tag_category_id' => $goal_tag_category_id,
         'name' => $name
       );
 
-    if (!verifyCreateOrm ($goal_tag = GoalTag::create ($params)))
+    if (!verifyCreateOrm ($goal_tag_category = GoalTagCategory::create ($params)))
       return identity ()->set_session ('_flash_message', '新增失敗！', true)
-                        ->set_session ('goal_tag_category_id', $goal_tag_category_id, true)
                         ->set_session ('name', $name, true)
-                        && redirect (array ('admin', 'goal_tags', 'add'), 'refresh');
+                        && redirect (array ('admin', 'goal_tag_categories', 'add'), 'refresh');
 
     return identity ()->set_session ('_flash_message', '新增成功！', true)
-                      && redirect (array ('admin', 'goal_tags'), 'refresh');
+                      && redirect (array ('admin', 'goal_tag_categories'), 'refresh');
   }
 
   public function index ($offset = 0) {
     $columns = array ('id' => 'int', 'name' => 'string');
-    $configs = array ('admin', 'goal_tags', '%s');
+    $configs = array ('admin', 'goal_tag_categories', '%s');
 
     $conditions = conditions (
                     $columns,
                     $configs,
-                    'GoalTag',
+                    'GoalTagCategory',
                     $this->input_gets ()
                   );
 
     $conditions = array (implode (' AND ', $conditions));
 
     $limit = 25;
-    $total = GoalTag::count (array ('conditions' => $conditions));
+    $total = GoalTagCategory::count (array ('conditions' => $conditions));
     $offset = $offset < $total ? $offset : 0;
 
     $this->load->library ('pagination');
@@ -128,14 +117,14 @@ class Goal_tags extends Admin_controller {
     $this->pagination->initialize ($configs);
     $pagination = $this->pagination->create_links ();
 
-    $goal_tags = GoalTag::find ('all', array ('include' => array ('category'), 'offset' => $offset, 'limit' => $limit, 'order' => 'id DESC', 'conditions' => $conditions));
+    $goal_tag_categories = GoalTagCategory::find ('all', array ('include' => array ('tags'), 'offset' => $offset, 'limit' => $limit, 'order' => 'id DESC', 'conditions' => $conditions));
 
     $message = identity ()->get_session ('_flash_message', true);
 
     $this->load_view (array (
         'message' => $message,
         'pagination' => $pagination,
-        'goal_tags' => $goal_tags,
+        'goal_tag_categories' => $goal_tag_categories,
         'columns' => $columns
       ));
   }

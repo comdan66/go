@@ -5,28 +5,26 @@
  * @copyright   Copyright (c) 2015 OA Wu Design
  */
 
-class GoalTag extends OaModel {
+class GoalTagCategory extends OaModel {
 
-  static $table_name = 'goal_tags';
+  static $table_name = 'goal_tag_categories';
 
   static $has_one = array (
   );
 
   static $has_many = array (
-    array ('tag_goal_maps', 'class_name' => 'GoalTagMap'),
-
-    array ('goals', 'class_name' => 'Goal', 'through' => 'tag_goal_maps')
+    array ('tags', 'class_name' => 'GoalTag')
   );
 
   static $belongs_to = array (
-    array ('category', 'class_name' => 'GoalTagCategory')
   );
 
   public function __construct ($attributes = array (), $guard_attributes = true, $instantiating_via_find = false, $new_record = true) {
     parent::__construct ($attributes, $guard_attributes, $instantiating_via_find, $new_record);
+
   }
   public function destroy () {
-    GoalTagMap::delete_all (array ('conditions' => array ('goal_tag_id = ?', $this->id)));
+    GoalTag::update_all (array ('set' => 'goal_tag_category_id = 0', 'conditions' => array ('goal_tag_category_id = ?', $this->id)));
 
     return $this->delete ();
   }
