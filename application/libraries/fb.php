@@ -30,14 +30,17 @@ class Fb {
   }
 
   public function login_url () {
-    session_start ();
+    if (session_status() == PHP_SESSION_NONE)
+      session_start();
     $helper = $this->fb->getRedirectLoginHelper ();
     $permissions = Cfg::system ('facebook', 'scope'); // optional
     return $helper->getLoginUrl (base_url (func_get_args ()), $permissions);
   }
 
   public function login () {
-    session_start ();
+    if (session_status() == PHP_SESSION_NONE)
+      session_start();
+
     $helper = $this->fb->getRedirectLoginHelper ();
 
     try {

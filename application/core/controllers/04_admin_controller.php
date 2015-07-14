@@ -12,7 +12,7 @@ class Admin_controller extends Oa_controller {
     $this->load->helper ('identity');
     $this->load->helper ('facebook');
 
-    if (!(identity ()->user () && in_array (identity ()->user ()->id, array (1))))
+    if (!(identity ()->user () && in_array (identity ()->user ()->uid, array (1119256114754396))))
       return redirect ();
 
     $this

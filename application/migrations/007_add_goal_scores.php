@@ -20,6 +20,7 @@ class Migration_Add_goal_scores extends CI_Migration {
         PRIMARY KEY (`id`),
         KEY `user_id_index` (`user_id`),
         KEY `goal_id_index` (`goal_id`),
+        UNIQUE KEY `user_id_goal_id_unique` (`user_id`, `goal_id`),
         FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
         FOREIGN KEY (`goal_id`) REFERENCES `goals` (`id`) ON DELETE CASCADE
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;"

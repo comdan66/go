@@ -20,7 +20,8 @@ class Goal extends OaModel {
     array ('comments', 'class_name' => 'GoalComment'),
     array ('pictures', 'class_name' => 'GoalPicture'),
     array ('scores', 'class_name' => 'GoalScore'),
-    array ('links', 'class_name' => 'GoalLink')
+    array ('links', 'class_name' => 'GoalLink'),
+    array ('star_details', 'select' => 'COUNT(*) AS count, value', 'class_name' => 'GoalScore', 'order' => 'value DESC', 'group' => 'value')
   );
 
   static $belongs_to = array (
@@ -45,8 +46,17 @@ class Goal extends OaModel {
 
     return $this->delete ();
   }
+  public function add_score ($user_id, $value) {
+    if (verifyCreateOrm (GoalScore::create (array ('user_id' => $user_id, 'goal_id' => $this->id, 'value' => $value)))) {
+      if ($score = GoalScore::find ('one', array ('select' => 'SUM(value) AS sum, COUNT(id) as count', 'conditions' => array ('goal_id = ?', $this->id)))) {
+        $this->score = round ($score->sum / $score->count, 2);
+        $this->save ();
+      }
+    }
+  }
+
   public function score_star ($star_count = 5) {
-    $score = $this->score * 20;
+    $score = $this->score;
 
     $unit_score = 100 / $star_count;
     $count = floor ($score / $unit_score);
@@ -56,8 +66,24 @@ class Goal extends OaModel {
     else if ($detail < 0.75) { $detail = 1; }
     else { $detail = 0; $count++; }
 
-    $array = array (); for ($i = 0; $i < $star_count; $i++) array_push ($array, $count-- > 0 ? 2 : ($detail-- > 0 ? 1 : 0));
+    $array = array ();
+
+    for ($i = 0; $i < $star_count; $i++)
+      array_push ($array, $count-- > 0 ? 2 : ($detail-- > 0 ? 1 : 0));
 
     return $array;
   }
+  
+  // public function star_details () {
+  //   $max = 0;
+  //   $array = array (5, 4, 3, 2, 1);
+  //   $unit_scores = $this->star_details;
+
+  //   $unit_scores = array_map (function ($unit_score) use (&$max, &$array) { $max = $unit_score->count > $max ? $unit_score->count : $max; if ($array && (($key = array_search ($unit_score->value, $array))) !== false) unset ($array[$key]); return array ('score' => $unit_score->value, 'count' => $unit_score->count); }, $unit_scores);
+  //   $unit_scores = array_map (function ($unit_score) use ($max) { return array ('score' => $unit_score['score'], 'count' => $unit_score['count'], 'percent' => $unit_score['count'] / $max); }, $unit_scores);
+  //   $unit_scores = array_merge ($unit_scores, array_map (function ($item) { return array ('score' => $item, 'count' => 0, 'percent' => 0); }, $array));
+
+  //   usort ($unit_scores, function ($a, $b) { return $a['score'] < $b['score']; });
+  //   return $unit_scores;
+  // }
 }

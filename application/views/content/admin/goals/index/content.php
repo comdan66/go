@@ -25,9 +25,9 @@
     <thead>
       <tr>
         <th width='60'>ID</th>
-        <th width='150'>標題</th>
+        <th width='120'>標題</th>
         <th >介紹</th>
-        <th width='200'>標籤</th>
+        <th width='150'>標籤</th>
         <th width='185'>照片</th>
         <th width='200'>地址</th>
         <th width='70'>地點</th>
