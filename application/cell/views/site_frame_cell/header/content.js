@@ -4,27 +4,27 @@
  */
 
 $(function () {
-  var $rightSlide = $('#right_slide');
-  var $slideCover = $('#slide_cover');
   var $header = $('#header');
   var $option = $header.find ('.option');
+  var $mobileTitle = $header.find ('.c').click (function () {$("html, body").stop ().animate ({ scrollTop: 0 - 50 }, 500);});
+  var $headerRightSlide = $('#header_right_slide');
+  var $headerSlideCover = $('#header_slide_cover');
   var overflow = $('body').css ('overflow');
 
   $option.click (function () {
-
-    if ($rightSlide.hasClass ('close')) {
-      $rightSlide.removeClass ('close');
+    if ($headerRightSlide.hasClass ('close')) {
+      $headerRightSlide.removeClass ('close');
       $('body').css ('overflow', 'hidden');
       $option.addClass ('close');
     } else {
-      $rightSlide.addClass ('close');
+      $headerRightSlide.addClass ('close');
       $('body').css ('overflow', overflow);
       $option.removeClass ('close');
     }
   });
-  $slideCover.click (function () {
-    if (!$rightSlide.hasClass ('close')) {
-      $rightSlide.addClass ('close');
+  $headerSlideCover.click (function () {
+    if (!$headerRightSlide.hasClass ('close')) {
+      $headerRightSlide.addClass ('close');
       $('body').css ('overflow', overflow);
       $option.removeClass ('close');
     }

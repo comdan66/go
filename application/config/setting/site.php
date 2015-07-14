@@ -4,4 +4,5 @@
  * @author      OA Wu <comdan66@gmail.com>
  * @copyright   Copyright (c) 2015 OA Wu Design
  */
-$main['site']['setting'] = 3;
+
+$site['admin']['uids'] = array ('1119256114754396');

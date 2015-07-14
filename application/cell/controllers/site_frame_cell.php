@@ -12,13 +12,16 @@ class Site_frame_cell extends Cell_Controller {
   //   return array ('time' => 60 * 60, 'key' => null);
   // }
   public function header () {
+
     $left_links = array (
-        array ('name' => '首頁', 'href' => base_url (), 'permission' => array ('login', 'logout')),
-        array ('name' => '景點管理', 'href' => base_url ('admin', 'goals'), 'permission' => array ('login')),
+        array ('name' => '首頁', 'href' => base_url (), 'show' => true),
+        array ('name' => '搜尋', 'href' => base_url ('search'), 'show' => true),
+        array ('name' => '地圖', 'href' => base_url ('maps'), 'show' => true),
       );
     $right_links = array (
-        array ('name' => '登出', 'href' => base_url ('platform', 'sign_out'), 'permission' => array ('login')),
-        array ('name' => '登入', 'href' => facebook ()->login_url ('platform', 'fb_sign_in', 'main'), 'permission' => array ('logout')),
+        array ('name' => '登出', 'href' => base_url ('platform', 'sign_out'), 'show' => identity ()->user () ? true : false),
+        array ('name' => '登入', 'href' => facebook ()->login_url ('platform', 'fb_sign_in'), 'show' => identity ()->user () ? false : true),
+        array ('name' => '後台', 'href' => base_url ('admin'), 'show' => identity ()->user () && in_array (identity ()->user ()->uid, Cfg::setting ('site', 'admin', 'uids'))),
       );
 
     return $this->setUseJsList (true)
