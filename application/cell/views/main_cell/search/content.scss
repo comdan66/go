@@ -34,6 +34,7 @@ $tipWidth: 130px;
       position: relative;
       text-decoration: none;
       height: 85px;
+      overflow: hidden;
 
       .logo {
         text-align: center;
@@ -75,6 +76,7 @@ $tipWidth: 130px;
       position: relative;
       width: $logoWidth;
       text-decoration: none;
+      overflow: hidden;
       
       .logo {
         text-align: left;
@@ -137,6 +139,7 @@ $tipWidth: 130px;
       position: relative;
       width: $logoWidth;
       text-decoration: none;
+      overflow: hidden;
       
       .logo {
         text-align: left;

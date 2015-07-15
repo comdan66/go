@@ -5,6 +5,9 @@
 
 <div id='container'>
   <?php echo render_cell ('main_cell', 'search', array ()); ?>
+
+  <?php echo render_cell ('main_cell', 'tagview', array ()); ?>
+
   <?php echo render_cell ('main_cell', 'banner', array ()); ?>
 </div>
 
