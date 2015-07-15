@@ -39,7 +39,7 @@ class Goals extends Admin_controller {
          ->add_css (base_url ('resource', 'css', 'fancyBox_v2.1.5', 'jquery.fancybox-buttons.css'))
          ->add_css (base_url ('resource', 'css', 'fancyBox_v2.1.5', 'jquery.fancybox-thumbs.css'))
          ->add_css (base_url ('resource', 'css', 'fancyBox_v2.1.5', 'my.css'))
-         ->add_js ('https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&language=zh-TW', false)
+         ->add_js (Cfg::setting ('google', 'client_js_url'), false)
          ->add_js (base_url ('resource', 'javascript', 'fancyBox_v2.1.5', 'jquery.fancybox.js'))
          ->add_js (base_url ('resource', 'javascript', 'fancyBox_v2.1.5', 'jquery.fancybox-buttons.js'))
          ->add_js (base_url ('resource', 'javascript', 'fancyBox_v2.1.5', 'jquery.fancybox-thumbs.js'))
@@ -175,7 +175,7 @@ class Goals extends Admin_controller {
     $links = identity ()->get_session ('links', true);
     $picture_links = identity ()->get_session ('picture_links', true);
 
-    $this->add_js ('https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&language=zh-TW', false)
+    $this->add_js (Cfg::setting ('google', 'client_js_url'), false)
          ->add_js (base_url ('resource', 'javascript', 'markerwithlabel_d2015_06_28', 'markerwithlabel.js'))
          ->load_view (array (
         'message' => $message,
@@ -225,7 +225,8 @@ class Goals extends Admin_controller {
         'score' => 0,
         'pageview' => 0,
         'latitude' => $latitude,
-        'longitude' => $longitude
+        'longitude' => $longitude,
+        'pic' => ''
       );
 
     if (!verifyCreateOrm ($goal = Goal::create ($params)))
@@ -239,6 +240,19 @@ class Goals extends Admin_controller {
                         ->set_session ('links', $links, true)
                         ->set_session ('picture_links', $picture_links, true)
                         && redirect (array ('admin', 'goals', 'add'), 'refresh');
+
+    if (!$goal->get_static () && ($goal->destroy () || true)) {
+      return identity ()->set_session ('_flash_message', '新增失敗(取得 Static 失敗)！', true)
+                        ->set_session ('title', $title, true)
+                        ->set_session ('latitude', $latitude, true)
+                        ->set_session ('longitude', $longitude, true)
+                        ->set_session ('address', $address, true)
+                        ->set_session ('introduction', $introduction, true)
+                        ->set_session ('tag_ids', $tag_ids, true)
+                        ->set_session ('links', $links, true)
+                        ->set_session ('picture_links', $picture_links, true)
+                        && redirect (array ('admin', 'goals', 'add'), 'refresh');
+    }
 
     if ($tag_ids)
       foreach (GoalTag::find ('all', array ('select' => 'id', 'conditions' => array ('id IN (?)', $tag_ids))) as $tag)
@@ -298,7 +312,6 @@ class Goals extends Admin_controller {
          ->add_css (base_url ('resource', 'css', 'fancyBox_v2.1.5', 'jquery.fancybox-buttons.css'))
          ->add_css (base_url ('resource', 'css', 'fancyBox_v2.1.5', 'jquery.fancybox-thumbs.css'))
          ->add_css (base_url ('resource', 'css', 'fancyBox_v2.1.5', 'my.css'))
-         ->add_js ('https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&language=zh-TW', false)
          ->add_js (base_url ('resource', 'javascript', 'fancyBox_v2.1.5', 'jquery.fancybox.js'))
          ->add_js (base_url ('resource', 'javascript', 'fancyBox_v2.1.5', 'jquery.fancybox-buttons.js'))
          ->add_js (base_url ('resource', 'javascript', 'fancyBox_v2.1.5', 'jquery.fancybox-thumbs.js'))
@@ -381,7 +394,7 @@ class Goals extends Admin_controller {
     $pitch = identity ()->get_session ('pitch', true);
     $zoom = identity ()->get_session ('zoom', true);
 
-    $this->add_js ('https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&language=zh-TW', false)
+    $this->add_js (Cfg::setting ('google', 'client_js_url'), false)
          ->add_js (base_url ('resource', 'javascript', 'markerwithlabel_d2015_06_28', 'markerwithlabel.js'))
          ->load_view (array (
         'goal' => $goal,

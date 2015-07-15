@@ -31,6 +31,8 @@ class Goal extends OaModel {
 
   public function __construct ($attributes = array (), $guard_attributes = true, $instantiating_via_find = false, $new_record = true) {
     parent::__construct ($attributes, $guard_attributes, $instantiating_via_find, $new_record);
+
+    OrmImageUploader::bind ('pic', 'GoalPicImageUploader');
   }
   public function cover () {
     if ($this->pictures)
@@ -41,9 +43,12 @@ class Goal extends OaModel {
       return $this->picture ('170x170');
   }
 
-  public function picture ($size = '60x60', $zoom = 11, $marker_size = 'normal') {
+  public function get_static () {
+    return $this->pic->put_url ($this->picture ('1024x1024', 'server_key'));
+  }
+  public function picture ($size = '60x60', $type = 'client_key', $zoom = 12, $marker_size = 'normal') {
     $marker_size = in_array ($marker_size, array ('normal', 'tiny', 'mid', 'small')) ? $marker_size : 'normal';
-    return "http://maps.googleapis.com/maps/api/staticmap?center=" . $this->latitude . "," . $this->longitude . "&zoom=" . $zoom . "&size=" . $size . "&markers=size:" . $marker_size . "|color:red|" . $this->latitude . "," . $this->longitude . "";
+    return "http://maps.googleapis.com/maps/api/staticmap?center=" . $this->latitude . "," . $this->longitude . "&zoom=" . $zoom . "&size=" . $size . "&markers=size:" . $marker_size . "|color:red|" . $this->latitude . "," . $this->longitude . "&key=" . Cfg::setting ('google', ENVIRONMENT, $type);
   }
 
   public function destroy () {
@@ -55,7 +60,7 @@ class Goal extends OaModel {
     foreach (GoalPicture::find ('all', array ('conditions' => array ('goal_id = ?', $this->id))) as $picture)
       $picture->destroy ();
 
-    return $this->delete ();
+    return $this->pic->cleanAllFiles () && $this->delete ();
   }
   public function add_score ($user_id, $value) {
     if (verifyCreateOrm (GoalScore::create (array ('user_id' => $user_id, 'goal_id' => $this->id, 'value' => $value)))) {

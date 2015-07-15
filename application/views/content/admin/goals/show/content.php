@@ -84,7 +84,7 @@
       <tr>
         <th>地圖</th>
         <td>
-          <?php echo img ($goal->picture ('200x150'), false, "data-id='" . $goal->id . "' class='fancybox_goal'");?>
+          <?php echo img ($goal->pic->url ('200x150c'), false, "data-id='" . $goal->id . "' class='fancybox_goal'");?>
         </td>
       </tr>
       <tr>
