@@ -13,7 +13,7 @@ class Main extends Site_controller {
 
   public function test () {
     // http://maps.googleapis.com/maps/api/staticmap?center=25.050573970589,121.62981710733&zoom=11&size=170x170&markers=size:normal%7Ccolor:red%7C25.050573970589,121.62981710733
-    download_web_file ('http://maps.googleapis.com/maps/api/staticmap?center=24.985809080589,121.48855784033&zoom=11&size=60x60&markers=size:mid|color:red|24.985809080589,121.48855784033&key=AIzaSyCdQh9XRRHqEXt4NoiwuKCkUoiA9JOF-8M', FCPATH . 'temp/a.png');
+    download_web_file ('http://maps.googleapis.com/maps/api/staticmap?center=24.985809080589,121.48855784033&zoom=11&size=60x60&markers=size:mid|color:red|24.985809080589,121.48855784033&key=AIzaSyApiD1RhfC-z8M42zBnWOCbzndwlwgHh-Y', FCPATH . 'temp/a.png');
   }
   public function index () {
     $this->add_js (base_url ('resource', 'javascript', 'imgLiquid_v0.9.944', 'imgLiquid-min.js'))
