@@ -41,6 +41,8 @@ class Main_cell extends Cell_Controller {
     $data['熱門關鍵'] = Goal::find ('all', array ('order' => 'RAND()', 'limit' => 4));
     $data['大排長龍'] = Goal::find ('all', array ('order' => 'RAND()', 'limit' => 4));
     $data['連假特輯'] = Goal::find ('all', array ('order' => 'RAND()', 'limit' => 4));
+    $data['甜死人美食'] = Goal::find ('all', array ('order' => 'RAND()', 'limit' => 4));
+    $data['超難吃推薦'] = Goal::find ('all', array ('order' => 'RAND()', 'limit' => 4));
 
     return $this->setUseJsList (true)
                 ->setUseCssList (true)

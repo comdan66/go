@@ -10,7 +10,8 @@ class Goal extends OaModel {
   static $table_name = 'goals';
 
   static $has_one = array (
-    array ('view', 'class_name' => 'GoalView')
+    array ('view', 'class_name' => 'GoalView'),
+    array ('picture', 'class_name' => 'GoalPicture', 'order' => 'RAND()'),
   );
 
   static $has_many = array (
@@ -31,10 +32,20 @@ class Goal extends OaModel {
   public function __construct ($attributes = array (), $guard_attributes = true, $instantiating_via_find = false, $new_record = true) {
     parent::__construct ($attributes, $guard_attributes, $instantiating_via_find, $new_record);
   }
-  public function picture ($size = '60x60', $zoom = 11, $marker_size = '') {
-    $marker_size = in_array ($marker_size, array ('normal', 'tiny', 'mid', 'small')) ? $marker_size : 'normal';
-    return "http://maps.googleapis.com/maps/api/staticmap?center=" . $this->latitude . "," . $this->longitude . "&zoom=" . $zoom . "&size=" . $size . "&markers=size:" . $marker_size . "%7Ccolor:red%7C" . $this->latitude . "," . $this->longitude . "";
+  public function cover () {
+    if ($this->pictures)
+      return $this->picture->name->url ();
+    else if ($this->view)
+      return $this->view->picture ('170x170');
+    else
+      return $this->picture ('170x170');
   }
+
+  public function picture ($size = '60x60', $zoom = 11, $marker_size = 'normal') {
+    $marker_size = in_array ($marker_size, array ('normal', 'tiny', 'mid', 'small')) ? $marker_size : 'normal';
+    return "http://maps.googleapis.com/maps/api/staticmap?center=" . $this->latitude . "," . $this->longitude . "&zoom=" . $zoom . "&size=" . $size . "&markers=size:" . $marker_size . "|color:red|" . $this->latitude . "," . $this->longitude . "";
+  }
+
   public function destroy () {
     GoalTagMap::delete_all (array ('conditions' => array ('goal_id = ?', $this->id)));
     GoalComment::delete_all (array ('conditions' => array ('goal_id = ?', $this->id)));

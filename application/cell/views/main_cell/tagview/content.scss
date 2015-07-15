@@ -55,7 +55,7 @@
       }
       &:before {
         border-color: rgba(194, 225, 245, 0);
-        border-bottom-color: rgba(39, 40, 34, 1);
+        border-bottom-color: rgba(39, 40, 34, .65);
         border-width: $arrowSize + 1;
         margin-left: 0 - ($arrowSize + 1);
       }
@@ -80,7 +80,7 @@
       height: 540px;
     }
     @media screen and (min-width: #{$mediaMiniMobileWidth}) {
-      height: 380px;
+      height: 365px;
     }
     overflow: hidden;
     border: 1px solid rgba(39, 40, 34, .4);
@@ -113,7 +113,11 @@
       }
 
       .row {
+        display: inline-block;
+        width: 100%;
         color: rgba(50, 50, 50, 0.7);
+        text-decoration: none;
+
         + .row {
           @media screen and (min-width: 0px) and (max-width: #{$mediaMiniMobileWidth - 1px}) {
             margin-top: 15px;
@@ -199,9 +203,12 @@
             }
             .created_at {
               font-size: 10px;
-              padding-right: 10px;
               margin-top: 8px;
               text-align: right;
+
+              @media screen and (min-width: #{$mediaTabletWidth}) {
+                padding-right: 10px;
+              }
             }
           }
         }
