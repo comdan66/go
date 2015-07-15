@@ -31,7 +31,7 @@ class Site_controller extends Oa_controller {
   }
 
   private function _add_css () {
-    return $this;
+    return $this->add_css ('http://fonts.googleapis.com/css?family=Gafata', false);
   }
 
   private function _add_js () {

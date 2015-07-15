@@ -10,15 +10,14 @@
 $navbarHeight: 35px;
 $navbarMobileHeight: 40px;
 
-$mobileWidth: 512px;
 $rightSlideWidth: 250px;
 $rightWidth: 200px;
 
 body {
-  @media screen and (min-width: 0px) and (max-width: #{$mobileWidth - 1px}) {
+  @media screen and (min-width: 0px) and (max-width: #{$mediaMobileWidth - 1px}) {
     padding-top: $navbarMobileHeight + 10px;
   }
-  @media screen and (min-width: #{$mobileWidth}) {
+  @media screen and (min-width: #{$mediaMobileWidth}) {
     padding-top: $navbarHeight + 10px;
   }
 }
@@ -27,12 +26,12 @@ body {
   position: fixed;
   width: $rightSlideWidth;
 
-  @media screen and (min-width: 0px) and (max-width: #{$mobileWidth - 1px}) {
+  @media screen and (min-width: 0px) and (max-width: #{$mediaMobileWidth - 1px}) {
     display: inline-block;
     top: $navbarMobileHeight;
     height: calc(100% - #{$navbarMobileHeight});
   }
-  @media screen and (min-width: #{$mobileWidth}) {
+  @media screen and (min-width: #{$mediaMobileWidth}) {
     display: none;
     top: $navbarHeight;
     height: calc(100% - #{$navbarHeight});
@@ -110,10 +109,10 @@ body {
   background-color: rgba(0, 0, 0, .3);
   @include transition(all .4s);
 
-  @media screen and (min-width: 0px) and (max-width: #{$mobileWidth - 1px}) {
+  @media screen and (min-width: 0px) and (max-width: #{$mediaMobileWidth - 1px}) {
     display: inline-block;
   }
-  @media screen and (min-width: #{$mobileWidth}) {
+  @media screen and (min-width: #{$mediaMobileWidth}) {
     display: none;
   }
 }
@@ -127,11 +126,11 @@ body {
   left: 0;
   top: 0;
 
-  @media screen and (min-width: 0px) and (max-width: #{$mobileWidth - 1px}) {
+  @media screen and (min-width: 0px) and (max-width: #{$mediaMobileWidth - 1px}) {
     height: $navbarMobileHeight;
     padding: 0 10px;
   }
-  @media screen and (min-width: #{$mobileWidth}) {
+  @media screen and (min-width: #{$mediaMobileWidth}) {
     height: $navbarHeight;
   }
 
@@ -154,7 +153,7 @@ body {
       height: 100%;
     }
 
-    @media screen and (min-width: 0px) and (max-width: #{$mobileWidth - 1px}) {
+    @media screen and (min-width: 0px) and (max-width: #{$mediaMobileWidth - 1px}) {
       .l, .r {
         width: 50px;
         a {
@@ -176,15 +175,15 @@ body {
         }
       }
       .c {
-        padding-top: 6px;
+        padding-top: 7px;
         width: calc(100% - 100px);
         color: rgba(120, 120, 120, 1);
         font-weight: bold;
-        font-size: large;
+        font-size: x-large;
         @include background-image(radial-gradient(50% 50%, rgba(255, 255, 255, .3) 0px, transparent 100%));
       }
     }
-    @media screen and (min-width: #{$mobileWidth}) {
+    @media screen and (min-width: #{$mediaMobileWidth}) {
       .c, {
         width: 0;
         display: none;
@@ -200,7 +199,8 @@ body {
           float: left;
           border-bottom-width: 3px;
           display: inline-block;
-          padding: 4px 15px;
+          padding: 5px 15px;
+          padding-bottom: 6px;
 
           &.active, &:hover {
             color: rgba(100, 100, 100, 1);

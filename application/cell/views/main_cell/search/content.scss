@@ -1,0 +1,232 @@
+/**
+ * @author      OA Wu <comdan66@gmail.com>
+ * @copyright   Copyright (c) 2015 OA Wu Design
+ */
+
+@import "_oa";
+
+$logoWidth: 200px;
+$tipWidth: 130px;
+
+#search {
+  display: inline-block;
+  width: 100%;
+
+  margin: 5px auto;
+  margin-bottom: 15px;
+
+  @include clearfix();
+
+  .l, .c, .r {
+    float: left;
+    width: calc(100% / 3);
+    height: 100%;
+  }
+
+  @media screen and (min-width: 0px) and (max-width: #{$mediaMobileWidth - 1px}) {
+    margin-top: 0;
+
+    .l {
+      float: none;
+      display: inline-block;
+      width: 100%;
+      max-width: $logoWidth + 200px;
+      position: relative;
+      text-decoration: none;
+      height: 85px;
+
+      .logo {
+        text-align: center;
+        font-size: 30px;
+        font-weight: bolder;
+        color: rgba(100, 100, 100, 1);
+
+        @include text-shadow(1px 1px 1px rgba(255, 255, 255, 1));
+        @include border-radius(3px);
+        vertical-align: bottom;
+        
+        span {
+          vertical-align: bottom;
+          font-size: 50px;
+          margin-top: 15px;
+        }
+        padding-bottom: 3px;
+        border-bottom: 1px solid rgba(100, 100, 100, .3);
+      }
+      .title {
+        text-align: right;
+        color: rgba(100, 100, 100, 1);
+        font-size: 14px;
+        padding-top: 5px;
+        letter-spacing: 3px;
+      }
+    }
+    .r, .c {
+      float: none;
+      width: 0;
+      display: none;
+    }
+
+  }
+  @media screen and (min-width: #{$mediaMobileWidth}) and (max-width: #{$mediaTabletWidth - 1px}) {
+    height: 80px;
+
+    .l {
+      position: relative;
+      width: $logoWidth;
+      text-decoration: none;
+      
+      .logo {
+        text-align: left;
+        font-size: 30px;
+        font-weight: bolder;
+        color: rgba(100, 100, 100, 1);
+
+        @include text-shadow(1px 1px 1px rgba(255, 255, 255, 1));
+        @include border-radius(3px);
+        vertical-align: bottom;
+        
+        span {
+          vertical-align: bottom;
+          font-size: 50px;
+          margin-top: 15px;
+        }
+        padding-bottom: 3px;
+        border-bottom: 1px solid rgba(100, 100, 100, .3);
+      }
+      .title {
+        text-align: right;
+        color: rgba(100, 100, 100, 1);
+        font-size: 14px;
+        padding-top: 5px;
+        letter-spacing: 3px;
+      }
+    }
+    .c {
+      padding-top: 23px;
+      width: calc(100% - #{$logoWidth});
+      text-align: left;
+      @include clearfix();
+
+      .search {
+        float: left;
+        @include input();
+        width: calc(100% - 140px);
+        padding: 10px;
+        margin-left: 40px;
+      }
+      .go_search {
+        float: left;
+        @include button();
+        padding: 8px 20px;
+        margin-left: 10px;
+        margin-top: 1px;
+        font-size: 18px;
+        font-weight: bold;
+      }
+    }
+    .r {
+      display: none;
+      width: 0;
+    }
+  }
+  @media screen and (min-width: #{$mediaTabletWidth}) {
+    height: 80px;
+
+    .l {
+      position: relative;
+      width: $logoWidth;
+      text-decoration: none;
+      
+      .logo {
+        text-align: left;
+        font-size: 30px;
+        font-weight: bolder;
+        color: rgba(100, 100, 100, 1);
+
+        @include text-shadow(1px 1px 1px rgba(255, 255, 255, 1));
+        @include border-radius(3px);
+        vertical-align: bottom;
+        
+        span {
+          vertical-align: bottom;
+          font-size: 50px;
+          margin-top: 15px;
+        }
+        padding-bottom: 3px;
+        border-bottom: 1px solid rgba(100, 100, 100, .3);
+      }
+      .title {
+        text-align: right;
+        color: rgba(100, 100, 100, 1);
+        font-size: 14px;
+        padding-top: 5px;
+        letter-spacing: 3px;
+      }
+    }
+    .c {
+      padding-top: 23px;
+      // border: 1px solid rgba(255, 0, 0, .3);
+      width: calc(100% - #{$logoWidth} - #{$tipWidth});
+      text-align: left;
+      @include clearfix();
+
+      .search {
+        float: left;
+        @include input();
+        width: calc(100% - 160px);
+        padding: 10px;
+        margin-left: 40px;
+      }
+      .go_search {
+        float: left;
+        @include button();
+        padding: 8px 20px;
+        margin-left: 10px;
+        margin-top: 1px;
+        font-size: 18px;
+        font-weight: bold;
+      }
+    }
+    .r {
+      position: relative;
+      width: $tipWidth;
+
+      img {
+      }
+      .title {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        display: inline-block;
+        width: 100%;
+        height: 22px;
+
+        @include overflow-docx3();
+        @include background-image(radial-gradient(50% 30%, rgba(39, 40, 34, .2) 0px, transparent 100%));
+        background-repeat: no-repeat;
+        background-position: center 7px;
+      }
+      .temperature {
+        position: absolute;
+        top: 0;
+        right: 0;
+        display: inline-block;
+        padding: 2px 7px;
+        border: 1px solid rgba(255, 0, 0, .3);
+        max-width: 120px;
+        font-size: 14px;
+        font-weight: bold;
+        color: rgba(255, 255, 255, 1);
+        border: 1px solid rgba(255, 0, 0, .3);
+        background-color: rgba(248, 131, 97, 1);
+
+        @include opacity(.9);
+        @include overflow-docx3();
+        @include border-radius(10px);
+        @include box-shadow(0 0 5px 1px rgba(0, 0, 0, 0.3));
+      }
+    }
+  }
+
+}
