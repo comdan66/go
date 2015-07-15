@@ -16,4 +16,7 @@ $(function () {
     });
   }).first ().mouseenter ();
 
+  $('.imgLiquid').imgLiquid ({verticalAlign: 'top'});
+  $('.created_at').timeago ();
+
 });

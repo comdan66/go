@@ -36,9 +36,17 @@ class Main_cell extends Cell_Controller {
   //   return array ('time' => 60 * 60, 'key' => null);
   // }
   public function tagview () {
+    $data = array ();
+    $data['本週人氣'] = Goal::find ('all', array ('order' => 'RAND()', 'limit' => 4));
+    $data['熱門關鍵'] = Goal::find ('all', array ('order' => 'RAND()', 'limit' => 4));
+    $data['大排長龍'] = Goal::find ('all', array ('order' => 'RAND()', 'limit' => 4));
+    $data['連假特輯'] = Goal::find ('all', array ('order' => 'RAND()', 'limit' => 4));
+
     return $this->setUseJsList (true)
                 ->setUseCssList (true)
-                ->load_view ();
+                ->load_view (array (
+                    'data' => $data
+                  ));
   }
 
   /* render_cell ('main_cell', 'search', array ()); */
