@@ -6,7 +6,7 @@
  */
 
 $google['development'] = array (
-    'client_key' => $google['client_key'],
+    'client_key' => 'AIzaSyCCrpVf7v9_ST0ghGYwdWwINgjjpjec-B0',
     'server_key' => 'AIzaSyCCrpVf7v9_ST0ghGYwdWwINgjjpjec-B0',
   );
 $google['staging'] = array (
