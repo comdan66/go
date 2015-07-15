@@ -4,4 +4,7 @@
  */
 
 $(function () {
+  $('.created_at').timeago ();
+  $('.imgLiquid_top').imgLiquid ({verticalAlign: 'top'});
+  $('.imgLiquid_center').imgLiquid ({verticalAlign: 'center'});
 });

@@ -22,7 +22,6 @@ $(function () {
     $bottom.text ($('.banner').eq (firstIndex).data ('title'));
   }).click ();
 
-  $('.banner').imgLiquid ({verticalAlign: 'top'});
   // var timer = null, index = 0;
 
   // $(window).resize (function () {

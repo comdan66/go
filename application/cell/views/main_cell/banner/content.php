@@ -2,7 +2,7 @@
   <div class='banners'>
 <?php
     foreach ($pictures as $picture) { ?>
-        <a href='' class='banner' data-title='<?php echo $picture->goal->title;?>'>
+        <a href='' class='banner imgLiquid_top' data-title='<?php echo $picture->goal->title;?>'>
           <img src='<?php echo $picture->name->url ();?>' />
         </a>
 <?php

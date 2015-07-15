@@ -23,6 +23,16 @@ class Main_cell extends Cell_Controller {
                   ));
   }
 
+  /* render_cell ('main_cell', 'boxs', array ()); */
+  // public function _cache_keyword () {
+  //   return array ('time' => 60 * 60, 'key' => null);
+  // }
+  public function boxs () {
+    return $this->setUseJsList (true)
+                ->setUseCssList (true)
+                ->load_view ();
+  }
+
   /* render_cell ('main_cell', 'keyword', array ()); */
   // public function _cache_keyword () {
   //   return array ('time' => 60 * 60, 'key' => null);
@@ -31,11 +41,11 @@ class Main_cell extends Cell_Controller {
     return $this->load_view ();
   }
 
-  /* render_cell ('main_cell', 'tagview', array ()); */
+  /* render_cell ('main_cell', 'tabview', array ()); */
   // public function _cache_tagview () {
   //   return array ('time' => 60 * 60, 'key' => null);
   // }
-  public function tagview () {
+  public function tabview () {
     $data = array ();
     $data['本週人氣'] = Goal::find ('all', array ('order' => 'RAND()', 'limit' => 4));
     $data['熱門關鍵'] = Goal::find ('all', array ('order' => 'RAND()', 'limit' => 4));

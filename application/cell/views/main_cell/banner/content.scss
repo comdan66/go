@@ -143,7 +143,7 @@ $rightWidth: 400px;
       display: none;
     }
     @media screen and (min-width: #{$mediaTabletWidth}) {
-      width: $rightWidth - 10px;
+      width: $rightWidth - 20px;
     }
     border: 1px solid rgba(189, 190, 188, 1);
     background-color: rgba(255, 255, 255, 1);
@@ -154,6 +154,7 @@ $rightWidth: 400px;
     h2 {
       border-bottom: 1px solid rgba(189, 190, 188, .5);
       padding-bottom: 10px;
+      height: 40px;
     }
     .tag {
       display: inline-block;

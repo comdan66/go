@@ -12,9 +12,6 @@ class Main extends Site_controller {
   }
 
   public function index () {
-    $this->add_js (base_url ('resource', 'javascript', 'imgLiquid_v0.9.944', 'imgLiquid-min.js'))
-         ->add_js (base_url ('resource', 'javascript', 'jquery-timeago_v1.3.1', 'jquery.timeago.js'))
-         ->add_js (base_url ('resource', 'javascript', 'jquery-timeago_v1.3.1', 'locales', 'jquery.timeago.zh-TW.js'))
-         ->load_view (null);
+    $this->load_view (null);
   }
 }

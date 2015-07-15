@@ -26,18 +26,18 @@ $(function () {
   var _map = null;
   var _marker = null;
   var _markers = [];
-  var _isGetPictures = false;
-  var _getPicturesTimer = null;
+  var _isGetGoals = false;
+  var _getGoalsTimer = null;
 
   function getGoals () {
-    clearTimeout (_getPicturesTimer);
+    clearTimeout (_getGoalsTimer);
 
-    _getPicturesTimer = setTimeout (function () {
-      if (_isGetPictures)
+    _getGoalsTimer = setTimeout (function () {
+      if (_isGetGoals)
         return;
       
       $loadingData.addClass ('show');
-      _isGetPictures = true;
+      _isGetGoals = true;
 
       var northEast = _map.getBounds().getNorthEast ();
       var southWest = _map.getBounds().getSouthWest ();
@@ -81,7 +81,7 @@ $(function () {
           _markers = _markers.filter (function (t) { return $.inArray (t.id, delete_ids) == -1; }).concat (markers.filter (function (t) { return $.inArray (t.id, add_ids) != -1; }));
 
           $loadingData.removeClass ('show');
-          _isGetPictures = false;
+          _isGetGoals = false;
         }
       })
       .fail (function (result) { ajaxError (result); })

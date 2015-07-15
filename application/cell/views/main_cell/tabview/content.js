@@ -15,8 +15,4 @@ $(function () {
       $(this).addClass ('c' + (i - index)).addClass (i == index ? 'show' : '');
     });
   }).first ().mouseenter ();
-
-  $('.imgLiquid').imgLiquid ({verticalAlign: 'top'});
-  $('.created_at').timeago ();
-
 });

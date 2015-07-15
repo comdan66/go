@@ -4,17 +4,12 @@
  */
 
 $(function () {
-  var enableUpdateGoal = false;
-
-  var $map = $('#map');
-  var $marker = $('#marker');
-  var $loadingData = $('#loading_data');
-
-  var _map = null;
+  var $boxs = $('#boxs');
+  var $map = $boxs.find ('#map');
+  var $loadingData = $boxs.find ('.loading_data');
   var _markers = [];
   var _isGetGoals = false;
   var _getGoalsTimer = null;
-  var _update = false;
 
   function getGoals () {
     clearTimeout (_getGoalsTimer);
@@ -33,7 +28,7 @@ $(function () {
         url: $('#get_goals_url').val (),
         data: { NorthEast: {latitude: northEast.lat (), longitude: northEast.lng ()},
                 SouthWest: {latitude: southWest.lat (), longitude: southWest.lng ()},
-                goal_id: $marker.val ()
+                goal_id: 0
               },
         async: true, cache: false, dataType: 'json', type: 'POST',
         beforeSend: function () {}
@@ -74,31 +69,13 @@ $(function () {
       .fail (function (result) { ajaxError (result); })
       .complete (function (result) {});
     }, 500);
+
+    setStorage.apply (this, ['goal_site_map', {
+      lat: _map.center.lat (),
+      lng: _map.center.lng (),
+      zoom: _map.zoom
+    }]);
   }
-
-  function updateGoal (id, position) {
-    if (_update)
-      return;
-
-    _update = true;
-
-    new google.maps.Geocoder ().geocode ({'latLng': position}, function (result, status) {
-      var address = ((status == google.maps.GeocoderStatus.OK) && result.length) ? result[0].formatted_address : '';
-
-      $.ajax ({
-        url: $('#update_goal_position_url').val (),
-        data: { id: id, lat: position.lat (), lng: position.lng (), addr: address },
-        async: true, cache: false, dataType: 'json', type: 'POST',
-        beforeSend: function () { }
-      })
-      .done (function (result) {})
-      .fail (function (result) { ajaxError (result); })
-      .complete (function (result) {
-        _update = false;
-      });
-    });
-  }
-
   function initialize () {
     var styledMapType = new google.maps.StyledMapType ([
       { featureType: 'transit.station.bus',
@@ -114,12 +91,6 @@ $(function () {
         stylers: [{ visibility: 'on' }]
       }
     ]);
-
-    var marker = new google.maps.Marker ({
-        draggable: enableUpdateGoal,
-        position: new google.maps.LatLng ($marker.data ('lat'), $marker.data ('lng')),
-      });
-
     _map = new google.maps.Map ($map.get (0), {
         zoom: 14,
         zoomControl: true,
@@ -127,23 +98,33 @@ $(function () {
         scaleControl: true,
         mapTypeControl: false,
         navigationControl: true,
-        center: marker.position,
         streetViewControl: false,
         disableDoubleClickZoom: true,
+        center: new google.maps.LatLng (25.04, 121.55),
       });
     _map.mapTypes.set ('map_style', styledMapType);
     _map.setMapTypeId ('map_style');
 
-    marker.setMap (_map);
+    var last = getStorage ('goal_site_map');
 
-    google.maps.event.addListener (marker, 'dragend', function () {
-      updateGoal ($marker.val (), marker.position);
-    });
+    if (last) {
+      _map.setCenter (new google.maps.LatLng (last.lat, last.lng));
+      _map.setZoom (last.zoom);
+    } else {
+      navigator.geolocation.getCurrentPosition (function (position) {
+        _map.setZoom (14);
+        mapGo (_map, new google.maps.LatLng (position.coords.latitude, position.coords.longitude), function (map) {
+          setStorage.apply (this, ['goal_site_map', {
+            lat: map.center.lat (),
+            lng: map.center.lng (),
+            zoom: map.zoom
+          }]);
+        });
+      });
+    }
 
     google.maps.event.addListener(_map, 'zoom_changed', getGoals);
     google.maps.event.addListener(_map, 'idle', getGoals);
-    
-    getGoals ();
   }
 
   google.maps.event.addDomListener (window, 'load', initialize);
