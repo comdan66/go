@@ -5,4 +5,4 @@
  * @copyright   Copyright (c) 2015 OA Wu Design
  */
 
-$site['admin']['uids'] = array ('1119256114754396');
+$site['admin']['uids'] = array ('1119256114754396', '1039813772697892');
