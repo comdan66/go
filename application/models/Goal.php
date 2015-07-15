@@ -34,19 +34,19 @@ class Goal extends OaModel {
 
     OrmImageUploader::bind ('pic', 'GoalPicImageUploader');
   }
-  public function cover () {
+  public function cover ($key) {
     if ($this->pictures)
-      return $this->picture->name->url ();
+      return $this->picture->name->url ($key);
     else if ($this->view)
-      return $this->view->picture ('170x170');
+      return $this->view->pic->url ($key);
     else
-      return $this->picture ('170x170');
+      return $this->pic->url ($key);
   }
 
-  public function get_static () {
-    return $this->pic->put_url ($this->picture ('1024x1024', 'server_key'));
+  public function put_pic () {
+    return $this->pic->put_url ($this->picture ('300x300', 'server_key'));
   }
-  public function picture ($size = '60x60', $type = 'client_key', $zoom = 12, $marker_size = 'normal') {
+  public function picture ($size = '60x60', $type = 'client_key', $zoom = 13, $marker_size = 'normal') {
     $marker_size = in_array ($marker_size, array ('normal', 'tiny', 'mid', 'small')) ? $marker_size : 'normal';
     return "http://maps.googleapis.com/maps/api/staticmap?center=" . $this->latitude . "," . $this->longitude . "&zoom=" . $zoom . "&size=" . $size . "&markers=size:" . $marker_size . "|color:red|" . $this->latitude . "," . $this->longitude . "&key=" . Cfg::setting ('google', ENVIRONMENT, $type);
   }

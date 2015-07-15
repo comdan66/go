@@ -93,6 +93,11 @@ class Goals extends Admin_controller {
                         ->set_session ('links', $links, true)
                         ->set_session ('picture_links', $picture_links, true)
                         && redirect (array ('admin', 'goals', 'edit', $goal->id), 'refresh');
+    
+    if (($goal->latitude == $latitude) && ($goal->longitude == $longitude))
+      $is_update_pic = false;
+    else
+      $is_update_pic = true;
 
     $goal->title = $title;
     $goal->latitude = $latitude;
@@ -114,6 +119,9 @@ class Goals extends Admin_controller {
                         ->set_session ('links', $links, true)
                         ->set_session ('picture_links', $picture_links, true)
                         && redirect (array ('admin', 'goals', 'edit', $goal->id), 'refresh');
+    
+    if ($is_update_pic)
+      $goal->put_pic ();
 
     $old_ids = column_array ($goal->tag_goal_maps, 'goal_tag_id');
     if ($del_ids = array_diff ($old_ids, $tag_ids))
@@ -241,7 +249,7 @@ class Goals extends Admin_controller {
                         ->set_session ('picture_links', $picture_links, true)
                         && redirect (array ('admin', 'goals', 'add'), 'refresh');
 
-    if (!$goal->get_static () && ($goal->destroy () || true)) {
+    if (!$goal->put_pic () && ($goal->destroy () || true))
       return identity ()->set_session ('_flash_message', '新增失敗(取得 Static 失敗)！', true)
                         ->set_session ('title', $title, true)
                         ->set_session ('latitude', $latitude, true)
@@ -252,7 +260,6 @@ class Goals extends Admin_controller {
                         ->set_session ('links', $links, true)
                         ->set_session ('picture_links', $picture_links, true)
                         && redirect (array ('admin', 'goals', 'add'), 'refresh');
-    }
 
     if ($tag_ids)
       foreach (GoalTag::find ('all', array ('select' => 'id', 'conditions' => array ('id IN (?)', $tag_ids))) as $tag)
@@ -347,6 +354,12 @@ class Goals extends Admin_controller {
                         && redirect (array ('admin', 'goals', 'view', $goal->id), 'refresh');
     
     if ($goal->view) {
+      
+      if (($goal->view->latitude == $latitude) && ($goal->view->longitude == $longitude) && ($goal->view->heading == $heading) && ($goal->view->pitch == $pitch) && ($goal->view->zoom == $zoom))
+        $is_update_pic = false;
+      else
+        $is_update_pic = true;
+
       $goal->view->latitude = $latitude;
       $goal->view->longitude = $longitude;
       $goal->view->heading = $heading;
@@ -361,6 +374,9 @@ class Goals extends Admin_controller {
                         ->set_session ('pitch', $pitch, true)
                         ->set_session ('zoom', $zoom, true)
                         && redirect (array ('admin', 'goals', 'view', $goal->id), 'refresh');
+        
+      if ($is_update_pic)
+        $goal->view->put_pic ();
     } else {
       $params = array (
           'goal_id' => $goal->id,
@@ -370,14 +386,22 @@ class Goals extends Admin_controller {
           'pitch' => $pitch,
           'zoom' => $zoom,
         );
-      if (!verifyCreateOrm ($goal = GoalView::create ($params)))
+      if (!verifyCreateOrm ($view = GoalView::create ($params)))
         return identity ()->set_session ('_flash_message', '設定失敗！', true)
                         ->set_session ('latitude', $latitude, true)
                         ->set_session ('longitude', $longitude, true)
                         ->set_session ('heading', $heading, true)
                         ->set_session ('pitch', $pitch, true)
                         ->set_session ('zoom', $zoom, true)
-                        && redirect (array ('admin', 'goals', 'view', $goal->id), 'refresh');
+                        && redirect (array ('admin', 'goals', 'view', $view->id), 'refresh');
+      if (!$view->put_pic () && ($view->destroy () || true))
+        return identity ()->set_session ('_flash_message', '設定失敗(取得 Static 失敗)！', true)
+                        ->set_session ('latitude', $latitude, true)
+                        ->set_session ('longitude', $longitude, true)
+                        ->set_session ('heading', $heading, true)
+                        ->set_session ('pitch', $pitch, true)
+                        ->set_session ('zoom', $zoom, true)
+                        && redirect (array ('admin', 'goals', 'view', $view->id), 'refresh');
     }
 
     return identity ()->set_session ('_flash_message', '設定成功！', true)
@@ -414,7 +438,7 @@ class Goals extends Admin_controller {
          ->add_css (base_url ('resource', 'css', 'fancyBox_v2.1.5', 'jquery.fancybox-buttons.css'))
          ->add_css (base_url ('resource', 'css', 'fancyBox_v2.1.5', 'jquery.fancybox-thumbs.css'))
          ->add_css (base_url ('resource', 'css', 'fancyBox_v2.1.5', 'my.css'))
-         ->add_js ('https://maps.googleapis.com/maps/api/js?key=AIzaSyBpKWfHYDJV9iJ4HE8jKBI_sPA-4xHY0Zs&v=3.exp&sensor=false&language=zh-TW', false)
+         ->add_js (Cfg::setting ('google', 'client_js_url'), false)
          ->add_js (base_url ('resource', 'javascript', 'markerwithlabel_d2015_06_28', 'markerwithlabel.js'))
          ->add_js (base_url ('resource', 'javascript', 'fancyBox_v2.1.5', 'jquery.fancybox.js'))
          ->add_js (base_url ('resource', 'javascript', 'fancyBox_v2.1.5', 'jquery.fancybox-buttons.js'))

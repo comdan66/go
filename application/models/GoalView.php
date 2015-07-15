@@ -24,8 +24,11 @@ class GoalView extends OaModel {
    
     OrmImageUploader::bind ('pic', 'GoalViewPicImageUploader');
   }
-  public function picture ($size = '50x50', $fov = 90) {
-    return "http://maps.googleapis.com/maps/api/streetview?size=" . strtolower ($size) . "&location=" . $this->latitude . "," . $this->longitude . "&heading=" . $this->heading . "&pitch=" . $this->pitch . "&fov=" . $fov . "&sensor=false";
+  public function put_pic () {
+    return $this->pic->put_url ($this->picture ('1024x1024', 'server_key'));
+  }
+  public function picture ($size = '50x50', $type = 'client_key', $fov = 90) {
+    return "http://maps.googleapis.com/maps/api/streetview?size=" . strtolower ($size) . "&location=" . $this->latitude . "," . $this->longitude . "&heading=" . $this->heading . "&pitch=" . $this->pitch . "&fov=" . $fov . "&sensor=false&key=" . Cfg::setting ('google', ENVIRONMENT, $type);
   }
   public function destroy () {
     return $this->pic->cleanAllFiles () && $this->delete ();

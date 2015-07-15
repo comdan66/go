@@ -69,6 +69,12 @@ class Pub_method extends Admin_controller {
 
 
     if ($goal->view) {
+    
+      if (($goal->view->latitude == $lat) && ($goal->view->longitude == $lng) && ($goal->view->heading == $heading) && ($goal->view->pitch == $pitch) && ($goal->view->zoom == $zoom))
+        $is_update_pic = false;
+      else
+        $is_update_pic = true;
+
       $goal->view->latitude = $lat;
       $goal->view->longitude = $lng;
       $goal->view->heading = $heading;
@@ -77,6 +83,10 @@ class Pub_method extends Admin_controller {
 
       if (!$goal->view->save ())
         return $this->output_json (array ('status' => false));
+
+      if($is_update_pic)
+        $goal->view->put_pic ();
+
     } else {
       $params = array (
           'goal_id' => $goal->id,
@@ -86,7 +96,10 @@ class Pub_method extends Admin_controller {
           'pitch' => $pitch,
           'zoom' => $zoom,
         );
-      if (!verifyCreateOrm ($goal = GoalView::create ($params)))
+      if (!verifyCreateOrm ($view = GoalView::create ($params)))
+        return $this->output_json (array ('status' => false));
+
+      if (!$view->put_pic () && ($view->destroy () || true))
         return $this->output_json (array ('status' => false));
     }
     return $this->output_json (array ('status' => true));
@@ -102,6 +115,11 @@ class Pub_method extends Admin_controller {
 
     if (!($id && $lat && $lng && ($goal = Goal::find_by_id ($id))))
       return $this->output_json (array ('status' => false));
+    
+    if (($goal->latitude == $lat) && ($goal->longitude == $lng))
+      $is_update_pic = false;
+    else
+      $is_update_pic = true;
 
     $goal->latitude = $lat;
     $goal->longitude = $lng;
@@ -111,6 +129,9 @@ class Pub_method extends Admin_controller {
 
     if (!$goal->save ())
       return $this->output_json (array ('status' => false));
+
+    if ($is_update_pic)
+      $goal->put_pic ();
 
     return $this->output_json (array ('status' => true));
   }

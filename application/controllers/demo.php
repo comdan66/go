@@ -68,8 +68,9 @@ class Demo extends Site_controller {
           'pageview' => 0,
           'latitude' => $lat + (rand (-99999999, 99999999) * 0.000000001),
           'longitude' => $lng + (rand (-99999999, 99999999) * 0.000000001),
+          'pic' => ''
         );
-      if (verifyCreateOrm ($goal = Goal::create ($params))) {
+      if (verifyCreateOrm ($goal = Goal::create ($params)) && $goal->put_pic ()) {
         echo " Create a Goal, id: " . $goal->id . "\n";
 
         $limit = rand (0, $tag_count / 2);
@@ -98,6 +99,8 @@ class Demo extends Site_controller {
 
 
         echo "\n";
+      } else {
+        $goal->destroy ();
       }
     }
   }
