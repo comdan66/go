@@ -12,19 +12,29 @@ class Demo extends Site_controller {
   }
 
   public function test () {
-    foreach (Goal::all () as $goal) {
-      if ($goal->view)
-        $goal->view->pic->put_url ('http://dev.go.ioa.tw/' . implode ('/', $goal->view->pic->path ()));
+    // foreach (Goal::all () as $goal) {
+    //   if ($goal->view)
+    //     $goal->view->pic->put_url ('http://dev.go.ioa.tw/' . implode ('/', $goal->view->pic->path ()));
 
-      $goal->pic->put_url ('http://dev.go.ioa.tw/' . implode ('/', $goal->pic->path ()));
-      echo $goal->id . "\n";
-    }
+    //   $goal->pic->put_url ('http://dev.go.ioa.tw/' . implode ('/', $goal->pic->path ()));
+    //   echo $goal->id . "\n";
+    // }
     
-    echo "===================================== \n";
+    // echo "===================================== \n";
 
-    foreach (GoalPicture::all () as $pic) {
-      $pic->name->put_url ('http://dev.go.ioa.tw/' . implode ('/', $pic->name->path ()));
-      echo $pic->id . "-\n";
+    // foreach (GoalPicture::all () as $pic) {
+    //   $pic->name->put_url ('http://dev.go.ioa.tw/' . implode ('/', $pic->name->path ()));
+    //   echo $pic->id . "-\n";
+    // }
+    $this->load->library ('CreateDemo');
+
+    foreach (Goal::all () as $goal) {
+      $comments = range (0, rand (0, 10));
+      echo "\n   新增 " . count ($comments) . "筆 GoalComment\n   ---------------------------------------\n";
+      foreach ($comments as $comment)
+        if ($user = User::find ('one', array ('select' => 'id', 'order' => 'RAND()', 'conditions' => array ())))
+          if (verifyCreateOrm ($comment = GoalComment::create (array ('goal_id' => $goal->id, 'user_id' => $user->id, 'content' => CreateDemo::text (10, 500)))))
+            echo " Create a GoalComment, id: " . $comment->id . "\n";
     }
   }
   public function create () {
