@@ -4,6 +4,7 @@
  */
 
 $(function () {
+
   var $boxs = $('#boxs');
   var $map = $boxs.find ('#map');
   var $loadingData = $boxs.find ('.loading_data');
@@ -58,9 +59,6 @@ $(function () {
           var delete_ids = deletes.map (function (t) { return t.id; });
           var add_ids = adds.map (function (t) { return t.id; });
 
-          // deletes.map (function (t) { t.markerWithLabel.setMap (null); });
-          // adds.map (function (t) { t.markerWithLabel.setMap (_map); });
-
           _markerCluster.removeMarkers (deletes.map (function (t) { return t.markerWithLabel; }));
           _markerCluster.addMarkers (adds.map (function (t) { return t.markerWithLabel; }));
           
@@ -72,7 +70,7 @@ $(function () {
       })
       .fail (function (result) { ajaxError (result); })
       .complete (function (result) {});
-    }, 500);
+    }, 100);
 
     setStorage.apply (this, ['goal_site_map', {
       lat: _map.center.lat (),
@@ -169,9 +167,16 @@ $(function () {
             backgroundPosition: "0 -4px"
         }]
     });
+
     google.maps.event.addListener(_map, 'zoom_changed', getGoals);
     google.maps.event.addListener(_map, 'idle', getGoals);
   }
 
-  google.maps.event.addDomListener (window, 'load', initialize);
+  $(window).scroll (function () {
+    if ($boxs.data ('has_loaded') || ($(this).scrollTop () + $(this).height () < $boxs.offset ().top))
+      return;
+    $boxs.data ('has_loaded', true);
+
+    initialize ();
+  });
 });

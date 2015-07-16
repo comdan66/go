@@ -6,7 +6,7 @@
     $details = $details['details']; ?>
     <a href='' class='detail_unit imgLiquid_top'>
       <img src='<?php echo $goal->cover ();?>' />
-      <div class='detail'>
+      <div class='detail' data-has_loaded='false'>
         <div class='l'>
           <div class='score'><?php echo round ($goal->score / 20, 1);?></div>
           <div class='desc'><?php echo $count;?> 個評分的平均分數</div>

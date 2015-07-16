@@ -1,4 +1,4 @@
-<div id='boxs'<?php echo !$comments ? ' class="no_comment"' : '';?>>
+<div id='boxs'<?php echo !$comments ? ' class="no_comment"' : '';?> data-has_loaded='false'>
   <div class='map'>
     <i></i><i></i><i></i><i></i>
     <div id='map'></div>
