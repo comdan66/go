@@ -21,8 +21,7 @@ class Goal extends OaModel {
     array ('comments', 'class_name' => 'GoalComment'),
     array ('pictures', 'class_name' => 'GoalPicture'),
     array ('scores', 'class_name' => 'GoalScore'),
-    array ('links', 'class_name' => 'GoalLink'),
-    array ('star_details', 'select' => 'COUNT(*) AS count, value', 'class_name' => 'GoalScore', 'order' => 'value DESC', 'group' => 'value')
+    array ('links', 'class_name' => 'GoalLink')
   );
 
   static $belongs_to = array (
@@ -63,12 +62,13 @@ class Goal extends OaModel {
     return $this->pic->cleanAllFiles () && $this->delete ();
   }
   public function add_score ($user_id, $value) {
-    if (verifyCreateOrm (GoalScore::create (array ('user_id' => $user_id, 'goal_id' => $this->id, 'value' => $value)))) {
+    if ($value && verifyCreateOrm (GoalScore::create (array ('user_id' => $user_id, 'goal_id' => $this->id, 'value' => $value)))) {
       if ($score = GoalScore::find ('one', array ('select' => 'SUM(value) AS sum, COUNT(id) as count', 'conditions' => array ('goal_id = ?', $this->id)))) {
         $this->score = round ($score->sum / $score->count, 2);
-        $this->save ();
+        return $this->save ();
       }
     }
+    return false;
   }
 
   public function score_star ($star_count = 5) {
@@ -77,10 +77,7 @@ class Goal extends OaModel {
     $unit_score = 100 / $star_count;
     $count = floor ($score / $unit_score);
     $detail = ($score / $unit_score) - floor ($score / $unit_score);
-
-    if ($detail < 0.25) { $detail = 0; }
-    else if ($detail < 0.75) { $detail = 1; }
-    else { $detail = 0; $count++; }
+    $detail = $detail >= 0.25 ? $detail >= 0.75 ? $count++ ? 0 : 0 : 1 : 0;
 
     $array = array ();
 
@@ -90,16 +87,27 @@ class Goal extends OaModel {
     return $array;
   }
   
-  // public function star_details () {
-  //   $max = 0;
-  //   $array = array (5, 4, 3, 2, 1);
-  //   $unit_scores = $this->star_details;
+  public function star_details ($star_count = 5) {
+    $count = GoalScore::count (array ('conditions' => array ('goal_id = ?', $this->id)));
+    $unit_score = floor (100 / $star_count);
+    $scores = GoalScore::find ('all', array ('select' => 'COUNT(*) AS count, CEIL(value / ' . $unit_score . ') AS star', 'order' => 'value DESC', 'group' => 'CEIL(value / ' . $unit_score . ')', 'conditions' => array ('goal_id = ?', $this->id)));
 
-  //   $unit_scores = array_map (function ($unit_score) use (&$max, &$array) { $max = $unit_score->count > $max ? $unit_score->count : $max; if ($array && (($key = array_search ($unit_score->value, $array))) !== false) unset ($array[$key]); return array ('score' => $unit_score->value, 'count' => $unit_score->count); }, $unit_scores);
-  //   $unit_scores = array_map (function ($unit_score) use ($max) { return array ('score' => $unit_score['score'], 'count' => $unit_score['count'], 'percent' => $unit_score['count'] / $max); }, $unit_scores);
-  //   $unit_scores = array_merge ($unit_scores, array_map (function ($item) { return array ('score' => $item, 'count' => 0, 'percent' => 0); }, $array));
+    $return = array ();
 
-  //   usort ($unit_scores, function ($a, $b) { return $a['score'] < $b['score']; });
-  //   return $unit_scores;
-  // }
+    foreach ($scores as $score)
+      $return[$score->star] = array (
+          'count' => $score->count,
+          'percent' => $score->count / $count
+        );
+
+    foreach (range (1, $star_count) as $key)
+      if (!isset ($return[$key]))
+        $return[$key] = array (
+          'count' => 0,
+          'percent' => 0
+        );
+
+    krsort ($return);
+    return $return;
+  }
 }
