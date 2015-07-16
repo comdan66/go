@@ -12,13 +12,19 @@ class Demo extends Site_controller {
   }
 
   public function test () {
-    $user_count = User::count ();
-
     foreach (Goal::all () as $goal) {
-      $goal->pageview = rand (0, 500);
+      if ($goal->view)
+        $goal->view->pic->put_url ('http://dev.go.ioa.tw/' . implode ('/', $goal->view->pic->path ()));
 
-      foreach (User::find ('all', array ('select' => 'id', 'order' => 'RAND()', 'limit' => rand (0, $user_count / 2), 'conditions' => array ())) as $user)
-        $goal->add_score ($user->id, rand (0, 100));
+      $goal->pic->put_url ('http://dev.go.ioa.tw/' . implode ('/', $goal->pic->path ()));
+      echo $goal->id . "\n";
+    }
+    
+    echo "===================================== \n";
+
+    foreach (GoalPicture::all () as $pic) {
+      $pic->name->put_url ('http://dev.go.ioa.tw/' . implode ('/', $pic->name->path ()));
+      echo $pic->id . "-\n";
     }
   }
   public function create () {
@@ -32,6 +38,8 @@ class Demo extends Site_controller {
     foreach ($times as $time)
       if (verifyCreateOrm ($user = User::create (array ('uid' => uniqid (), 'name' => CreateDemo::text (4, 10)))))
         echo " Create a User, id: " . $user->id . "\n";
+
+    $user_count = User::count ();
 
     $times = range (3, rand (3, 10));
     echo "\n 新增 " . count ($times) . "筆 GoalTagCategory\n==========================================\n";
@@ -65,7 +73,7 @@ class Demo extends Site_controller {
           'address' => CreateDemo::text (30, 80),
           'introduction' => CreateDemo::text (100, 500),
           'score' => 0,
-          'pageview' => 0,
+          'pageview' => rand (0, 500),
           'latitude' => $lat + (rand (-99999999, 99999999) * 0.000000001),
           'longitude' => $lng + (rand (-99999999, 99999999) * 0.000000001),
           'pic' => ''
@@ -92,11 +100,22 @@ class Demo extends Site_controller {
             }
 
         $links = range (1, rand (1, 5));
-        echo "\n   新增 " . $limit . "筆 GoalLink\n   ---------------------------------------\n";
+        echo "\n   新增 " . count ($links) . "筆 GoalLink\n   ---------------------------------------\n";
         foreach ($links as $link)
           if (verifyCreateOrm ($link = GoalLink::create (array ('goal_id' => $goal->id, 'value' => CreateDemo::password (50)))))
             echo " Create a GoalLink, id: " . $link->id . "\n";
 
+        $limit = rand (0, $user_count / 2);
+        echo "\n   新增 " . $limit . "筆 Score\n   ---------------------------------------\n";
+        foreach (User::find ('all', array ('select' => 'id', 'order' => 'RAND()', 'limit' => $limit, 'conditions' => array ())) as $user)
+          $goal->add_score ($user->id, rand (0, 100));
+
+        $comments = range (0, rand (0, 10));
+        echo "\n   新增 " . count ($comments) . "筆 GoalComment\n   ---------------------------------------\n";
+        foreach ($comments as $comment)
+          if ($user = User::find ('one', array ('select' => 'id', 'order' => 'RAND()', 'conditions' => array ())))
+            if (verifyCreateOrm ($comment = GoalComment::create (array ('goal_id' => $goal->id, 'user_id' => $user->id, 'content' => CreateDemo::text (10, 500)))))
+              echo " Create a GoalComment, id: " . $comment->id . "\n";
 
         echo "\n";
       } else {

@@ -10,6 +10,7 @@ $(function () {
   var _markers = [];
   var _isGetGoals = false;
   var _getGoalsTimer = null;
+  var _markerCluster = null;
 
   function getGoals () {
     clearTimeout (_getGoalsTimer);
@@ -57,9 +58,12 @@ $(function () {
           var delete_ids = deletes.map (function (t) { return t.id; });
           var add_ids = adds.map (function (t) { return t.id; });
 
-          deletes.map (function (t) { t.markerWithLabel.setMap (null); });
-          adds.map (function (t) { t.markerWithLabel.setMap (_map); });
+          // deletes.map (function (t) { t.markerWithLabel.setMap (null); });
+          // adds.map (function (t) { t.markerWithLabel.setMap (_map); });
 
+          _markerCluster.removeMarkers (deletes.map (function (t) { return t.markerWithLabel; }));
+          _markerCluster.addMarkers (adds.map (function (t) { return t.markerWithLabel; }));
+          
           _markers = _markers.filter (function (t) { return $.inArray (t.id, delete_ids) == -1; }).concat (markers.filter (function (t) { return $.inArray (t.id, add_ids) != -1; }));
 
           $loadingData.removeClass ('show');
@@ -123,6 +127,48 @@ $(function () {
       });
     }
 
+    _markerCluster = new MarkerClusterer(_map, [], {
+      styles: [{
+            url: 'resource/image/map/pictures_1.png',
+            height: 74,
+            width: 75,
+            textSize: 20,
+            textColor: '#ffffff',
+            backgroundPosition: "0 -4px"
+        },
+        {
+            url: 'resource/image/map/pictures_2.png',
+            height: 74,
+            width: 75,
+            textSize: 20,
+            textColor: '#ffffff',
+            backgroundPosition: "0 -4px"
+        },
+        {
+            url: 'resource/image/map/pictures_3.png',
+            height: 74,
+            width: 75,
+            textSize: 20,
+            textColor: '#ffffff',
+            backgroundPosition: "0 -4px"
+        },
+        {
+            url: 'resource/image/map/pictures_4.png',
+            height: 74,
+            width: 75,
+            textSize: 20,
+            textColor: '#ffffff',
+            backgroundPosition: "0 -4px"
+        },
+        {
+            url: 'resource/image/map/pictures_5.png',
+            height: 74,
+            width: 75,
+            textSize: 20,
+            textColor: '#ffffff',
+            backgroundPosition: "0 -4px"
+        }]
+    });
     google.maps.event.addListener(_map, 'zoom_changed', getGoals);
     google.maps.event.addListener(_map, 'idle', getGoals);
   }

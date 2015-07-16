@@ -98,7 +98,7 @@ function MarkerClusterer(map, opt_markers, opt_options) {
    * @type {number}
    * @private
    */
-  this.gridSize_ = 100;
+  this.gridSize_ = options['gridSize'] || 60;
 
   /**
    * @private
@@ -1036,16 +1036,6 @@ function ClusterIcon(cluster, styles, opt_padding) {
   this.visible_ = false;
 
   this.setMap(this.map_);
-  // var markerWithLabel = new MarkerWithLabel ({
-  //             position: new google.maps.LatLng (t.lat, t.lng),
-  //             draggable: false,
-  //             raiseOnDrag: false,
-  //             clickable: true,
-  //             labelContent: "<div class='temperature'>12℃</div><div class='bottom'><div class='title'>32312321</div></div>",
-  //             labelAnchor: new google.maps.Point (65, 95),
-  //             labelClass: "marker_label",
-  //             icon: 'http://weather.ioa.tw/resource/image/map/09d.png'
-  //           });
 }
 
 
@@ -1074,9 +1064,7 @@ ClusterIcon.prototype.onAdd = function() {
   if (this.visible_) {
     var pos = this.getPosFromLatLng_(this.center_);
     this.div_.style.cssText = this.createCss(pos);
-    this.div_.className = this.div_.className + " marker_label";
-    
-    this.div_.innerHTML = this.cluster_.markers_[0].labelContent;
+    this.div_.innerHTML = this.sums_.text;
   }
 
   var panes = this.getPanes();
@@ -1098,10 +1086,8 @@ ClusterIcon.prototype.onAdd = function() {
  */
 ClusterIcon.prototype.getPosFromLatLng_ = function(latlng) {
   var pos = this.getProjection().fromLatLngToDivPixel(latlng);
-  // pos.x -= parseInt(this.width_ / 2, 10);
-  // pos.y -= parseInt(this.height_ / 2, 10);
-  pos.x -= parseInt(130 / 2, 10);
-  pos.y -= parseInt(135 / 2, 10);
+  pos.x -= parseInt(this.width_ / 2, 10);
+  pos.y -= parseInt(this.height_ / 2, 10);
   return pos;
 };
 
@@ -1217,7 +1203,6 @@ ClusterIcon.prototype.setCenter = function(center) {
  * @return {string} The css style text.
  */
 ClusterIcon.prototype.createCss = function(pos) {
-  
   var style = [];
   style.push('background-image:url(' + this.url_ + ');');
   var backgroundPosition = this.backgroundPosition_ ? this.backgroundPosition_ : '0 0';
@@ -1249,11 +1234,8 @@ ClusterIcon.prototype.createCss = function(pos) {
 
   style.push('cursor:pointer; top:' + pos.y + 'px; left:' +
       pos.x + 'px; color:' + txtColor + '; position:absolute; font-size:' +
-      txtSize + 'px; font-family:Arial,sans-serif; font-weight:bold;');
-
-  // return style.join('');
-  return "background:url(" + this.cluster_.markers_[0].icon + ") no-repeat;background-position:30px 22px;position:absolute; width: 130px; height: 135px; top:" + pos.y + "px; left:" + pos.x + "px;";
-  // return "background:url(" + this.cluster_.markers_[0].icon + ") no-repeat;position:absolute; width: 130px; height: 135px; top:" + pos.y + "px; left:" + pos.x + "px; border: 1px solid rgba(255, 0, 0, .3);";
+      txtSize + 'px; font-family:Arial,sans-serif; font-weight:bold');
+  return style.join('');
 };
 
 

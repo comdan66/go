@@ -34,7 +34,7 @@ class Goal extends OaModel {
 
     OrmImageUploader::bind ('pic', 'GoalPicImageUploader');
   }
-  public function cover ($key) {
+  public function cover ($key = '') {
     if ($this->pictures)
       return $this->picture->name->url ($key);
     else if ($this->view)

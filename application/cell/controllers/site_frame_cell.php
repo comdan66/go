@@ -17,6 +17,7 @@ class Site_frame_cell extends Cell_Controller {
         array ('name' => '首頁', 'href' => base_url (), 'show' => true),
         array ('name' => '搜尋', 'href' => base_url ('search'), 'show' => true),
         array ('name' => '地圖', 'href' => base_url ('maps'), 'show' => true),
+        array ('name' => '氣象', 'href' => base_url ('weather'), 'show' => true),
       );
     $right_links = array (
         array ('name' => '登出', 'href' => base_url ('platform', 'sign_out'), 'show' => identity ()->user () ? true : false),

@@ -3,7 +3,7 @@
 <?php
     foreach ($pictures as $picture) { ?>
         <a href='' class='banner imgLiquid_top' data-title='<?php echo $picture->goal->title;?>'>
-          <img src='<?php echo $picture->name->url ();?>' />
+          <img src='<?php echo $picture->name->url ('800x800c');?>' />
         </a>
 <?php
     } ?>

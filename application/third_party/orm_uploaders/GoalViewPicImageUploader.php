@@ -11,8 +11,10 @@ class GoalViewPicImageUploader extends OrmImageUploader {
     return array (
         '' => array (),
         '50x50c' => array ('adaptiveResizeQuadrant', 50, 50, 'c'),
-        '200x150c' => array ('adaptiveResizeQuadrant', 200, 150, 'c'),
-        '800x360c' => array ('adaptiveResizeQuadrant', 800, 360, 'c'),
+        '100x100c' => array ('adaptiveResizeQuadrant', 100, 100, 'c'),
+        '200x200c' => array ('adaptiveResizeQuadrant', 200, 200, 'c'),
+        '400x400c' => array ('adaptiveResizeQuadrant', 400, 400, 'c'),
+        '800x800c' => array ('adaptiveResizeQuadrant', 800, 800, 'c'),
       );
   }
 }

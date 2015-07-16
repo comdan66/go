@@ -14,17 +14,17 @@
           <?php 
           foreach ($goals as $i => $goal) {
             if ($i % 2 == 0) { ?>
-              <a class='row' href=''>
+              <div class='row'>
       <?php } ?>
                 <div class='<?php echo $i % 2 == 0 ? 'l' : 'r';?>'>
                   <div class='ll'>
-                    <div class='imgLiquid_top'>
-                      <img src='<?php echo $goal->cover ('200x150c');?>' />
-                    </div>
+                    <a class='imgLiquid_top' href=''>
+                      <img src='<?php echo $goal->cover ('200x200c');?>' />
+                    </a>
                   </div>
                   <div class='rr'>
                     <div class='title'>
-                      <h3><?php echo $goal->title;?></h3>
+                      <a href=''><h3><?php echo $goal->title;?></h3></a>
                       <div class='rrr'>
                         <?php 
                         foreach ($goal->score_star () as $star) {?>
@@ -40,7 +40,7 @@
                   </div>
                 </div>
       <?php if ($i % 2 == 1) { ?>
-              </a>
+              </div>
       <?php }
           } ?>
         </div>
