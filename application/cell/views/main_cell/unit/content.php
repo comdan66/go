@@ -13,6 +13,8 @@
             <div class='tag'>asd</div>
           </div>
         </div>
+        <div class='title'>dasdasd</div>
+        <div class='mobile_pv icon-eye'>123</div>
       </a>
 <?php
     }?>
