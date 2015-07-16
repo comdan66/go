@@ -114,6 +114,7 @@
           text-align: right;
           &:before {
             font-size: 18px;
+            margin-right: 3px;
           }
           @include clearfix();
           @include overflow-docx3();
