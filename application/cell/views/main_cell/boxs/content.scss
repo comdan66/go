@@ -25,6 +25,17 @@
     height: 460px;
   }
 
+  &.no_comment {
+    @media screen and (min-width: 0px) and (max-width: #{$mediaMiniMobileWidth - 1px}) {
+      height: 265px;
+    }
+    @media screen and (min-width: #{$mediaMiniMobileWidth}) and (max-width: #{$mediaMobileWidth - 1px}) {
+      height: 365px;
+    }
+    .map {
+      width: 100%;
+    }
+  }
   .map {
     @media screen and (min-width: 0px) and (max-width: #{$mediaMiniMobileWidth - 1px}) {
       width: 100%;

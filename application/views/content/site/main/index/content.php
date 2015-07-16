@@ -12,6 +12,7 @@
   <?php echo render_cell ('main_cell', 'boxs', array ()); ?>
   <?php echo render_cell ('main_cell', 'unit', array ()); ?>
   <?php echo render_cell ('main_cell', 'unit', array ()); ?>
+  <?php echo render_cell ('main_cell', 'unit', array ()); ?>
 
 </div>
 

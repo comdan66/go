@@ -36,7 +36,7 @@
                     <article>
                       <?php echo mb_strimwidth ($goal->introduction, 0, 310, '…','UTF-8');?>
                     </article>
-                    <div class='created_at' data-time='2013-10-20 12:12:12'>2013-10-20 12:12:12</div>
+                    <div class='created_at' data-time='<?php echo $goal->created_at;?>'><?php echo $goal->created_at;?></div>
                   </div>
                 </div>
       <?php if ($i % 2 == 1) { ?>

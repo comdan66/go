@@ -4,17 +4,17 @@
 <?php
     foreach ($goals as $goal) { ?>
       <a href='' class='unit'>
-        <img src='<?php echo $goal->cover ('200x200c');?>' />
+        <img src='<?php echo $goal->cover ('400x400c');?>' />
         <div class='cover'>
-          <div class='pv icon-eye'>123</div>
+          <div class='pv icon-eye'><?php echo $goal->pageview;?></div>
           <div class='tags'>
-            <div class='tag'>asd</div>
-            <div class='tag'>asd</div>
-            <div class='tag'>asd</div>
+      <?php foreach ($goal->tags as $tag) { ?>
+              <div class='tag'><?php echo $tag->name;?></div>
+      <?php } ?>
           </div>
         </div>
-        <div class='title'>dasdasd</div>
-        <div class='mobile_pv icon-eye'>123</div>
+        <div class='title'><?php echo $goal->title;?></div>
+        <div class='mobile_pv icon-eye'><?php echo $goal->pageview;?></div>
       </a>
 <?php
     }?>

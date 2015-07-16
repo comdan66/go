@@ -157,12 +157,16 @@
             position: relative;
             display: inline-block;
             width: 100%;
-            height: 25px;
-            margin-top: 30px;
+            height: 60px;
+            line-height: 58px;
+            margin-top: 5px;
             color: rgba(240, 240, 240, 1);
             font-size: 16px;
+            @include background-image(radial-gradient(40% 50%, rgba(39, 40, 34, .3) 0px, rgba(39, 40, 34, 0) 110%));
+
             &:before {
               font-size: 18px;
+              margin-right: 3px;
             }
             @include clearfix();
             @include overflow-docx3();
@@ -174,6 +178,7 @@
             left: 0;
             display: inline-block;
             width: 100%;
+            max-height: 65px;
             @include clearfix();
             
             .tag {
