@@ -24,14 +24,14 @@
       height: 100%;
       line-height: 38px;
       cursor: pointer;
-      @include background-image(radial-gradient(50% 50%, rgba(255, 255, 255, .4) 0px, transparent 100%));
+      @include background-image(radial-gradient(50% 50%, rgba(255, 255, 255, .4) 0px, rgba(255, 255, 255, 0) 100%));
       background-repeat: no-repeat;
       background-position: 50% 8px;
 
       &.active {
         font-weight: bold;
         color: rgba(39, 40, 34, .8);
-        @include background-image(radial-gradient(50% 50%, rgba(255, 255, 255, .8) 0px, transparent 110%));
+        @include background-image(radial-gradient(50% 50%, rgba(255, 255, 255, .8) 0px, rgba(255, 255, 255, 0) 110%));
         
         &:after, &:before {
           @include opacity(1);

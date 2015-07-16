@@ -206,7 +206,7 @@ $tipWidth: 130px;
         height: 22px;
 
         @include overflow-docx3();
-        @include background-image(radial-gradient(50% 30%, rgba(39, 40, 34, .2) 0px, transparent 100%));
+        @include background-image(radial-gradient(50% 30%, rgba(39, 40, 34, .2) 0px, rgba(39, 40, 34, 0) 100%));
         background-repeat: no-repeat;
         background-position: center 7px;
       }

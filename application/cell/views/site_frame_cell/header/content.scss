@@ -180,7 +180,7 @@ body {
         color: rgba(120, 120, 120, 1);
         font-weight: bold;
         font-size: x-large;
-        @include background-image(radial-gradient(50% 50%, rgba(255, 255, 255, .3) 0px, transparent 100%));
+        @include background-image(radial-gradient(50% 50%, rgba(255, 255, 255, .3) 0px, rgba(255, 255, 255, 0) 100%));
       }
     }
     @media screen and (min-width: #{$mediaMobileWidth}) {

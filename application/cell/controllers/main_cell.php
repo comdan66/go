@@ -41,7 +41,7 @@ class Main_cell extends Cell_Controller {
   //   return array ('time' => 60 * 60, 'key' => null);
   // }
   public function unit () {
-    $goals = Goal::find ('all', array ('order' => 'RAND()', 'limit' => 4));
+    $goals = Goal::find ('all', array ('order' => 'RAND()', 'limit' => 6));
     return $this->setUseJsList (true)
                 ->setUseCssList (true)
                 ->load_view (array (
