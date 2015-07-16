@@ -108,6 +108,7 @@ class Goal extends OaModel {
         );
 
     krsort ($return);
-    return $return;
+    unset ($return[0]);
+    return array ('details' => $return, 'count' => $count);
   }
 }

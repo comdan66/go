@@ -4,4 +4,7 @@
  */
 
 $(function () {
+  $('#details .row div[data-width]').each (function () {
+    $(this).css ({'width': $(this).data ('width')});
+  });
 });

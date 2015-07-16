@@ -49,12 +49,17 @@ class Main_cell extends Cell_Controller {
                   ));
   }
 
-  /* render_cell ('main_cell', 'keyword', array ()); */
+  /* render_cell ('main_cell', 'details', array ()); */
   // public function _cache_keyword () {
   //   return array ('time' => 60 * 60, 'key' => null);
   // }
-  public function keyword () {
-    return $this->load_view ();
+  public function details () {
+    $goals = Goal::find ('all', array ('order' => 'RAND()', 'limit' => 3));
+    return $this->setUseJsList (true)
+                ->setUseCssList (true)
+                ->load_view (array (
+                    'goals' => $goals
+                  ));
   }
 
   /* render_cell ('main_cell', 'tabview', array ()); */
