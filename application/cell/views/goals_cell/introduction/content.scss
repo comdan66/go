@@ -1,0 +1,296 @@
+/**
+ * @author      OA Wu <comdan66@gmail.com>
+ * @copyright   Copyright (c) 2015 OA Wu Design
+ */
+
+@import "_oa";
+
+$rightKeyWidth: 800px; 
+
+#introduction {
+
+  @media screen and (min-width: 0px) and (max-width: #{$mediaMobileWidth - 1px}) {
+    margin-top: 0;
+  }
+  @media screen and (min-width: #{$mediaMobileWidth}) {
+    margin-top: 65px;
+  }
+
+  @media screen and (min-width: $mediaMobileWidth) and (max-width: #{$rightKeyWidth - 1px}) {
+    @include split-left(380px, '.introduction', '.details');
+  }
+  @media screen and (min-width: #{$rightKeyWidth}) {
+    @include split-right(400px, '.introduction', '.details');
+  }
+  .introduction, .details {
+    overflow: visible;
+  }
+  .introduction {
+    @media screen and (min-width: #{$mediaMobileWidth}) {
+      padding-right: 10px;
+    }
+
+    .introduction_container {
+      position: relative;
+      background-color: rgba(255, 255, 255, 1);
+      border: 1px solid rgba(39, 40, 34, .35);
+
+      @media screen and (min-width: 0px) and (max-width: #{$mediaMobileWidth - 1px}) {
+        border-top: 0;
+        @include border-bottom-radius(3px);
+      }
+      @media screen and (min-width: #{$mediaMobileWidth}) {
+        @include border-radius(3px);
+      }
+
+      @media screen and (min-width: 0px) and (max-width: #{$mediaMobileWidth - 1px}) {
+
+      }
+      @media screen and (min-width: #{$mediaMobileWidth}) {
+        $arrowWidth: 10px;
+        &:after, &:before {
+          bottom: 100%;
+          left: 115px;
+          border: solid transparent;
+          content: " ";
+          height: 0;
+          width: 0;
+          position: absolute;
+          pointer-events: none;
+        }
+
+        &:after {
+          border-color: rgba(136, 183, 213, 0);
+          border-bottom-color: rgba(255, 255, 255, 1);
+          border-width: $arrowWidth;
+          margin-left: 0 - $arrowWidth;
+        }
+        &:before {
+          border-color: rgba(194, 225, 245, 0);
+          border-bottom-color: rgba(39, 40, 34, .4);
+          border-width: ($arrowWidth + 1);
+          margin-left: 0 - ($arrowWidth + 1);
+        }
+      }
+      .top {
+        height: 70px;
+        border-bottom: 1px solid rgba(233, 234, 237, 1);
+        background-color: rgba(246, 247, 248, 1);
+        @include border-top-radius(3px);
+        @media screen and (min-width: 0px) and (max-width: #{$mediaMiniMobileWidth - 1px}) {
+          @include split-right(1px);
+        }
+        @media screen and (min-width: $mediaMiniMobileWidth) and (max-width: #{$mediaMobileWidth - 1px}) {
+          @include split-right(170px);
+        }
+        @media screen and (min-width: #{$mediaMobileWidth}) {
+          @include split-right(160px);
+        }
+        .l, .r {
+        }
+        .l {
+          text-align: left;
+          padding: 10px;
+          .title {
+            margin: 0;
+            font-size: 22px;
+            color: rgba(50, 50, 50, 0.8);
+            font-weight: bold;
+            letter-spacing: 1px;
+            @include overflow-docx3();
+            @media screen and (min-width: 0px) and (max-width: #{$mediaMiniMobileWidth - 1px}) {
+              width: calc(100% - 100px);
+            }
+          }
+          .address {
+            margin-top: 8px;
+            padding-left: 20px;
+            font-size: 14px;
+            letter-spacing: .5px;
+            @include overflow-docx3();
+          }
+        }
+        .r {
+          @media screen and (min-width: 0px) and (max-width: #{$mediaMobileWidth - 1px}) {
+            display: none;
+          }
+          padding-top: 23px;
+          @include clearfix();
+          i {
+            float: left;
+            font-size: 24px;
+            
+            + i {
+              margin-left: 8px;
+            }
+          }
+        }
+      }
+      .center {
+        text-align: left;
+        padding: 20px;
+        word-break: break-all;
+      }
+      .bottom {
+        border-top: 1px solid rgba(233, 234, 237, 1);
+        background-color: rgba(246, 247, 248, 1);
+        @include border-bottom-radius(3px);
+        padding: 10px 20px;
+        text-align: right;
+        vertical-align: bottom;
+
+        span {
+          display: inline-block;
+          font-size: 30px;
+          font-weight: bold;
+          line-height: 24px;
+          margin: 0 5px;
+        }
+      }
+    }
+  }
+  .details {
+    @media screen and (min-width: 0px) and (max-width: #{$mediaMobileWidth - 1px}) {
+      margin-top: 20px;
+    }
+    @media screen and (min-width: #{$mediaMobileWidth}) {
+      padding-left: 10px;
+    }
+    .details_container {
+      background-color: rgba(255, 255, 255, 1);
+      border: 1px solid rgba(39, 40, 34, .35);
+      @include border-radius(3px);
+      padding: 15px;
+
+      @media screen and (min-width: 0px) and (max-width: #{$mediaMiniMobileWidth - 1px}) {
+        padding: 7px;
+        @include split-left(70px, '.l', '.detail');
+      }
+      @media screen and (min-width: $mediaMiniMobileWidth) and (max-width: #{$mediaMobileWidth - 1px}) {
+        padding: 15px;
+        @include split-left(120px, '.l', '.detail');
+      }
+      @media screen and (min-width: $mediaMobileWidth) and (max-width: #{$rightKeyWidth - 1px}) {
+        padding: 7px;
+        @include split-left(70px, '.l', '.detail');
+      }
+      @media screen and (min-width: #{$rightKeyWidth}) {
+        padding: 15px;
+        @include split-left(120px, '.l', '.detail');
+      }
+      .l, .r {
+      }
+      .l {
+        border-right: 1px solid rgba(178, 179, 176, 1);
+        padding-bottom: 5px;
+        @media screen and (min-width: 0px) and (max-width: #{$mediaMiniMobileWidth - 1px}) {
+          padding-bottom: 10px;
+        }
+        .t, .b {
+        }
+        .t {
+          @media screen and (min-width: 0px) and (max-width: #{$mediaMiniMobileWidth - 1px}) {
+            font-size: 40px;
+            height: 50px;
+            padding-top: 7px;
+          }
+          @media screen and (min-width: $mediaMiniMobileWidth) and (max-width: #{$mediaMobileWidth - 1px}) {
+            font-size: 55px;
+            height: 65px;        
+          }
+          @media screen and (min-width: $mediaMobileWidth) and (max-width: #{$rightKeyWidth - 1px}) {
+            font-size: 40px;
+            height: 50px;
+            padding-top: 7px;
+          }
+          @media screen and (min-width: #{$rightKeyWidth}) {
+            font-size: 55px;
+            height: 65px;
+          }
+        }
+        .b {
+          height: 36px;
+          line-height: 18px;
+          padding: 0 15px;
+          font-size: 14px;
+          overflow: hidden;
+          @media screen and (min-width: 0px) and (max-width: #{$mediaMiniMobileWidth - 1px}) {
+            padding: 0 5px;
+            margin-top: 8px;
+          }
+          @media screen and (min-width: $mediaMiniMobileWidth) and (max-width: #{$mediaMobileWidth - 1px}) {
+            padding: 0 15px;
+          }
+          @media screen and (min-width: $mediaMobileWidth) and (max-width: #{$rightKeyWidth - 1px}) {
+            padding: 0 5px;
+            margin-top: 8px;
+          }
+          @media screen and (min-width: #{$rightKeyWidth}) {
+            padding: 0 15px;
+          }
+        }
+      }
+      .detail {
+        border-left: 1px solid rgba(255, 255, 255, 1);
+        padding-left: 10px;
+        .row {
+          @include clearfix();
+
+          position: relative;
+          height: 17px;
+          margin-top: 3px;
+          &:first-child {
+            margin-top: 5px;
+          }
+          font-size: 12px;
+          text-align: left;
+
+          div {
+            float: left;
+            height: 17px;
+            line-height: 15px;
+
+            &:nth-child(1) {
+              width: 12px;
+              text-align: center;
+            }
+            &:nth-child(2) {
+              margin-left: 2px;
+            }
+            &:nth-child(3) {
+              display: inline-block;
+              width: 0;
+              margin-top: 2px;
+              margin-left: 4px;
+              height: calc(100% - 4px);
+              background-color: rgba(39, 40, 34, .4);
+              @include transition(all .5s);
+              @include border-right-radius(2px);
+              @include box-shadow(inset 0 0 50px rgba(0, 0, 0, 0.4));
+            }
+            &:nth-child(4) {
+              margin-left: 3px;
+            }
+          }
+        }
+      }
+      .start {
+        @media screen and (min-width: #{$mediaMobileWidth}) {
+          display: none;
+        }
+        float: left;
+        margin-top: 15px;
+        padding-top: 14px;
+        width: 100%;
+        border-top: 1px solid rgba(178, 179, 176, .8);
+        i {
+          font-size: 24px;
+          
+          + i {
+            margin-left: 8px;
+          }
+        }
+      }
+    }
+  }
+}

@@ -6,7 +6,6 @@
  */
 
 class Oa_controller extends Root_controller {
-  // private $component_lists = array ();
   private $componemt_path  = array ();
   private $frame_path      = array ();
   private $content_path    = array ();

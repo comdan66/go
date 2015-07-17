@@ -39,12 +39,10 @@ class Goals extends Admin_controller {
          ->add_css (base_url ('resource', 'css', 'fancyBox_v2.1.5', 'jquery.fancybox-buttons.css'))
          ->add_css (base_url ('resource', 'css', 'fancyBox_v2.1.5', 'jquery.fancybox-thumbs.css'))
          ->add_css (base_url ('resource', 'css', 'fancyBox_v2.1.5', 'my.css'))
-         ->add_js (Cfg::setting ('google', 'client_js_url'), false)
          ->add_js (base_url ('resource', 'javascript', 'fancyBox_v2.1.5', 'jquery.fancybox.js'))
          ->add_js (base_url ('resource', 'javascript', 'fancyBox_v2.1.5', 'jquery.fancybox-buttons.js'))
          ->add_js (base_url ('resource', 'javascript', 'fancyBox_v2.1.5', 'jquery.fancybox-thumbs.js'))
          ->add_js (base_url ('resource', 'javascript', 'fancyBox_v2.1.5', 'jquery.fancybox-media.js'))
-         ->add_js (base_url ('resource', 'javascript', 'markerwithlabel_d2015_06_28', 'markerwithlabel.js'))
          ->add_js (base_url ('resource', 'javascript', 'imgLiquid_v0.9.944', 'imgLiquid-min.js'))
          ->load_view (array (
         'goal' => $goal,
@@ -183,9 +181,7 @@ class Goals extends Admin_controller {
     $links = identity ()->get_session ('links', true);
     $picture_links = identity ()->get_session ('picture_links', true);
 
-    $this->add_js (Cfg::setting ('google', 'client_js_url'), false)
-         ->add_js (base_url ('resource', 'javascript', 'markerwithlabel_d2015_06_28', 'markerwithlabel.js'))
-         ->load_view (array (
+    $this->load_view (array (
         'message' => $message,
         'title' => $title,
         'latitude' => $latitude,
@@ -418,9 +414,7 @@ class Goals extends Admin_controller {
     $pitch = identity ()->get_session ('pitch', true);
     $zoom = identity ()->get_session ('zoom', true);
 
-    $this->add_js (Cfg::setting ('google', 'client_js_url'), false)
-         ->add_js (base_url ('resource', 'javascript', 'markerwithlabel_d2015_06_28', 'markerwithlabel.js'))
-         ->load_view (array (
+    $this->load_view (array (
         'goal' => $goal,
         'message' => $message,
         'latitude' => $latitude,
@@ -438,8 +432,6 @@ class Goals extends Admin_controller {
          ->add_css (base_url ('resource', 'css', 'fancyBox_v2.1.5', 'jquery.fancybox-buttons.css'))
          ->add_css (base_url ('resource', 'css', 'fancyBox_v2.1.5', 'jquery.fancybox-thumbs.css'))
          ->add_css (base_url ('resource', 'css', 'fancyBox_v2.1.5', 'my.css'))
-         ->add_js (Cfg::setting ('google', 'client_js_url'), false)
-         ->add_js (base_url ('resource', 'javascript', 'markerwithlabel_d2015_06_28', 'markerwithlabel.js'))
          ->add_js (base_url ('resource', 'javascript', 'fancyBox_v2.1.5', 'jquery.fancybox.js'))
          ->add_js (base_url ('resource', 'javascript', 'fancyBox_v2.1.5', 'jquery.fancybox-buttons.js'))
          ->add_js (base_url ('resource', 'javascript', 'fancyBox_v2.1.5', 'jquery.fancybox-thumbs.js'))

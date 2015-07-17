@@ -14,74 +14,14 @@ $(function () {
   var $heading = $('#heading');
   var $pitch = $('#pitch');
   var $zoom = $('#zoom');
-
+  var $loading = $('<div />').attr ('id', 'loading')
+                             .append ($('<div />'))
+                             .appendTo ('#container');
   var _map = null;
   var _panorama = null;
-  var _markers = [];
-  var _isGetGoals = false;
-  var _getGoalsTimer = null;
   var _update = false;
   var _povChangedTimer = null;
-
   var _hasView = false;
-
-  function getGoals () {
-    clearTimeout (_getGoalsTimer);
-
-    _getGoalsTimer = setTimeout (function () {
-      if (_isGetGoals)
-        return;
-      
-      _isGetGoals = true;
-
-      var northEast = _map.getBounds().getNorthEast ();
-      var southWest = _map.getBounds().getSouthWest ();
-
-      $.ajax ({
-        url: $('#get_goals_url').val (),
-        data: { NorthEast: {latitude: northEast.lat (), longitude: northEast.lng ()},
-                SouthWest: {latitude: southWest.lat (), longitude: southWest.lng ()},
-                goal_id: $marker.val ()
-              },
-        async: true, cache: false, dataType: 'json', type: 'POST',
-        beforeSend: function () {}
-      })
-      .done (function (result) {
-        if (result.status) {
-          var markers = result.goals.map (function (t) {
-            var markerWithLabel = new MarkerWithLabel ({
-                position: new google.maps.LatLng (t.lat, t.lng),
-                draggable: false,
-                raiseOnDrag: false,
-                clickable: true,
-                labelContent: t.title,
-                labelAnchor: new google.maps.Point (50, 0),
-                labelClass: "marker_label",
-                icon: '/resource/image/map/spotlight-poi-blue.png'
-              });
-            return {
-              id: t.id,
-              markerWithLabel: markerWithLabel
-            };
-          });
-
-          var deletes = _markers.diff (markers);
-          var adds = markers.diff (_markers);
-          var delete_ids = deletes.map (function (t) { return t.id; });
-          var add_ids = adds.map (function (t) { return t.id; });
-
-          deletes.map (function (t) { t.markerWithLabel.setMap (null); });
-          adds.map (function (t) { t.markerWithLabel.setMap (_map); });
-
-          _markers = _markers.filter (function (t) { return $.inArray (t.id, delete_ids) == -1; }).concat (markers.filter (function (t) { return $.inArray (t.id, add_ids) != -1; }));
-
-          _isGetGoals = false;
-        }
-      })
-      .fail (function (result) { ajaxError (result); })
-      .complete (function (result) {});
-    }, 500);
-  }
 
   function updateGoal (id, position) {
     if (_update)
@@ -182,8 +122,8 @@ $(function () {
       updateGoal ($marker.val (), marker.position);
     });
 
-    google.maps.event.addListener(_map, 'zoom_changed', getGoals);
-    google.maps.event.addListener(_map, 'idle', getGoals);
+    google.maps.event.addListener(_map, 'zoom_changed', getGoals.bind (this, _map, $marker.val (), $('#loading_data'), true));
+    google.maps.event.addListener(_map, 'idle', getGoals.bind (this, _map, $marker.val (), $('#loading_data'), true));
 
     google.maps.event.addListener (_panorama, 'position_changed', function () {
       $latitude.val (_panorama.getPosition ().lat ());
@@ -199,8 +139,6 @@ $(function () {
       }, 500);
     });
     
-    getGoals ();
-
     $('#control').submit (function () {
 
       if (!_hasView) {
@@ -219,6 +157,13 @@ $(function () {
       }
 
       return true;
+    });
+    
+    $loading.fadeOut (function () {
+      $(this).hide (function () {
+        $(this).remove ();
+        getGoals (_map, $marker.val (), $('#loading_data'), true);
+      });
     });
   }
 

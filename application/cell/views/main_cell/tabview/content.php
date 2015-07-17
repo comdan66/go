@@ -18,7 +18,7 @@
       <?php } ?>
                 <div class='<?php echo $i % 2 == 0 ? 'l' : 'r';?>'>
                   <div class='ll'>
-                    <a class='imgLiquid_top' href=''>
+                    <a class='imgLiquid_top' href='<?php echo base_url ('goal', $goal->id);?>'>
                       <img src='<?php echo $goal->cover ('200x200c');?>' />
                     </a>
                   </div>

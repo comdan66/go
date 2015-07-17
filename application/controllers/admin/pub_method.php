@@ -37,9 +37,7 @@ class Pub_method extends Admin_controller {
     if (!($goal = Goal::find ('one', array ('conditions' => array ('id = ?', $id)))))
       return show_404();
 
-    $this->add_js (Cfg::setting ('google', 'client_js_url'), false)
-         ->add_js (base_url ('resource', 'javascript', 'markerwithlabel_d2015_06_28', 'markerwithlabel.js'))
-         ->load_view (array (
+    $this->load_view (array (
             'goal' => $goal
           ));
   }
@@ -47,9 +45,7 @@ class Pub_method extends Admin_controller {
     if (!($goal = Goal::find ('one', array ('conditions' => array ('id = ?', $id)))))
       return show_404();
 
-    $this->add_js (Cfg::setting ('google', 'client_js_url'), false)
-         ->add_js (base_url ('resource', 'javascript', 'markerwithlabel_d2015_06_28', 'markerwithlabel.js'))
-         ->load_view (array (
+    $this->load_view (array (
             'goal' => $goal
           ));
   }

@@ -60,6 +60,7 @@ function mapGo (map, will, callback) {
 
   mapMove (map, Unit.lat, Unit.lng, 0, Unit.unit, callback);
 }
+
 window.ajaxError = function (result) {
   console.error (result.responseText);
 };

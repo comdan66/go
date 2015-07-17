@@ -12,7 +12,6 @@ class Main extends Site_controller {
   }
 
   public function index () {
-    $this->add_js (base_url ('resource', 'javascript', 'jquery_mobile_v1.3.0', 'swipe.js'))
-         ->load_view (null);
+    $this->load_view (null);
   }
 }

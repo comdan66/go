@@ -84,13 +84,13 @@
       <tr>
         <th>地圖</th>
         <td>
-          <?php echo img ($goal->pic->url ('200x150c'), false, "data-id='" . $goal->id . "' class='fancybox_goal'");?>
+          <?php echo img ($goal->pic->url ('200x200c'), false, "data-id='" . $goal->id . "' class='fancybox_goal'");?>
         </td>
       </tr>
       <tr>
         <th>街景</th>
         <td>
-          <?php echo $goal->view ? img ($goal->view->pic->url ('200x150c'), false, "data-id='" . $goal->id . "' class='fancybox_view'") : anchor (base_url ('admin', 'goals', 'view', $goal->id), '未設定');?>
+          <?php echo $goal->view ? img ($goal->view->pic->url ('200x200c'), false, "data-id='" . $goal->id . "' class='fancybox_view'") : anchor (base_url ('admin', 'goals', 'view', $goal->id), '未設定');?>
         </td>
       </tr>
       <tr>

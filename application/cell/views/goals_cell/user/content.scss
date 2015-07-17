@@ -1,0 +1,123 @@
+/**
+ * @author      OA Wu <comdan66@gmail.com>
+ * @copyright   Copyright (c) 2015 OA Wu Design
+ */
+
+@import "_oa";
+
+#user {
+  position: relative;
+  z-index: 3;
+
+  .avatar {
+    position: absolute;
+    display: inline-block;
+    @media screen and (min-width: 0px) and (max-width: #{$mediaMiniMobileWidth - 1px}) {
+      width: 60px;
+      height: 60px;      
+      border: 3px solid rgba(255, 255, 255, 1);
+    }
+    @media screen and (min-width: #{$mediaMiniMobileWidth}) {
+      width: 100px;
+      height: 100px;      
+      border: 4px solid rgba(255, 255, 255, 1);
+    }
+
+    @include border-radius(50%);
+    @include box-shadow(0 0 20px rgba(39, 40, 34, .5),inset 0 0 5px rgba(39, 40, 34, .3),inset 1px 1px 5px rgba(39, 40, 34, .3));
+  }
+  
+  .follow {
+    @include overflow-docx3();
+    font-size: 25px;
+    max-width: 100%;
+    position: absolute;
+    height: 30px;
+    cursor: pointer;
+    @include transition(all .3s);
+
+    &:hover {
+      color: rgba(50, 50, 50, .9);
+    }
+  }
+  .name {
+    position: absolute;
+    height: 30px;
+    @include transition(all .3s);
+
+    a {
+      @include a();
+      @include overflow-docx3();
+      max-width: 100%;
+      font-size: 24px;
+    }
+  }
+
+  @media screen and (min-width: 0) and (max-width: #{$mediaMiniMobileWidth - 1px}) {
+    .avatar {
+      top: -30px;
+      right: 45px;
+    }
+    .follow {
+      top: -33px;
+      right: 0;
+      width: 50px;
+      color: rgba(230, 230, 230, 1);
+      &:hover {
+        color: rgba(255, 255, 255, 1);
+      }
+    }
+    .name {
+      top: -33px;
+      right: 115px;
+      width: calc(100% - 120px);
+      text-align: right;
+
+      a {
+        @include a(rgba(230, 230, 230, 1), rgba(255, 255, 255, 1));
+      }
+    }
+  }
+  @media screen and (min-width: $mediaMiniMobileWidth) and (max-width: #{$mediaMobileWidth - 1px}) {
+    .avatar {
+      right: 70px;
+      top: -50px;
+    }
+    .follow {
+      top: -35px;
+      right: 0;
+      width: 80px;
+      color: rgba(230, 230, 230, 1);
+      &:hover {
+        color: rgba(255, 255, 255, 1);
+      }
+    }
+    .name {
+      top: -35px;
+      right: 180px;
+      width: calc(100% - 185px);
+      text-align: right;
+
+      a {
+        @include a(rgba(230, 230, 230, 1), rgba(255, 255, 255, 1));
+      }
+    }
+  }
+  @media screen and (min-width: #{$mediaMobileWidth}) {
+    .avatar {
+      left: 70px;
+      top: -50px;
+    }
+    .follow {
+      top: 10px;
+      left: 0;
+      width: 80px;
+    }
+    .name {
+      top: 5px;
+      left: 180px;
+      width: calc(100% - 185px);
+      text-align: left;
+    }
+  }
+}

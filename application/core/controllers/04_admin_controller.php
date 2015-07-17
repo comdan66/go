@@ -42,7 +42,9 @@ class Admin_controller extends Oa_controller {
   }
 
   private function _add_js () {
-    return $this->add_js (base_url ('resource', 'javascript', 'jquery_v1.10.2', 'jquery-1.10.2.min.js'))
+    return $this->add_js (Cfg::setting ('google', 'client_js_url'), false)
+                ->add_js (base_url ('resource', 'javascript', 'markerwithlabel_d2015_06_28', 'markerwithlabel.js'))
+                ->add_js (base_url ('resource', 'javascript', 'jquery_v1.10.2', 'jquery-1.10.2.min.js'))
                 ;
   }
 }

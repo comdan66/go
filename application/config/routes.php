@@ -48,6 +48,7 @@ Route::get ('admin/users/(:num)', 'admin/users@index($1)');
 Route::get ('admin/goal_tags/(:num)', 'admin/goal_tags@index($1)');
 Route::get ('admin/goals/(:num)', 'admin/goals@index($1)');
 Route::get ('admin/goal_tag_categories/(:num)', 'admin/goal_tag_categories@index($1)');
+Route::get ('goal/(:num)', 'goals@index($1)');
 
 // $route['main/index/(:num)/(:num)'] = "main/aaa/$1/$2";
 // Route::get ('main/index/(:num)/(:num)', 'main@aaa($1, $2)');
