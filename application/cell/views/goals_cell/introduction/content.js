@@ -37,6 +37,7 @@ $(function () {
   var $to_comment = $('.to_comment');
   var $comment_list = $('.comment_list');
   var $loading = $comment_list.find ('.loading');
+  var $comments = $comment_list.find ('.comments');
   var $more = $comment_list.find ('.more');
   autosize ($to_comment.find ('.comment'));
 
@@ -65,7 +66,7 @@ $(function () {
           $comment_list.removeClass ('hide');
 
         $comment.val ('');
-        setCommentFeature ($(result.comment).insertBefore ($loading).hide ());
+        setCommentFeature ($(result.comment).prependTo ($comments).hide ());
         $loading.data ('next_id', result.next_id);
       }
     })

@@ -23,7 +23,7 @@ class Goal extends OaModel {
     array ('comments', 'class_name' => 'GoalComment'),
     array ('pictures', 'class_name' => 'GoalPicture'),
     array ('scores', 'class_name' => 'GoalScore'),
-    array ('links', 'class_name' => 'GoalLink')
+    array ('links', 'class_name' => 'GoalLink', 'order' => 'LENGTH(value) ASC')
   );
 
   static $belongs_to = array (

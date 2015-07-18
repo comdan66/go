@@ -1,3 +1,7 @@
+<?php 
+  if (!$goal->pictures)
+    return;
+?>
 <div id='images'>
   <h2>景點照片</h2>
   <div class='images'>
