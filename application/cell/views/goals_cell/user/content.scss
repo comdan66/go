@@ -44,12 +44,23 @@
     position: absolute;
     height: 30px;
     @include transition(all .3s);
+    @include clearfix();
 
     a {
+      float: left;
       @include a();
       @include overflow-docx3();
-      max-width: 100%;
+      max-width: calc(100% - 180px);
       font-size: 24px;
+    }
+    .fb {
+      margin-top: 4px;
+      height: 20px;
+      float: right;
+      display: inline-block;
+      width: 180px;
+      text-align: right;
+      overflow: hidden;
     }
   }
 
@@ -74,7 +85,12 @@
       text-align: right;
 
       a {
+        float: right;
         @include a(rgba(230, 230, 230, 1), rgba(255, 255, 255, 1));
+        max-width: 100%;
+      }
+      .fb {
+        display: none;
       }
     }
   }
@@ -99,7 +115,12 @@
       text-align: right;
 
       a {
+        float: right;
         @include a(rgba(230, 230, 230, 1), rgba(255, 255, 255, 1));
+        max-width: 100%;
+      }
+      .fb {
+        display: none;
       }
     }
   }

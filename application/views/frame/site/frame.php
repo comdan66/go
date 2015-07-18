@@ -14,5 +14,8 @@
     <?php echo isset ($hidden_list) ? $hidden_list : ''; ?>
 
     <?php echo isset ($content) ? $content : ''; ?>
+
+    <div id='fb-root'></div>
+    <div id='main_loading'><div></div></div>
   </body>
 </html>

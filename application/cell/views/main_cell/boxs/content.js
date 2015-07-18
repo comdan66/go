@@ -38,7 +38,7 @@ $(function () {
     _map.mapTypes.set ('map_style', styledMapType);
     _map.setMapTypeId ('map_style');
 
-    var last = getStorage ('goal_site_map');
+    var last = getLastPosition ('goal_site_map');
 
     if (last) {
       _map.setCenter (new google.maps.LatLng (last.lat, last.lng));

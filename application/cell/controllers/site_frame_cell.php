@@ -23,6 +23,7 @@ class Site_frame_cell extends Cell_Controller {
         array ('name' => '登出', 'href' => base_url ('platform', 'sign_out'), 'show' => identity ()->user () ? true : false),
         array ('name' => '登入', 'href' => facebook ()->login_url ('platform', 'fb_sign_in'), 'show' => identity ()->user () ? false : true),
         array ('name' => '後台', 'href' => base_url ('admin'), 'show' => identity ()->user () && in_array (identity ()->user ()->uid, Cfg::setting ('site', 'admin', 'uids'))),
+        array ('name' => '關於', 'href' => '', 'show' => true),
       );
 
     return $this->setUseJsList (true)

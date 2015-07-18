@@ -6,8 +6,10 @@
  */
 
 class Goal extends OaModel {
-
+  
   static $table_name = 'goals';
+
+  private $covers = null;
 
   static $has_one = array (
     array ('view', 'class_name' => 'GoalView'),
@@ -32,6 +34,12 @@ class Goal extends OaModel {
     parent::__construct ($attributes, $guard_attributes, $instantiating_via_find, $new_record);
 
     OrmImageUploader::bind ('pic', 'GoalPicImageUploader');
+  }
+  
+  public function covers ($key = '') {
+    return $this->covers === null ? $this->covers = array_filter (array_merge (array ($this->view ? $this->view->pic->url ($key) : null, $this->pic->url ($key)), array_map (function ($picture) use ($key) {
+          return $picture->name->url ($key);
+        }, $this->pictures))) : $this->covers;
   }
   public function cover ($key = '') {
     if ($this->pictures)

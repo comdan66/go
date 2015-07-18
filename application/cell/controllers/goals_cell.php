@@ -11,19 +11,23 @@ class Goals_cell extends Cell_Controller {
   // public function _cache_banner () {
   //   return array ('time' => 60 * 60, 'key' => null);
   // }
-  public function banner () {
+  public function banner ($goal) {
     return $this->setUseJsList (true)
                 ->setUseCssList (true)
-                ->load_view ();
+                ->load_view (array (
+                    'goal' => $goal
+                  ));
   }
 
   /* render_cell ('goals_cell', 'user', array ()); */
   // public function _cache_temp () {
   //   return array ('time' => 60 * 60, 'key' => null);
   // }
-  public function user () {
+  public function user ($goal) {
     return $this->setUseCssList (true)
-                ->load_view ();
+                ->load_view (array (
+                    'goal' => $goal
+                  ));
   }
 
   /* render_cell ('goals_cell', 'introduction', array ()); */
@@ -51,9 +55,12 @@ class Goals_cell extends Cell_Controller {
   // public function _cache_temp () {
   //   return array ('time' => 60 * 60, 'key' => null);
   // }
-  public function images () {
-    return $this->setUseCssList (true)
-                ->load_view ();
+  public function images ($goal) {
+    return $this->setUseJsList (true)
+                ->setUseCssList (true)
+                ->load_view (array (
+                    'goal' => $goal
+                  ));
   }
 
   /* render_cell ('goals_cell', 'maps', array ()); */
@@ -66,6 +73,16 @@ class Goals_cell extends Cell_Controller {
                 ->load_view (array (
                     'goal' => $goal
                   ));
+  }
+
+  /* render_cell ('goals_cell', 'maylike', array ()); */
+  // public function _cache_temp () {
+  //   return array ('time' => 60 * 60, 'key' => null);
+  // }
+  public function maylike () {
+    return $this->setUseJsList (true)
+                ->setUseCssList (true)
+                ->load_view ();
   }
 
   /* render_cell ('goals_cell', 'temp', array ()); */

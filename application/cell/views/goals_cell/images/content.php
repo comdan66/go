@@ -1,13 +1,12 @@
 <div id='images'>
   <h2>照片與街景</h2>
   <div class='images'>
-    <?php
-    for ($i=0; $i < 10; $i++) { ?>
-      <div class='image imgLiquid_center'>
-        <img src='http://dev.go.ioa.tw/upload/goal_pictures/name/0/0/0/72/_1680752010_55a77adc5e1af.jpg' />
-      </div>
-    <?php
-    }
-    ?>
+<?php
+    foreach ($goal->pictures as $picture) { ?>
+      <a class='image fancybox imgLiquid_center' href='<?php echo $picture->name->url ();?>' data-fancybox-group='fancybox_group'>
+        <img src='<?php echo $picture->name->url ('200x200c');?>' />
+      </a>
+<?php
+    } ?>
   </div>
 </div>

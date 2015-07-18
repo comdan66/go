@@ -65,7 +65,7 @@ $(function () {
         center: new google.maps.LatLng (25.04, 121.55),
       });
 
-    var last = getStorage ('goal_admin_map');
+    var last = getLastPosition ('goal_admin_map');
 
     if (last) {
       _map.setCenter (new google.maps.LatLng (last.lat, last.lng));

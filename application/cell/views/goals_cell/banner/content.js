@@ -4,8 +4,6 @@
  */
 
 $(function () {
-  var firstIndex = 2;
-
   function goLeft () {
     $('.banner').last ().clone ().insertBefore ($('.banner').first ());
     $('.banner').last ().remove ();
@@ -21,7 +19,7 @@ $(function () {
   var $rightArrow = $banner.find ('.arrow.right');
 
   $leftArrow.click (goLeft);
-  $rightArrow.click (goRight).click ();
+  $rightArrow.click (goRight);
   
   $banners.swiperight (goLeft);
   $banners.swipeleft (goRight);

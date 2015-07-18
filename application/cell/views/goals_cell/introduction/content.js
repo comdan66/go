@@ -5,6 +5,8 @@
 
 $(function () {
   var $detail = $('#introduction .detail');
+  var $stars = $('#introduction .stars.can');
+  var $star = $stars.find ('i');
 
   $(window).scroll (function () {
   var $that = $(this);
@@ -20,4 +22,14 @@ $(function () {
       }.bind ($(this)), 500);
     });
   }).scroll ();
+
+  $star.mouseenter (function () {
+    $star.attr ('class', 'icon-star-0');
+    $(this).prevAll ().andSelf ().addClass ('icon-star-2');
+  });
+  $stars.mouseleave (function () {
+    $star.each (function () {
+      $(this).attr ('class', 'icon-star-' + $(this).data ('ori'));
+    });
+  });
 });

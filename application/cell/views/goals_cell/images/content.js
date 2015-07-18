@@ -4,4 +4,12 @@
  */
 
 $(function () {
+  $('.fancybox').fancybox ({
+                    padding: 0,
+                    helpers: {
+                      overlay: { locked: false },
+                      title: { type: 'over' },
+                      thumbs: { width: 50, height: 50 }
+                    }
+                 });
 });

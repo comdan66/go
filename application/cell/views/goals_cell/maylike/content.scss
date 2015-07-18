@@ -1,0 +1,144 @@
+/**
+ * @author      OA Wu <comdan66@gmail.com>
+ * @copyright   Copyright (c) 2015 OA Wu Design
+ */
+
+@import "_oa";
+
+#maylike {
+  margin-top: 20px;
+  background-color: rgba(255, 255, 255, 1);
+  border: 1px solid rgba(39, 40, 34, .35);
+  @include border-radius(3px);
+
+  h2 {
+    margin: 0;
+    height: 45px;
+    font-size: 22px;
+    padding-top: 10px;
+    border-bottom: 1px solid rgba(233, 234, 237, 1);
+    background-color: rgba(246, 247, 248, 1);
+    @include border-top-radius(3px);
+  }
+  .maylikes {
+    padding: 5px;
+    @include clearfix();
+
+    .maylike {
+      position: relative;
+      float: left;
+      display: inline-block;
+      margin: 5px;
+      border: 1px solid rgba(255, 255, 255, 1);
+      background-color: rgba(255, 255, 255, 1);
+
+      @include border-radius(2px);
+      @include transition(transform .3s);
+      @include box-shadow(0 0 10px 2px rgba(213, 216, 221, 0.8), inset 0 0 50px rgba(0, 0, 0, 0.3));
+
+      @media screen and (min-width: 0) and (max-width: #{$mediaMiniMobileWidth - 1px}) {
+        width: calc(100% / 2 - 10px);
+        height: 100px;
+      }
+      @media screen and (min-width: $mediaMiniMobileWidth) and (max-width: #{450px - 1px}) {
+        width: calc(100% / 3 - 10px);
+        height: 100px;
+      }
+      @media screen and (min-width: 450px) and (max-width: #{$mediaMobileWidth - 1px}) {
+        width: calc(100% / 3 - 10px);
+        height: 150px;
+      }
+      @media screen and (min-width: $mediaMobileWidth) and (max-width: #{700px - 1px}) {
+        width: calc(100% / 1 - 10px);
+        height: 180px;
+      }
+      @media screen and (min-width: 700px) and (max-width: #{790px - 1px}) {
+        width: calc(100% / 2 - 10px);
+        height: 110px;
+      }
+      @media screen and (min-width: 790px) {
+        width: calc(100% / 3 - 10px);
+        height: 110px;
+      }
+
+      @media screen and (min-width: $mediaMobileWidth) {
+        &:hover {
+          z-index: 5;
+          @include scale(1.3);
+          @include box-shadow(inset 0 0 50px rgba(0, 0, 0, 0.3));
+        }
+      }
+      &:hover {
+        .title {
+          color: rgba(255, 255, 255, 1);
+        }
+      }
+      .tick {
+        position: absolute;
+        right: 2px;
+        top: 2px;
+        display: inline-block;
+        width: 23px;
+        height: 23px;
+        color: rgba(184, 233, 64, 1);
+        font-weight: normal;
+        @include opacity(0);
+        @include text-shadow(0 0 3px rgba(0, 0, 0, .3));
+      }
+      &.viewed {
+        .tick {
+            @include opacity(1);
+        }
+      }
+      .title {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        display: inline-block;
+        width: 100%;
+        padding: 5px;
+        color: rgba(255, 255, 255, .8);
+
+        @include overflow-docx3();
+        @include background-image(
+                linear-gradient(
+                    rgba(0, 0, 0, 0) 0%,
+                    rgba(0, 0, 0, .7) 100%
+                ));
+      }
+    }
+    .loading {
+      float: left;
+      display: inline-block;
+      width: 100%;
+
+      margin-top: 10px;
+      margin-bottom: 10px;
+      & > div {
+        @include loading(rgba(255, 255, 255, 1), 50px);
+      }
+    }
+    > * {
+      @media screen and (min-width: 0) and (max-width: #{$mediaMiniMobileWidth - 1px}) {
+        &:not(:nth-child(-n + 8)) {
+          display: none;
+        }
+      }
+      @media screen and (min-width: $mediaMiniMobileWidth) and (max-width: #{$mediaMobileWidth - 1px}) {
+        &:not(:nth-child(-n + 12)) {
+          display: none;
+        }
+      }
+      @media screen and (min-width: $mediaMobileWidth) and (max-width: #{700px - 1px}) {
+        &:not(:nth-child(-n + 3)) {
+          display: none;
+        }
+      }
+      @media screen and (min-width: 700px) and (max-width: #{790px - 1px}) {
+        &:not(:nth-child(-n + 6)) {
+          display: none;
+        }
+      }
+    }
+  }
+}

@@ -20,6 +20,8 @@ class Site_controller extends Oa_controller {
 
          ->set_title ("Go! Taiwan")
                 
+         ->add_hidden (array ('id' => 'fb_app_id', 'value' => Cfg::system ('facebook', 'appId')))
+         ->add_hidden (array ('id' => 'fb_app_version', 'value' => Cfg::system ('facebook', 'version')))
          ->_add_meta ()
          ->_add_css ()
          ->_add_js ()

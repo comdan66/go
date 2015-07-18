@@ -19,25 +19,76 @@
   @include font-smoothing(antialiased);
 }
 
-.icon-th-menu:before { content: "\e600"; }
-.icon-arrow-right:before { content: "\e60e"; }
-.icon-location:before { content: "\e60c"; }
-.icon-home:before { content: "\e601"; }
-.icon-link-external:before { content: "\e605"; }
-.icon-link:before { content: "\e606"; }
-.icon-fire:before { content: "\e9a9"; }
-.icon-sign-out:before { content: "\e60f"; }
-.icon-chevron-right:before { content: "\e60a"; }
-.icon-chevron-left:before { content: "\e60b"; }
-.icon-facebook-square:before { content: "\e609"; }
-.icon-star-0:before { content: "\e603"; }
-.icon-star-1:before { content: "\e602"; }
-.icon-star-2:before { content: "\e604"; }
-.icon-eye:before {content: "\e607";}
-.icon-heart-o:before { content: "\e608"; }
-.icon-heart:before { content: "\e60d"; }
-.icon-uniE610:before { content: "\e610"; }
-.icon-uniE611:before { content: "\e611"; }
+.icon-th-menu:before {
+  content: "\e600";
+}
+.icon-arrow-right:before {
+  content: "\e60e";
+}
+.icon-uniE610:before {
+  content: "\e610";
+}
+.icon-uniE611:before {
+  content: "\e611";
+}
+.icon-uniE63B:before {
+  content: "\e63b";
+}
+.icon-uniE63C:before {
+  content: "\e63c";
+}
+.icon-uniE63E:before {
+  content: "\e63e";
+}
+.icon-location:before {
+  content: "\e60c";
+}
+.icon-home:before {
+  content: "\e601";
+}
+.icon-link-external:before {
+  content: "\e605";
+}
+.icon-link:before {
+  content: "\e606";
+}
+.icon-eye:before {
+  content: "\e607";
+}
+.icon-fire:before {
+  content: "\e9a9";
+}
+.icon-check-circle-o:before {
+  content: "\e612";
+}
+.icon-heart-o:before {
+  content: "\e608";
+}
+.icon-heart:before {
+  content: "\e60d";
+}
+.icon-sign-out:before {
+  content: "\e60f";
+}
+.icon-chevron-right:before {
+  content: "\e60a";
+}
+.icon-chevron-left:before {
+  content: "\e60b";
+}
+.icon-facebook-square:before {
+  content: "\e609";
+}
+.icon-star-1:before {
+  content: "\e602";
+}
+.icon-star-0:before {
+  content: "\e603";
+}
+.icon-star-2:before {
+  content: "\e604";
+}
+
 
 * {
   &, &:after, &:before {

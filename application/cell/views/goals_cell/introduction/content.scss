@@ -17,7 +17,7 @@ $rightKeyWidth: 800px;
   }
 
   @media screen and (min-width: $mediaMobileWidth) and (max-width: #{$rightKeyWidth - 1px}) {
-    @include split-left(380px, '.introduction', '.details');
+    @include split-left(50%, '.introduction', '.details');
   }
   @media screen and (min-width: #{$rightKeyWidth}) {
     @include split-right(400px, '.introduction', '.details');
@@ -61,7 +61,7 @@ $rightKeyWidth: 800px;
 
         &:after {
           border-color: rgba(136, 183, 213, 0);
-          border-bottom-color: rgba(255, 255, 255, 1);
+          border-bottom-color: rgba(246, 247, 248, 1);
           border-width: $arrowWidth;
           margin-left: 0 - $arrowWidth;
         }
@@ -78,15 +78,13 @@ $rightKeyWidth: 800px;
         background-color: rgba(246, 247, 248, 1);
         @include border-top-radius(3px);
         @media screen and (min-width: 0px) and (max-width: #{$mediaMiniMobileWidth - 1px}) {
-          @include split-right(1px);
+          @include split-right(1px, '.l', '.stars');
         }
         @media screen and (min-width: $mediaMiniMobileWidth) and (max-width: #{$mediaMobileWidth - 1px}) {
-          @include split-right(170px);
+          @include split-right(170px, '.l', '.stars');
         }
         @media screen and (min-width: #{$mediaMobileWidth}) {
-          @include split-right(160px);
-        }
-        .l, .r {
+          @include split-right(160px, '.l', '.stars');
         }
         .l {
           text-align: left;
@@ -110,12 +108,17 @@ $rightKeyWidth: 800px;
             @include overflow-docx3();
           }
         }
-        .r {
+        .stars {
           @media screen and (min-width: 0px) and (max-width: #{$mediaMobileWidth - 1px}) {
             display: none;
           }
           padding-top: 23px;
           @include clearfix();
+          &.can {
+            i {
+              cursor: pointer;
+            }
+          }
           i {
             float: left;
             font-size: 24px;
@@ -128,23 +131,37 @@ $rightKeyWidth: 800px;
       }
       .center {
         text-align: left;
-        padding: 20px;
+        padding: 30px 25px;
         word-break: break-all;
+        line-height: 24px;
       }
       .bottom {
         border-top: 1px solid rgba(233, 234, 237, 1);
         background-color: rgba(246, 247, 248, 1);
         @include border-bottom-radius(3px);
         padding: 10px 20px;
-        text-align: right;
-        vertical-align: bottom;
-
-        span {
-          display: inline-block;
-          font-size: 30px;
-          font-weight: bold;
-          line-height: 24px;
-          margin: 0 5px;
+        @media screen and (min-width: 0px) and (max-width: #{$mediaMobileWidth - 1px}) {
+          @include split-left(140px, '.fb', '.count');
+        }
+        .count {
+          text-align: right;
+          vertical-align: bottom;
+          @media screen and (min-width: 0px) and (max-width: #{$mediaMobileWidth - 1px}) {
+            font-size: 14px;
+          }
+          &:before {
+            display: inline-block;
+            margin-right: 2px;
+          }
+        }
+        .fb {
+          @media screen and (min-width: #{$mediaMobileWidth}) {
+            display: none;
+          }
+          margin-top: 1px;
+          text-align: left;
+          height: 20px;
+          overflow: hidden;
         }
       }
     }
@@ -274,7 +291,7 @@ $rightKeyWidth: 800px;
           }
         }
       }
-      .start {
+      .stars {
         @media screen and (min-width: #{$mediaMobileWidth}) {
           display: none;
         }
@@ -283,6 +300,11 @@ $rightKeyWidth: 800px;
         padding-top: 14px;
         width: 100%;
         border-top: 1px solid rgba(178, 179, 176, .8);
+        &.can {
+          i {
+            cursor: pointer;
+          }
+        }
         i {
           font-size: 24px;
           

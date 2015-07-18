@@ -10,7 +10,10 @@
   position: relative;
   display: inline-block;
   width: 100%;
-  @media screen and (min-width: 0) and (max-width: #{680px - 1px}) {
+  @media screen and (min-width: 0) and (max-width: #{$mediaMobileWidth - 1px}) {
+    height: 250px;
+  }
+  @media screen and (min-width: $mediaMobileWidth) and (max-width: #{680px - 1px}) {
     height: 200px;
   }
   @media screen and (min-width: 680px) and (max-width: #{730px - 1px}) {

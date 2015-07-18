@@ -4,7 +4,7 @@
  */
 
 function getStorage (key) {
-  if ((typeof (Storage) !== 'undefined') && (last = localStorage.getItem (key)) && (last = JSON.parse (last)) && (!isNaN (last.lat) && !isNaN (last.lng) && !isNaN (last.zoom) && (last.lat < 86) && (last.lat > -86)))
+  if ((typeof (Storage) !== 'undefined') && (last = localStorage.getItem (key)) && (last = JSON.parse (last)))
     return last;
   else
     return;
@@ -15,6 +15,14 @@ function setStorage (key, data) {
     localStorage.setItem (key, JSON.stringify (data));
   }
 }
+
+function getLastPosition (key) {
+  if ((typeof (Storage) !== 'undefined') && (last = getStorage (key)) && (!isNaN (last.lat) && !isNaN (last.lng) && !isNaN (last.zoom) && (last.lat < 86) && (last.lat > -86)))
+    return last;
+  else
+    return;
+}
+
 
 Array.prototype.diff = function (a) {
   return this.filter (function (i) { return a.map (function (t) { return t.id; }).indexOf (i.id) < 0; });
