@@ -26,11 +26,9 @@
                     <div class='title'>
                       <a href=''><h3><?php echo $goal->title;?></h3></a>
                       <div class='rrr'>
-                        <?php 
-                        foreach ($goal->score_star () as $star) {?>
+                  <?php foreach ($goal->score_star () as $star) {?>
                           <i class='icon-star-<?php echo $star;?>'></i>
-                        <?php 
-                        }?>
+                  <?php }?>
                       </div>
                     </div>
                     <article>

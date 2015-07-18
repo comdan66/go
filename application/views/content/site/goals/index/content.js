@@ -7,7 +7,7 @@ $(function () {
   var now = new Date ().getTime ();
   var ids = getStorage ('goal_site_viewed');
   if (!ids) ids = [];
-  ids = ids.filter (function (t) { return now - t.t < 7 * 86400 * 1000; });
+  ids = ids.filter (function (t) { return now - t.t < 1 * 86400 * 1000; });
 
   var obj = [{id: $('#marker').val (), t: now}];
   ids = ids.diff (obj);

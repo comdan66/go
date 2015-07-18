@@ -7,11 +7,9 @@
           <div class='address'><?php echo $goal->address;?></div>
         </div>
         <div class='r stars can'>
-          <i class='icon-star-2' data-ori='2'></i>
-          <i class='icon-star-2' data-ori='2'></i>
-          <i class='icon-star-1' data-ori='1'></i>
-          <i class='icon-star-0' data-ori='0'></i>
-          <i class='icon-star-0' data-ori='0'></i>
+    <?php foreach ($goal->score_star () as $star) {?>
+            <i class='icon-star-<?php echo $star;?>' data-ori='<?php echo $star;?>'></i>
+    <?php }?>
         </div>
       </div>
       <article class='center'><?php echo $goal->introduction;?></article>
@@ -21,29 +19,36 @@
       </div>
     </div>
     <?php echo $goal->pictures ? render_cell ('goals_cell', 'images', $goal) : '';?>
+    <div class='left_comment'>
+      <?php echo render_cell ('goals_cell', 'comments', $goal);?>
+    </div>
   </div>
   <div class='details'>
+<?php
+    $details = $goal->star_details ();
+    $count = $details['count'];
+    $details = $details['details'];  ?>
     <div class='details_container'>
       <div class='l'>
-        <div class='t'>2.5</div>
-        <div class='b'>6 個評分的平均分數評分的平均分數</div>
+        <div class='t'><?php echo round ($goal->score / 20, 1);?></div>
+        <div class='b'><?php echo $count;?> 個評分的平均分數</div>
       </div>
       <div class='detail' data-has_loaded='false'>
-        <div class='row'><div>1</div><div>顆星</div><div data-width='calc((100% - 75px) * 1)'></div><div>10</div></div>
-        <div class='row'><div>1</div><div>顆星</div><div data-width='calc((100% - 75px) * 0.2)'></div><div>10</div></div>
-        <div class='row'><div>1</div><div>顆星</div><div data-width='calc((100% - 75px) * 0.5)'></div><div>10</div></div>
-        <div class='row'><div>1</div><div>顆星</div><div data-width='calc((100% - 75px) * 0.7)'></div><div>10</div></div>
-        <div class='row'><div>1</div><div>顆星</div><div data-width='calc((100% - 75px) * 0.1)'></div><div>10</div></div>
+  <?php foreach ($details as $key => $star_detail) { ?>
+          <div class='row'><div><?php echo $key;?></div><div>顆星</div><div data-width='calc((100% - 75px) * <?php echo $star_detail['percent'];?>)'></div><div><?php echo $star_detail['count'];?></div></div>
+  <?php } ?>
       </div>
       <div class='stars can'>
-        <i class='icon-star-2' data-ori='2'></i>
-        <i class='icon-star-2' data-ori='2'></i>
-        <i class='icon-star-1' data-ori='1'></i>
-        <i class='icon-star-0' data-ori='0'></i>
-        <i class='icon-star-0' data-ori='0'></i>
+  <?php foreach ($goal->score_star () as $star) {?>
+          <i class='icon-star-<?php echo $star;?>' data-ori='<?php echo $star;?>'></i>
+  <?php }?>
       </div>
     </div>
+
     <?php echo render_cell ('goals_cell', 'maps', $goal);?>
     <?php echo render_cell ('goals_cell', 'maylike');?>
+    <div class='right_comment'>
+      <?php echo render_cell ('goals_cell', 'comments', $goal);?>
+    </div>
   </div>
 </div>

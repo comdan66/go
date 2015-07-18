@@ -4,6 +4,7 @@
  */
 
 @import "_oa";
+$changeWidth: 800px;
 
 #images {
   margin-top: 20px;
@@ -43,28 +44,28 @@
       @include transition(transform .3s);
       @include box-shadow(0 0 10px 2px rgba(213, 216, 221, 0.8), inset 0 0 50px rgba(0, 0, 0, 0.3));
 
-      @media screen and (min-width: 0) and (max-width: #{$mediaMiniMobileWidth - 1px}) {
+      @media screen and (min-width: 0) and (max-width: #{450px - 1px}) {
         width: calc(100% / 2 - 10px);
-        height: 120px;      
+        height: 125px;      
         &:not(:nth-child(-n + 6)) {
           display: none;
         }
       }
-      @media screen and (min-width: $mediaMiniMobileWidth) and (max-width: #{$mediaMobileWidth - 1px}) {
+      @media screen and (min-width: 450px) and (max-width: #{$mediaMobileWidth - 1px}) {
         width: calc(100% / 3 - 10px);
-        height: 120px;
+        height: 150px;
         &:not(:nth-child(-n + 6)) {
           display: none;
         }
       }
-      @media screen and (min-width: $mediaMobileWidth) and (max-width: #{810px - 1px}) {
-        width: calc(100% / 2 - 10px);
-        height: 130px;
+      @media screen and (min-width: $mediaMobileWidth) and (max-width: #{$changeWidth - 1px}) {
+        width: calc(100% / 3 - 10px);
+        height: 170px;
         &:not(:nth-child(-n + 6)) {
           display: none;
         }
       }
-      @media screen and (min-width: 810px) and (max-width: #{1000px - 1px}) {
+      @media screen and (min-width: $changeWidth) and (max-width: #{1000px - 1px}) {
         width: calc(100% / 3 - 10px);
         height: 100px;
       }

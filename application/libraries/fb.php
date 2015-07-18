@@ -33,7 +33,7 @@ class Fb {
     if (session_status() == PHP_SESSION_NONE)
       session_start();
     $helper = $this->fb->getRedirectLoginHelper ();
-    $permissions = Cfg::system ('facebook', 'scope'); // optional
+    $permissions = Cfg::system ('facebook', 'scope');
     return $helper->getLoginUrl (base_url (func_get_args ()), $permissions);
   }
 
@@ -44,7 +44,7 @@ class Fb {
     $helper = $this->fb->getRedirectLoginHelper ();
 
     try {
-      $this->accessToken = $helper->getAccessToken();
+      $this->accessToken = $helper->getAccessToken ();
       return true;
     } catch(Exception $e) {
       return false;

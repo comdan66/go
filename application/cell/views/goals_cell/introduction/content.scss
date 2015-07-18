@@ -5,28 +5,25 @@
 
 @import "_oa";
 
-$rightKeyWidth: 800px; 
+$changeWidth: 800px;
 
 #introduction {
 
-  @media screen and (min-width: 0px) and (max-width: #{$mediaMobileWidth - 1px}) {
+  @media screen and (min-width: 0px) and (max-width: #{$changeWidth - 1px}) {
     margin-top: 0;
   }
-  @media screen and (min-width: #{$mediaMobileWidth}) {
+  @media screen and (min-width: #{$changeWidth}) {
     margin-top: 65px;
   }
 
-  @media screen and (min-width: $mediaMobileWidth) and (max-width: #{$rightKeyWidth - 1px}) {
-    @include split-left(50%, '.introduction', '.details');
-  }
-  @media screen and (min-width: #{$rightKeyWidth}) {
+  @media screen and (min-width: #{$changeWidth}) {
     @include split-right(400px, '.introduction', '.details');
   }
   .introduction, .details {
     overflow: visible;
   }
   .introduction {
-    @media screen and (min-width: #{$mediaMobileWidth}) {
+    @media screen and (min-width: #{$changeWidth}) {
       padding-right: 10px;
     }
 
@@ -35,18 +32,18 @@ $rightKeyWidth: 800px;
       background-color: rgba(255, 255, 255, 1);
       border: 1px solid rgba(39, 40, 34, .35);
 
-      @media screen and (min-width: 0px) and (max-width: #{$mediaMobileWidth - 1px}) {
+      @media screen and (min-width: 0px) and (max-width: #{$changeWidth - 1px}) {
         border-top: 0;
         @include border-bottom-radius(3px);
       }
-      @media screen and (min-width: #{$mediaMobileWidth}) {
+      @media screen and (min-width: #{$changeWidth}) {
         @include border-radius(3px);
       }
 
-      @media screen and (min-width: 0px) and (max-width: #{$mediaMobileWidth - 1px}) {
+      @media screen and (min-width: 0px) and (max-width: #{$changeWidth - 1px}) {
 
       }
-      @media screen and (min-width: #{$mediaMobileWidth}) {
+      @media screen and (min-width: #{$changeWidth}) {
         $arrowWidth: 10px;
         &:after, &:before {
           bottom: 100%;
@@ -80,10 +77,10 @@ $rightKeyWidth: 800px;
         @media screen and (min-width: 0px) and (max-width: #{$mediaMiniMobileWidth - 1px}) {
           @include split-right(1px, '.l', '.stars');
         }
-        @media screen and (min-width: $mediaMiniMobileWidth) and (max-width: #{$mediaMobileWidth - 1px}) {
+        @media screen and (min-width: $mediaMiniMobileWidth) and (max-width: #{$changeWidth - 1px}) {
           @include split-right(170px, '.l', '.stars');
         }
-        @media screen and (min-width: #{$mediaMobileWidth}) {
+        @media screen and (min-width: #{$changeWidth}) {
           @include split-right(160px, '.l', '.stars');
         }
         .l {
@@ -109,7 +106,7 @@ $rightKeyWidth: 800px;
           }
         }
         .stars {
-          @media screen and (min-width: 0px) and (max-width: #{$mediaMobileWidth - 1px}) {
+          @media screen and (min-width: 0px) and (max-width: #{$changeWidth - 1px}) {
             display: none;
           }
           padding-top: 23px;
@@ -140,13 +137,13 @@ $rightKeyWidth: 800px;
         background-color: rgba(246, 247, 248, 1);
         @include border-bottom-radius(3px);
         padding: 10px 20px;
-        @media screen and (min-width: 0px) and (max-width: #{$mediaMobileWidth - 1px}) {
+        @media screen and (min-width: 0px) and (max-width: #{$changeWidth - 1px}) {
           @include split-left(140px, '.fb', '.count');
         }
         .count {
           text-align: right;
           vertical-align: bottom;
-          @media screen and (min-width: 0px) and (max-width: #{$mediaMobileWidth - 1px}) {
+          @media screen and (min-width: 0px) and (max-width: #{$changeWidth - 1px}) {
             font-size: 14px;
           }
           &:before {
@@ -155,7 +152,7 @@ $rightKeyWidth: 800px;
           }
         }
         .fb {
-          @media screen and (min-width: #{$mediaMobileWidth}) {
+          @media screen and (min-width: #{$changeWidth}) {
             display: none;
           }
           margin-top: 1px;
@@ -165,12 +162,17 @@ $rightKeyWidth: 800px;
         }
       }
     }
+    .left_comment {
+      @media screen and (min-width: 0px) and (max-width: #{$changeWidth - 1px}) {
+        display: none;
+      }
+    }
   }
   .details {
-    @media screen and (min-width: 0px) and (max-width: #{$mediaMobileWidth - 1px}) {
+    @media screen and (min-width: 0px) and (max-width: #{$changeWidth - 1px}) {
       margin-top: 20px;
     }
-    @media screen and (min-width: #{$mediaMobileWidth}) {
+    @media screen and (min-width: #{$changeWidth}) {
       padding-left: 10px;
     }
     .details_container {
@@ -183,15 +185,11 @@ $rightKeyWidth: 800px;
         padding: 7px;
         @include split-left(70px, '.l', '.detail');
       }
-      @media screen and (min-width: $mediaMiniMobileWidth) and (max-width: #{$mediaMobileWidth - 1px}) {
+      @media screen and (min-width: $mediaMiniMobileWidth) and (max-width: #{$changeWidth - 1px}) {
         padding: 15px;
         @include split-left(120px, '.l', '.detail');
       }
-      @media screen and (min-width: $mediaMobileWidth) and (max-width: #{$rightKeyWidth - 1px}) {
-        padding: 7px;
-        @include split-left(70px, '.l', '.detail');
-      }
-      @media screen and (min-width: #{$rightKeyWidth}) {
+      @media screen and (min-width: #{$changeWidth}) {
         padding: 15px;
         @include split-left(120px, '.l', '.detail');
       }
@@ -211,16 +209,11 @@ $rightKeyWidth: 800px;
             height: 50px;
             padding-top: 7px;
           }
-          @media screen and (min-width: $mediaMiniMobileWidth) and (max-width: #{$mediaMobileWidth - 1px}) {
+          @media screen and (min-width: $mediaMiniMobileWidth) and (max-width: #{$changeWidth - 1px}) {
             font-size: 55px;
             height: 65px;        
           }
-          @media screen and (min-width: $mediaMobileWidth) and (max-width: #{$rightKeyWidth - 1px}) {
-            font-size: 40px;
-            height: 50px;
-            padding-top: 7px;
-          }
-          @media screen and (min-width: #{$rightKeyWidth}) {
+          @media screen and (min-width: #{$changeWidth}) {
             font-size: 55px;
             height: 65px;
           }
@@ -235,14 +228,10 @@ $rightKeyWidth: 800px;
             padding: 0 5px;
             margin-top: 8px;
           }
-          @media screen and (min-width: $mediaMiniMobileWidth) and (max-width: #{$mediaMobileWidth - 1px}) {
+          @media screen and (min-width: $mediaMiniMobileWidth) and (max-width: #{$changeWidth - 1px}) {
             padding: 0 15px;
           }
-          @media screen and (min-width: $mediaMobileWidth) and (max-width: #{$rightKeyWidth - 1px}) {
-            padding: 0 5px;
-            margin-top: 8px;
-          }
-          @media screen and (min-width: #{$rightKeyWidth}) {
+          @media screen and (min-width: #{$changeWidth}) {
             padding: 0 15px;
           }
         }
@@ -292,7 +281,7 @@ $rightKeyWidth: 800px;
         }
       }
       .stars {
-        @media screen and (min-width: #{$mediaMobileWidth}) {
+        @media screen and (min-width: #{$changeWidth}) {
           display: none;
         }
         float: left;
@@ -312,6 +301,11 @@ $rightKeyWidth: 800px;
             margin-left: 8px;
           }
         }
+      }
+    }
+    .right_comment {
+      @media screen and (min-width: #{$changeWidth}) {
+        display: none;
       }
     }
   }

@@ -4,6 +4,7 @@
  */
 
 @import "_oa";
+$changeWidth: 800px;
 
 #user {
   position: relative;
@@ -94,7 +95,7 @@
       }
     }
   }
-  @media screen and (min-width: $mediaMiniMobileWidth) and (max-width: #{$mediaMobileWidth - 1px}) {
+  @media screen and (min-width: $mediaMiniMobileWidth) and (max-width: #{$changeWidth - 1px}) {
     .avatar {
       right: 70px;
       top: -50px;
@@ -124,7 +125,7 @@
       }
     }
   }
-  @media screen and (min-width: #{$mediaMobileWidth}) {
+  @media screen and (min-width: #{$changeWidth}) {
     .avatar {
       left: 70px;
       top: -50px;

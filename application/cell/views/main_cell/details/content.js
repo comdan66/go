@@ -7,7 +7,7 @@ $(function () {
   var $detail = $('#details .detail');
 
   $(window).scroll (function () {
-  var $that = $(this);
+    var $that = $(this);
     $detail.each (function () {
       if ($(this).data ('has_loaded') || ($that.scrollTop () + $that.height () < $(this).offset ().top))
         return;

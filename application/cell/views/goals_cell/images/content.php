@@ -1,5 +1,5 @@
 <div id='images'>
-  <h2>照片與街景</h2>
+  <h2>景點照片</h2>
   <div class='images'>
 <?php
     foreach ($goal->pictures as $picture) { ?>

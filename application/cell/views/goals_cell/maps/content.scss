@@ -5,21 +5,23 @@
 
 @import "_oa";
 
+$changeWidth: 800px;
+
 #maps {
   margin-top: 20px;
   position: relative;
   display: inline-block;
   width: 100%;
-  @media screen and (min-width: 0) and (max-width: #{$mediaMobileWidth - 1px}) {
-    height: 250px;
+  @media screen and (min-width: 0) and (max-width: #{$mediaMiniMobileWidth - 1px}) {
+    height: 270px;
   }
-  @media screen and (min-width: $mediaMobileWidth) and (max-width: #{680px - 1px}) {
-    height: 200px;
+  @media screen and (min-width: $mediaMiniMobileWidth) and (max-width: #{500px - 1px}) {
+    height: 300px;
   }
-  @media screen and (min-width: 680px) and (max-width: #{730px - 1px}) {
-    height: 250px;
+  @media screen and (min-width: 500px) and (max-width: #{$changeWidth - 1px}) {
+    height: 350px;
   }
-  @media screen and (min-width: 730px) {
+  @media screen and (min-width: $changeWidth) {
     height: 300px;
   }
   overflow: hidden;

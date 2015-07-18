@@ -46,9 +46,12 @@ class Goals_cell extends Cell_Controller {
   // public function _cache_temp () {
   //   return array ('time' => 60 * 60, 'key' => null);
   // }
-  public function comments () {
-    return $this->setUseCssList (true)
-                ->load_view ();
+  public function comments ($goal) {
+    return $this->setUseJsList (true)
+                ->setUseCssList (true)
+                ->load_view (array (
+                    'goal' => $goal
+                  ));
   }
 
   /* render_cell ('goals_cell', 'images', array ()); */
