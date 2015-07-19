@@ -54,8 +54,15 @@ $(function () {
       .fail (function (result) { ajaxError (result); })
       .complete (function (result) { });
   }
+  
+  var top = $maylike.offset ().top;
 
   $(window).scroll (function () {
+    if ($(this).scrollTop () > top - 57)
+      $maylike.addClass ('fix');
+    else
+      $maylike.removeClass ('fix');
+
     if ($maylikes.data ('has_loaded') || !$loading.is (':visible') || ($(this).scrollTop () + $(this).height () < $loading.offset ().top - 50))
       return;
     $maylikes.data ('has_loaded', true);

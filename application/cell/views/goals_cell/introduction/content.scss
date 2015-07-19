@@ -132,33 +132,7 @@ $changeWidth: 800px;
         word-break: break-all;
         line-height: 24px;
       }
-      .links {
-        margin-bottom: 10px;
-        h3 {
-          border-bottom: 1px solid rgba(39, 40, 34, .1);
-          padding-right: 10px;
-          text-align: right;
-          font-size: 15px;
-          display: inline-block;
-          width: calc(100% - 20px);
-          margin: 0 10px;
-          margin-bottom: 4px;
-          padding-bottom: 3px;
-        }
-        .link {
-          display: inline-block;
-          width: 100%;
-          font-size: 12px;
-          text-align: right;
-          padding-right: 25px;
-          font-style: italic;
-          a {
-            @include a();
-            @include overflow-docx3();
-            max-width: calc(100% - 100px);
-          }
-        }
-      }
+      
       .bottom {
         border-top: 1px solid rgba(233, 234, 237, 1);
         background-color: rgba(246, 247, 248, 1);
@@ -196,6 +170,7 @@ $changeWidth: 800px;
     }
   }
   .details {
+
     @media screen and (min-width: 0px) and (max-width: #{$changeWidth - 1px}) {
       margin-top: 20px;
     }

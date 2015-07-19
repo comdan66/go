@@ -88,11 +88,11 @@ class Goals_cell extends Cell_Controller {
                 ->load_view ();
   }
 
-  /* render_cell ('goals_cell', 'tags', array ()); */
+  /* render_cell ('goals_cell', 'links', array ()); */
   // public function _cache_temp () {
   //   return array ('time' => 60 * 60, 'key' => null);
   // }
-  public function tags ($goal) {
+  public function links ($goal) {
     return $this->setUseCssList (true)
                 ->load_view (array (
                     'goal' => $goal

@@ -1,0 +1,86 @@
+/**
+ * @author      OA Wu <comdan66@gmail.com>
+ * @copyright   Copyright (c) 2015 OA Wu Design
+ */
+
+@import "_oa";
+.links {
+  margin-bottom: 10px;
+
+  &.no {
+    margin-bottom: 5px;
+
+    .title {
+      border-bottom: 0;
+      height: 27px;
+
+      .l, .r {
+        bottom: 0;
+      }
+      .l {
+        width: 100%;
+      }
+      .r {
+        display: none;
+      }
+    }
+  }
+  .title {
+    position: relative;
+    border-bottom: 1px solid rgba(39, 40, 34, .1);
+    
+    display: inline-block;
+    width: calc(100% - 20px);
+    margin: 0 10px;
+    margin-bottom: 4px;
+    height: 29px;
+    @include split-right(130px);
+
+    .l, .r {
+      position: absolute;
+      bottom: 2px;
+    }
+    .l {
+      left: 0;
+      text-align: left;
+      height: 27px;
+      overflow: hidden;
+
+      .tag {
+        margin: 3px;
+        font-size: 10px;
+        padding: 3px;
+        display: inline-block;
+        text-decoration: none;
+        color: rgba(39, 40, 34, .8);
+        border: 1px solid rgba(178, 179, 176, 1);
+        @include transition(all .1s);
+        @include border-radius(2px);
+
+        &:hover {
+          background-color: rgba(205, 206, 204, .5);
+        }
+      }
+    }
+    .r {
+      right: 0;
+      text-align: right;
+      font-size: 10px;
+      padding-bottom: 3px;
+      padding-right: 5px;
+    }
+  }
+  .link {
+    display: inline-block;
+    width: 100%;
+    font-size: 12px;
+    text-align: right;
+    padding-right: 25px;
+    font-style: italic;
+    a {
+      @include a();
+      @include overflow-docx3();
+      max-width: calc(100% - 100px);
+    }
+  }
+}

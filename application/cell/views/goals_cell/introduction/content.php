@@ -12,18 +12,9 @@
     <?php }?>
         </div>
       </div>
-      <article class='center'>
-        <?php echo $goal->introduction;?>
-      </article>
+      <article class='center'><?php echo $goal->introduction;?></article>
 
-<?php if ($goal->links) { ?>
-        <div class='links'>
-          <h3>相關引用及參考</h3>
-    <?php foreach ($goal->links as $link) {?>
-            <div class='link'> - <a href='<?php echo $link->value;?>' target='_blank'><?php echo $link->value;?></a></div>
-    <?php } ?>
-        </div>
-<?php } ?>
+<?php echo render_cell ('goals_cell', 'links', $goal);?>
 
       <div class='bottom'>
         <div class='fb'><div class="fb-like" data-href="<?php echo base_url ('goal', $goal->id);?>" data-send="false" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div></div>
@@ -31,7 +22,6 @@
       </div>
     </div>
     <?php echo $goal->pictures ? render_cell ('goals_cell', 'images', $goal) : '';?>
-    <?php echo $goal->tags ? render_cell ('goals_cell', 'tags', $goal) : '';?>
 
     <div class='left_comment'>
       <?php echo render_cell ('goals_cell', 'comments', $goal);?>

@@ -92,6 +92,7 @@ class Goals extends Site_controller {
          ->add_js (base_url ('resource', 'javascript', 'fancyBox_v2.1.5', 'jquery.fancybox-thumbs.js'))
          ->add_js (base_url ('resource', 'javascript', 'fancyBox_v2.1.5', 'jquery.fancybox-media.js'))
          ->add_js (base_url ('resource', 'javascript', 'autosize_v3.0.8', 'autosize.min.js'))
+         ->add_js ('http://www.thepetedesign.com/demos/jquery.autofix_anything.js', false)
          ->add_hidden (array ('id' => 'marker', 'value' => $goal->id, 'data-lat' => $goal->latitude, 'data-lng' => $goal->longitude))
          ->add_hidden (array ('id' => 'load_maylike_url', 'value' => base_url ($this->get_class (), 'load_maylike')))
          ->add_hidden (array ('id' => 'post_comment_url', 'value' => base_url ($this->get_class (), 'post_comment')))
