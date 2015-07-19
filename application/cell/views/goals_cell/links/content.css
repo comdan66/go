@@ -1,1 +1,168 @@
-.links{margin-bottom:10px}.links.no{margin-bottom:5px}.links.no .title{border-bottom:0;height:27px}.links.no .title .l,.links.no .title .r{bottom:0}.links.no .title .l{width:100%}.links.no .title .r{display:none}.links .title{position:relative;border-bottom:1px solid rgba(39,40,34,0.1);display:inline-block;width:calc(100% - 20px);margin:0 10px;margin-bottom:4px;height:29px;*zoom:1}.links .title:after{display:table;content:"";line-height:0;clear:both}.links .title .l,.links .title .r{float:left;position:relative;display:inline-block}.links .title .r{float:right}.links .title .l{width:calc(100% - 130px)}.links .title .r{width:130px}.links .title .l,.links .title .r{position:absolute;bottom:2px}.links .title .l{left:0;text-align:left;height:27px;overflow:hidden}.links .title .l .tag{margin:3px;font-size:10px;padding:3px;display:inline-block;text-decoration:none;color:rgba(39,40,34,0.8);border:1px solid #b2b3b0;-moz-transition:all 0.1s;-o-transition:all 0.1s;-webkit-transition:all 0.1s;transition:all 0.1s;-moz-border-radius:2px;-webkit-border-radius:2px;border-radius:2px}.links .title .l .tag:hover{background-color:rgba(205,206,204,0.5)}.links .title .r{right:0;text-align:right;font-size:10px;padding-bottom:3px;padding-right:5px}.links .link{display:inline-block;width:100%;font-size:12px;text-align:right;padding-right:25px;font-style:italic}.links .link a{display:inline-block;color:rgba(42,90,149,0.7);font-weight:bold;text-decoration:none;-moz-transition:all 0.3s;-o-transition:all 0.3s;-webkit-transition:all 0.3s;transition:all 0.3s;border-bottom:1px solid transparent;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:calc(100% - 100px)}.links .link a:hover{color:rgba(12,65,109,0.85);border-bottom:1px solid rgba(12,65,109,0.85)}
+/**
+ * @author      OA Wu <comdan66@gmail.com>
+ * @copyright   Copyright (c) 2015 OA Wu Design
+ */
+/**
+ * @author      OA Wu <comdan66@gmail.com>
+ * @copyright   Copyright (c) 2015 OA Wu Design
+ */
+/**
+ * @author      OA Wu <comdan66@gmail.com>
+ * @copyright   Copyright (c) 2015 OA Wu Design
+ */
+/**
+ * @author      OA Wu <comdan66@gmail.com>
+ * @copyright   Copyright (c) 2015 OA Wu Design
+ */
+/**
+ * @author      OA Wu <comdan66@gmail.com>
+ * @copyright   Copyright (c) 2015 OA Wu Design
+ */
+/**
+ * @author      OA Wu <comdan66@gmail.com>
+ * @copyright   Copyright (c) 2015 OA Wu Design
+ */
+/**
+ * @author      OA Wu <comdan66@gmail.com>
+ * @copyright   Copyright (c) 2015 OA Wu Design
+ */
+/**
+ * @author      OA Wu <comdan66@gmail.com>
+ * @copyright   Copyright (c) 2015 OA Wu Design
+ */
+/**
+ * @author      OA Wu <comdan66@gmail.com>
+ * @copyright   Copyright (c) 2015 OA Wu Design
+ */
+/**
+ * @author      OA Wu <comdan66@gmail.com>
+ * @copyright   Copyright (c) 2015 OA Wu Design
+ */
+/**
+ * @author      OA Wu <comdan66@gmail.com>
+ * @copyright   Copyright (c) 2015 OA Wu Design
+ */
+/**
+ * @author      OA Wu <comdan66@gmail.com>
+ * @copyright   Copyright (c) 2015 OA Wu Design
+ */
+/**
+ * @author      OA Wu <comdan66@gmail.com>
+ * @copyright   Copyright (c) 2015 OA Wu Design
+ */
+/**
+ * @author      OA Wu <comdan66@gmail.com>
+ * @copyright   Copyright (c) 2015 OA Wu Design
+ */
+.links {
+  margin-bottom: 10px;
+}
+.links.no {
+  margin-bottom: 5px;
+}
+.links.no .title {
+  border-bottom: 0;
+  height: 27px;
+}
+.links.no .title .l, .links.no .title .r {
+  bottom: 0;
+}
+.links.no .title .l {
+  width: 100%;
+}
+.links.no .title .r {
+  display: none;
+}
+.links .title {
+  position: relative;
+  border-bottom: 1px solid rgba(39, 40, 34, 0.1);
+  display: inline-block;
+  width: calc(100% - 20px);
+  margin: 0 10px;
+  margin-bottom: 4px;
+  height: 29px;
+  *zoom: 1;
+}
+.links .title:after {
+  display: table;
+  content: "";
+  line-height: 0;
+  clear: both;
+}
+.links .title .l, .links .title .r {
+  float: left;
+  position: relative;
+  display: inline-block;
+}
+.links .title .r {
+  float: right;
+}
+.links .title .l {
+  width: calc(100% - 130px);
+}
+.links .title .r {
+  width: 130px;
+}
+.links .title .l, .links .title .r {
+  position: absolute;
+  bottom: 2px;
+}
+.links .title .l {
+  left: 0;
+  text-align: left;
+  height: 27px;
+  overflow: hidden;
+}
+.links .title .l .tag {
+  margin: 3px;
+  font-size: 10px;
+  padding: 3px;
+  display: inline-block;
+  text-decoration: none;
+  color: rgba(39, 40, 34, 0.8);
+  border: 1px solid #b2b3b0;
+  -moz-transition: all 0.1s;
+  -o-transition: all 0.1s;
+  -webkit-transition: all 0.1s;
+  transition: all 0.1s;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+}
+.links .title .l .tag:hover {
+  background-color: rgba(205, 206, 204, 0.5);
+}
+.links .title .r {
+  right: 0;
+  text-align: right;
+  font-size: 10px;
+  padding-bottom: 3px;
+  padding-right: 5px;
+}
+.links .link {
+  display: inline-block;
+  width: 100%;
+  font-size: 12px;
+  text-align: right;
+  padding-right: 25px;
+  font-style: italic;
+}
+.links .link a {
+  display: inline-block;
+  color: rgba(42, 90, 149, 0.7);
+  font-weight: bold;
+  text-decoration: none;
+  -moz-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  border-bottom: 1px solid transparent;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: calc(100% - 100px);
+}
+.links .link a:hover {
+  color: rgba(12, 65, 109, 0.85);
+  border-bottom: 1px solid rgba(12, 65, 109, 0.85);
+}
