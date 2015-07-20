@@ -1,7 +1,7 @@
 <?php echo render_cell ('site_frame_cell', 'header', array ()); ?>
 
 <div id='container'>
-  <?php echo render_cell ('main_cell', 'search', array ()); ?>
+  <?php echo render_cell ('main_cell', 'search', true); ?>
 
   <?php echo render_cell ('main_cell', 'tabview', array ()); ?>
   <?php echo render_cell ('main_cell', 'details', array ()); ?>
