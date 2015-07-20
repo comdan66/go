@@ -1,11 +1,11 @@
 <a href='<?php echo base_url ('goal', $goal->id);?>' class='goal'>
   <div class='img'>
-    <img src='<?php echo $goal->cover ();?>' />
+    <img src='<?php echo isset ($picture) ? $picture->name->url () : $goal->cover ();?>' />
   </div>
   
   <div class='user'>
     <div class='avatar'>
-      <img src='<?php echo $goal->user->avatar ();?>' />
+      <img src='<?php echo isset ($users) ? $users[$goal->user_id]->avatar () : $goal->user->avatar ();?>' />
     </div>
     
     <div class='title'><?php echo $goal->title;?></div>

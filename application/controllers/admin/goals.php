@@ -150,7 +150,7 @@ class Goals extends Admin_controller {
 
     if ($pictures)
       foreach ($pictures as $picture)
-        if (verifyCreateOrm ($pic = GoalPicture::create (array ('goal_id' => $goal->id, 'name' => '', 'gradient' => 1, 'color_red' => '', 'color_green' => '', 'color_blue' => '', 'ori_url' => ''))))
+        if (verifyCreateOrm ($pic = GoalPicture::create (array ('goal_id' => $goal->id, 'name' => '', 'gradient' => 1, 'color_red' => -1, 'color_green' => -1, 'color_blue' => -1, 'ori_url' => ''))))
           if (!$pic->name->put ($picture))
             $pic->destroy ();
           else
@@ -158,7 +158,7 @@ class Goals extends Admin_controller {
 
     if ($picture_links)
       foreach ($picture_links as $picture_link)
-        if (verifyCreateOrm ($pic = GoalPicture::create (array ('goal_id' => $goal->id, 'name' => '', 'gradient' => 1, 'color_red' => '', 'color_green' => '', 'color_blue' => '', 'ori_url' => $picture_link))))
+        if (verifyCreateOrm ($pic = GoalPicture::create (array ('goal_id' => $goal->id, 'name' => '', 'gradient' => 1, 'color_red' => -1, 'color_green' => -1, 'color_blue' => -1, 'ori_url' => $picture_link))))
           if (!$pic->name->put_url ($picture_link))
             $pic->destroy ();
           else
@@ -266,7 +266,7 @@ class Goals extends Admin_controller {
 
     if ($pictures)
       foreach ($pictures as $picture)
-        if (verifyCreateOrm ($pic = GoalPicture::create (array ('goal_id' => $goal->id, 'name' => '', 'gradient' => 1, 'color_red' => '', 'color_green' => '', 'color_blue' => '', 'ori_url' => ''))))
+        if (verifyCreateOrm ($pic = GoalPicture::create (array ('goal_id' => $goal->id, 'name' => '', 'gradient' => 1, 'color_red' => -1, 'color_green' => -1, 'color_blue' => -1, 'ori_url' => ''))))
           if (!$pic->name->put ($picture))
             $pic->destroy ();
           else
@@ -274,7 +274,7 @@ class Goals extends Admin_controller {
 
     if ($picture_links)
       foreach ($picture_links as $picture_link)
-        if (verifyCreateOrm ($pic = GoalPicture::create (array ('goal_id' => $goal->id, 'name' => '', 'gradient' => 1, 'color_red' => '', 'color_green' => '', 'color_blue' => '', 'ori_url' => $picture_link))))
+        if (verifyCreateOrm ($pic = GoalPicture::create (array ('goal_id' => $goal->id, 'name' => '', 'gradient' => 1, 'color_red' => -1, 'color_green' => -1, 'color_blue' => -1, 'ori_url' => $picture_link))))
           if (!$pic->name->put_url ($picture_link))
             $pic->destroy ();
           else

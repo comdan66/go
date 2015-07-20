@@ -98,11 +98,12 @@
 #container .line > div:not(:first-child):not(:last-child) {
   width: 48px;
   height: 48px;
-  line-height: 44px;
+  line-height: 42px;
   font-size: 22px;
   color: rgba(50, 50, 50, 0.5);
   font-weight: bolder;
   border: 2px solid rgba(190, 190, 190, 0.6);
+  background-color: rgba(150, 150, 150, 0.25);
   -moz-border-radius: 50%;
   -webkit-border-radius: 50%;
   border-radius: 50%;

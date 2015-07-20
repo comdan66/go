@@ -54,3 +54,47 @@
  * @author      OA Wu <comdan66@gmail.com>
  * @copyright   Copyright (c) 2015 OA Wu Design
  */
+.color {
+  position: relative;
+  float: left;
+  display: inline-block;
+  width: 142px;
+  height: 72px;
+  margin: 5px;
+  border: 1px solid rgba(39, 40, 34, 0.7);
+  overflow: hidden;
+  *zoom: 1;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+}
+.color:after {
+  display: table;
+  content: "";
+  line-height: 0;
+  clear: both;
+}
+.color img {
+  float: left;
+  width: 70px;
+  height: 70px;
+  -moz-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.color .c {
+  float: left;
+  display: inline-block;
+  width: 70px;
+  height: 70px;
+  border-left: 1px solid rgba(39, 40, 34, 0.7);
+}
+.color .count {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  display: inline-block;
+  padding: 3px 6px;
+  background-color: #e6e6e6;
+}

@@ -13,11 +13,11 @@ class GoalTagMap extends OaModel {
   );
 
   static $has_many = array (
-    array ('goals', 'class_name' => 'Goal'),
-    array ('tags', 'class_name' => 'GoalTag')
   );
 
   static $belongs_to = array (
+    array ('goal', 'class_name' => 'Goal'),
+    array ('tag', 'class_name' => 'GoalTag')
   );
 
   public function __construct ($attributes = array (), $guard_attributes = true, $instantiating_via_find = false, $new_record = true) {

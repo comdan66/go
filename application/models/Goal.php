@@ -42,7 +42,7 @@ class Goal extends OaModel {
         }, $this->pictures))) : $this->covers;
   }
   public function cover ($key = '') {
-    if ($this->pictures)
+    if ($this->picture)
       return $this->picture->name->url ($key);
     else if ($this->view)
       return $this->view->pic->url ($key);

@@ -437,7 +437,7 @@ class ImageImagickUtility extends ImageBaseUtility {
 
     $temp = $this->image->clone ();
 
-    $temp->quantizeImage ($maxCount, Imagick::COLORSPACE_RGB, 0, false, false );
+    $temp->quantizeImage ($maxCount, Imagick::COLORSPACE_RGB, 0, false, false);
     $pixels = $temp->getImageHistogram ();
 
     $datas = array ();

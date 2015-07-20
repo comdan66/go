@@ -4,3 +4,43 @@
  */
 
 @import "_oa";
+
+.color {
+  position: relative;
+  float: left;
+  display: inline-block;
+  width: 142px;
+  height: 72px;
+  margin: 5px;
+  border: 1px solid rgba(39, 40, 34, .7);
+  overflow: hidden;
+  @include clearfix();
+  @include border-radius(3px);
+
+  img {
+    float: left;
+    width: 70px;
+    height: 70px;
+    @include transition(all .3s);
+  }
+  .c {
+    float: left;
+    display: inline-block;
+    width: 70px;
+    height: 70px;
+    border-left: 1px solid rgba(39, 40, 34, .7);
+  }
+  .count {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    display: inline-block;
+    padding: 3px 6px;
+    background-color: rgba(230, 230, 230, 1);
+  }
+  &:hover {
+    img {
+      // @include opacity(1);
+    }
+  }
+}

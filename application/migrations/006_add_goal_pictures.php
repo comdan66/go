@@ -15,9 +15,9 @@ class Migration_Add_goal_pictures extends CI_Migration {
         `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT '檔案名稱',
 
         `gradient` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT '斜率，height/width',
-        `color_red` varchar(5) COLLATE utf8_unicode_ci NOT NULL COMMENT 'RGB 紅',
-        `color_green` varchar(5) COLLATE utf8_unicode_ci NOT NULL COMMENT 'RGB 綠',
-        `color_blue` varchar(5) COLLATE utf8_unicode_ci NOT NULL COMMENT 'RGB 藍',
+        `color_red` int(3) NOT NULL COMMENT 'RGB 紅',
+        `color_green` int(3) NOT NULL COMMENT 'RGB 綠',
+        `color_blue` int(3) NOT NULL COMMENT 'RGB 藍',
 
         `ori_url` text  COMMENT '參考網址，圖片上傳則為空',
 

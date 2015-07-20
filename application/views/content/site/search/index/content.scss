@@ -43,11 +43,12 @@
       &:not(:first-child):not(:last-child) {
         width: $width;
         height: $width;
-        line-height: $width - 4px;
+        line-height: $width - 6px;
         font-size: 22px;
         color: rgba(50, 50, 50, 0.5);
         font-weight: bolder;
         border: 2px solid rgba(190, 190, 190, .6);
+        background-color: rgba(150, 150, 150, .25);
         @include border-radius(50%);
         @include text-shadow(1px 1px 1px rgba(255, 255, 255, 1));
       }

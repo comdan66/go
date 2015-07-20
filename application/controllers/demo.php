@@ -11,6 +11,23 @@ class Demo extends Site_controller {
     parent::__construct ();
   }
 
+  public function color2 () {
+    $pics = GoalPicture::find ('all', array ('select' => '*, COUNT(id) AS count', 'order' => 'count DESC', 'group' => 'ROUND(color_red / 30), ROUND(color_green / 30), ROUND(color_blue / 30)', 'conditions' => array ('')));
+
+    $this->set_method ('index')->load_view (array (
+        'pics' => $pics
+      ));
+  }
+
+  public function color () {
+    $pics = GoalPicture::find ('all');
+    foreach ($pics as $pic) {
+      $pic->update_color ();
+    }
+    $this->set_method ('index')->load_view (array (
+        'pics' => $pics
+      ));
+  }
   public function test () {
     // foreach (Goal::all () as $goal) {
     //   if ($goal->view)
@@ -101,7 +118,7 @@ class Demo extends Site_controller {
         $pics = CreateDemo::pics (0, 5, $tags = array ('貓咪', '貓', '貓星人', '柴犬', '可愛', '狗', '寵物', '台灣', '名人'));
         echo "\n   新增 " . count ($pics) . "筆 GoalPicture\n   ---------------------------------------\n";
         foreach ($pics as $pic)
-          if (verifyCreateOrm ($picture = GoalPicture::create (array ('goal_id' => $goal->id, 'name' => '', 'gradient' => 1, 'color_red' => '', 'color_green' => '', 'color_blue' => '', 'ori_url' => $pic['url']))))
+          if (verifyCreateOrm ($picture = GoalPicture::create (array ('goal_id' => $goal->id, 'name' => '', 'gradient' => 1, 'color_red' => -1, 'color_green' => -1, 'color_blue' => -1, 'ori_url' => $pic['url']))))
             if (!$picture->name->put_url ($pic['url']))
               $picture->destroy ();
             else {

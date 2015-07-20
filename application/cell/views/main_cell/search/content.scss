@@ -8,6 +8,25 @@
 $logoWidth: 200px;
 $tipWidth: 130px;
 
+$colors:
+  rgba(231, 109, 102, 1),
+  rgba(244, 177, 60, 1),
+  rgba(242, 224, 68, 1),
+  rgba(183, 232, 94, 1),
+  rgba(110, 192, 166, 1),
+  rgba(122, 174, 218, 1),
+  rgba(56, 121, 217, 1),
+  rgba(103, 58, 183, 1),
+  rgba(156, 39, 176, 1),
+  rgba(163, 145, 199, 1),
+  rgba(255, 192, 203, 1),
+  rgba(210, 129, 167, 1),
+  rgba(0, 0, 0, 1),
+  rgba(128, 128, 128, 1),
+  rgba(255, 255, 255, 1),
+  rgba(255, 255, 255, 1)
+  ;
+
 #search {
   display: inline-block;
   width: 100%;
@@ -70,7 +89,119 @@ $tipWidth: 130px;
       width: 0;
       display: none;
     }
+    &.is_search {
+      .l {
+        float: none;
+        width: 0;
+        display: none;
+      }
+      .c {
+        display: inline-block;
+        padding-top: 23px;
+        width: 100%;
+        text-align: left;
+        @include clearfix();
 
+        .search {
+          float: left;
+          @include input();
+          width: calc(100% - 145px);
+          padding: 10px;
+          margin-left: 10px;
+          border-right: 0;
+          @include border-left-radius(3px);
+        }
+        .color_picker {
+          position: relative;
+          float: left;
+          display: inline-block;
+          width: 40px;
+          height: 40px;
+          background-color: rgba(255, 255, 255, 1);
+          border: 1px solid rgba(39, 40, 34, 0.25);
+          border-left-color: rgba(39, 40, 34, 0.1);
+          @include border-right-radius(3px);
+          &:hover {
+            .icon-eyedropper {
+              color: rgba(50, 50, 50, 0.85);
+            }
+          }
+
+          .icon-eyedropper {
+            display: inline-block;
+            width: 100%;
+            height: 100%;
+            line-height: 38px;
+            font-size: 22px;
+            text-align: center;
+            cursor: pointer;
+            @include transition(all .5s);
+
+            &.choice {
+              color: rgba(255, 255, 255, 1);
+            @include text-shadow(0 0 1px rgba(0, 0, 0, .6), 0 0 5px rgba(0, 0, 0, .3));
+            }
+          }
+          .colors {
+            position: absolute;
+            right: 0;
+
+            display: inline-block;
+            width: 0;
+            height: 0;
+            @include border-radius(2px);
+            @include opacity(0);
+            @include transition(all .2s);
+            @include clearfix();
+            overflow: hidden;
+            background-color: rgba(255, 255, 255, 1);
+
+            &.show {
+              display: inline-block;
+              width: 124px;
+              height: 124px;
+              z-index: 5;
+              padding: 2px;
+              @include opacity(1);
+            }
+            
+            > div {
+              float: left;
+              width: 28px;
+              height: 28px;
+              z-index: 5;
+              margin: 1px;
+              cursor: pointer;
+              border: 1px solid rgba(39, 40, 34,.3);
+              @include border-radius(2px);
+
+              @for $i from 1 through length($colors) {
+                &:nth-child(#{$i}) {
+                  background-color: nth($colors, $i);
+                }
+              }
+
+
+              &:last-child {
+               background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' preserveAspectRatio='none' viewBox='0 0 10 10'><path d='M0 0 L10 10' fill='none' stroke='rgba(39, 40, 34,.3)' stroke-width='.5'/><path d='M10 0 L0 10' fill='none' stroke='rgba(39, 40, 34,.3)' stroke-width='.5'/></svg>");
+               background-repeat:no-repeat;
+               background-position:center center;
+               background-size: 100% 100%, auto;
+              }
+            }
+          }
+        }
+        .go_search {
+          float: left;
+          @include button();
+          padding: 8px 20px;
+          margin-left: 10px;
+          margin-top: 1px;
+          font-size: 18px;
+          font-weight: bold;
+        }
+      }
+    }
   }
   @media screen and (min-width: #{$mediaMobileWidth}) and (max-width: #{$mediaTabletWidth - 1px}) {
     height: 80px;
@@ -119,9 +250,89 @@ $tipWidth: 130px;
       .search {
         float: left;
         @include input();
-        width: calc(100% - 140px);
+        width: calc(100% - 200px);
         padding: 10px;
         margin-left: 40px;
+        border-right: 0;
+        @include border-left-radius(3px);
+      }
+      .color_picker {
+        position: relative;
+        float: left;
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        background-color: rgba(255, 255, 255, 1);
+        border: 1px solid rgba(39, 40, 34, 0.25);
+        border-left-color: rgba(39, 40, 34, 0.1);
+        @include border-right-radius(3px);
+        &:hover {
+          .icon-eyedropper {
+            color: rgba(50, 50, 50, 0.85);
+          }
+        }
+
+        .icon-eyedropper {
+          display: inline-block;
+          width: 100%;
+          height: 100%;
+          line-height: 38px;
+          font-size: 22px;
+          text-align: center;
+          cursor: pointer;
+          @include transition(all .5s);
+
+          &.choice {
+            color: rgba(255, 255, 255, 1);
+          @include text-shadow(0 0 1px rgba(0, 0, 0, .6), 0 0 5px rgba(0, 0, 0, .3));
+          }
+        }
+        .colors {
+          position: absolute;
+          right: 0;
+
+          display: inline-block;
+          width: 0;
+          height: 0;
+          @include border-radius(2px);
+          @include opacity(0);
+          @include transition(all .2s);
+          @include clearfix();
+          overflow: hidden;
+          background-color: rgba(255, 255, 255, 1);
+
+          &.show {
+            display: inline-block;
+            width: 124px;
+            height: 124px;
+            z-index: 5;
+            padding: 2px;
+            @include opacity(1);
+          }
+          
+          > div {
+            float: left;
+            width: 28px;
+            height: 28px;
+            z-index: 5;
+            margin: 1px;
+            cursor: pointer;
+            border: 1px solid rgba(39, 40, 34,.3);
+            @include border-radius(2px);
+
+            @for $i from 1 through length($colors) {
+              &:nth-child(#{$i}) {
+                background-color: nth($colors, $i);
+              }
+            }
+            &:last-child {
+             background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' preserveAspectRatio='none' viewBox='0 0 10 10'><path d='M0 0 L10 10' fill='none' stroke='rgba(39, 40, 34,.3)' stroke-width='.5'/><path d='M10 0 L0 10' fill='none' stroke='rgba(39, 40, 34,.3)' stroke-width='.5'/></svg>");
+             background-repeat:no-repeat;
+             background-position:center center;
+             background-size: 100% 100%, auto;
+            }
+          }
+        }
       }
       .go_search {
         float: left;
@@ -149,7 +360,7 @@ $tipWidth: 130px;
       @include background-image(radial-gradient(50% 50%, rgba(255, 255, 255, .5) 0px, rgba(255, 255, 255, 0) 100%));
       background-repeat: no-repeat;
       background-position: 50% 8px;
-
+      // background-color: rgba(0, 0, 255, 0.2);
 
       .logo {
         text-align: left;
@@ -179,7 +390,6 @@ $tipWidth: 130px;
     }
     .c {
       padding-top: 23px;
-      // border: 1px solid rgba(255, 0, 0, .3);
       width: calc(100% - #{$logoWidth} - #{$tipWidth});
       text-align: left;
       @include clearfix();
@@ -187,9 +397,90 @@ $tipWidth: 130px;
       .search {
         float: left;
         @include input();
-        width: calc(100% - 160px);
+        width: calc(100% - 180px);
         padding: 10px;
-        margin-left: 40px;
+        margin-left: 30px;
+        height: 40px;
+        border-right: 0;
+        @include border-left-radius(3px);
+      }
+      .color_picker {
+        position: relative;
+        float: left;
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        background-color: rgba(255, 255, 255, 1);
+        border: 1px solid rgba(39, 40, 34, 0.25);
+        border-left-color: rgba(39, 40, 34, 0.1);
+        @include border-right-radius(3px);
+        &:hover {
+          .icon-eyedropper {
+            color: rgba(50, 50, 50, 0.85);
+          }
+        }
+
+        .icon-eyedropper {
+          display: inline-block;
+          width: 100%;
+          height: 100%;
+          line-height: 38px;
+          font-size: 22px;
+          text-align: center;
+          cursor: pointer;
+          @include transition(all .5s);
+
+          &.choice {
+            color: rgba(255, 255, 255, 1);
+          @include text-shadow(0 0 1px rgba(0, 0, 0, .6), 0 0 5px rgba(0, 0, 0, .3));
+          }
+        }
+        .colors {
+          position: absolute;
+          right: 0;
+
+          display: inline-block;
+          width: 0;
+          height: 0;
+          @include border-radius(2px);
+          @include opacity(0);
+          @include transition(all .2s);
+          @include clearfix();
+          overflow: hidden;
+          background-color: rgba(255, 255, 255, 1);
+
+          &.show {
+            display: inline-block;
+            width: 124px;
+            height: 124px;
+            z-index: 5;
+            padding: 2px;
+            @include opacity(1);
+          }
+          
+          > div {
+            float: left;
+            width: 28px;
+            height: 28px;
+            z-index: 5;
+            margin: 1px;
+            cursor: pointer;
+            border: 1px solid rgba(39, 40, 34,.3);
+            @include border-radius(2px);
+
+            @for $i from 1 through length($colors) {
+              &:nth-child(#{$i}) {
+                background-color: nth($colors, $i);
+              }
+            }
+            &:last-child {
+             background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' preserveAspectRatio='none' viewBox='0 0 10 10'><path d='M0 0 L10 10' fill='none' stroke='rgba(39, 40, 34,.3)' stroke-width='.5'/><path d='M10 0 L0 10' fill='none' stroke='rgba(39, 40, 34,.3)' stroke-width='.5'/></svg>");
+             background-repeat:no-repeat;
+             background-position:center center;
+             background-size: 100% 100%, auto;
+            }
+          }
+        }
       }
       .go_search {
         float: left;
@@ -241,5 +532,19 @@ $tipWidth: 130px;
       }
     }
   }
+}
+#bg_cover {
 
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: none;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(39, 40, 34, .5);
+  z-index: 4;
+
+  &.show {
+    display: inline-block;
+  }
 }

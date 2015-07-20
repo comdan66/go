@@ -166,6 +166,10 @@
   content: "\e604";
 }
 
+.icon-eyedropper:before {
+  content: "\e90a";
+}
+
 *, *:after, *:before {
   vertical-align: top;
   -moz-box-sizing: border-box;
