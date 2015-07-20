@@ -18,6 +18,7 @@ class Admin_frame_cell extends Cell_Controller {
         array ('name' => '分類管理', 'href' => base_url ('admin', 'goal_tag_categories'), 'is_login' => true),
         array ('name' => '標籤管理', 'href' => base_url ('admin', 'goal_tags'), 'is_login' => true),
         array ('name' => '景點管理', 'href' => base_url ('admin', 'goals'), 'is_login' => true),
+        array ('name' => '首頁管理', 'href' => base_url ('admin', 'index'), 'is_login' => true),
       );
     $right_links = array (
         array ('name' => '登出', 'href' => base_url ('platform', 'sign_out'), 'is_login' => true),
@@ -37,6 +38,17 @@ class Admin_frame_cell extends Cell_Controller {
   public function footer () {
     return $this->setUseCssList (true)
                 ->load_view ();
+  }
+
+  /* render_cell ('admin_frame_cell', 'sides', array ()); */
+  // public function _cache_sides () {
+  //   return array ('time' => 60 * 60, 'key' => null);
+  // }
+  public function sides ($sides_list) {
+    return $this->setUseCssList (true)
+                ->load_view (array (
+                    'sides_list' => $sides_list
+                  ));
   }
 
   /* render_cell ('admin_frame_cell', 'pagination', array ()); */

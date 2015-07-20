@@ -8,7 +8,6 @@
 #container {
   margin: 0 auto;
   width: $mainAdminWidth;
-
   .contents {
     .conditions {
       text-align: left;
@@ -91,6 +90,19 @@
             height: 20px;
           }
         }
+      }
+      .left {
+        text-align: left;
+        word-break: break-all;
+      }
+      .tag {
+        display: inline-block;
+        padding: 0 5px;
+        margin: 3px;
+        border: 1px solid rgba(39, 40, 34, .2);
+
+        @include border-radius(10px);
+        @include box-shadow(0 0 2px rgba(39, 40, 34, .1));
       }
     }
     ul.pagination {

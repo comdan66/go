@@ -6,6 +6,7 @@
  */
 
 class Admin_controller extends Oa_controller {
+  private $sides = array ();
 
   public function __construct () {
     parent::__construct ();
@@ -33,6 +34,13 @@ class Admin_controller extends Oa_controller {
          ;
   }
 
+  protected function set_sides ($sides = array ()) {
+    $this->sides = $sides;
+    return $this;
+  }
+  protected function load_view ($data = array (), $return = false, $cache_time = 0) {
+    return parent::load_view (array_merge (array ('frame_sides' => $this->sides), $data ? $data : array ()), $return, $cache_time);
+  }
   private function _add_meta () {
     return $this;
   }

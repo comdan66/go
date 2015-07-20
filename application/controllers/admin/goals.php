@@ -34,8 +34,9 @@ class Goals extends Admin_controller {
     $tag_ids = identity ()->get_session ('tag_ids', true);
     $links = identity ()->get_session ('links', true);
     $picture_links = identity ()->get_session ('picture_links', true);
-
-    $this->add_css (base_url ('resource', 'css', 'fancyBox_v2.1.5', 'jquery.fancybox.css'))
+         
+    $this->add_hidden (array ('id' => 'marker', 'data-lat' => $goal->latitude, 'data-lng' => $goal->longitude, 'value' => $goal->id))
+         ->add_css (base_url ('resource', 'css', 'fancyBox_v2.1.5', 'jquery.fancybox.css'))
          ->add_css (base_url ('resource', 'css', 'fancyBox_v2.1.5', 'jquery.fancybox-buttons.css'))
          ->add_css (base_url ('resource', 'css', 'fancyBox_v2.1.5', 'jquery.fancybox-thumbs.css'))
          ->add_css (base_url ('resource', 'css', 'fancyBox_v2.1.5', 'my.css'))
@@ -412,7 +413,8 @@ class Goals extends Admin_controller {
     $pitch = identity ()->get_session ('pitch', true);
     $zoom = identity ()->get_session ('zoom', true);
 
-    $this->load_view (array (
+    $this->add_hidden (array ('id' => 'marker', 'data-lat' => $goal->latitude, 'data-lng' => $goal->longitude, 'value' => $goal->id))
+         ->load_view (array (
         'goal' => $goal,
         'message' => $message,
         'latitude' => $latitude,

@@ -8,7 +8,6 @@
 #container {
   margin: 0 auto;
   width: $mainAdminWidth;
-
   .contents {
     .error {
       padding: 10px;
@@ -21,6 +20,19 @@
       @include box-shadow(0 1px 10px 0 rgba(153, 153, 153, 0.6));
 
       td {
+        .tag {
+          float: left;
+          display: inline-block;
+          margin: 5px;
+          font-size: small;
+
+          @include checkbox('blue', false);
+          label {
+            float: right;
+            margin-top: 1px;
+            margin-left: 3px;
+          }
+        }
         label {
           margin-top: 4px;
           float: left;
@@ -47,45 +59,8 @@
             border: 1px solid rgba(193, 194, 192, 1);
           }
         }
-        .tag {
-          display: inline-block;
-          padding: 0 5px;
-          margin: 3px;
-          border: 1px solid rgba(39, 40, 34, .2);
-
-          @include border-radius(10px);
-          @include box-shadow(0 0 2px rgba(39, 40, 34, .1));
-        }
-        .pic {
-          cursor: pointer;
-          width: 50px;
-          height: 50px;
-          display: inline-block;
-          margin: 3px;
-          border: 1px solid rgba(39, 40, 34, .2);
-          @include border-radius(3px);
-          @include box-shadow(0 0 5px rgba(39, 40, 34, .1));
-
-          &:hover {
-            @include box-shadow(0 0 5px rgba(39, 40, 34, .2));
-          }
-        }
-        .fancybox_goal, .fancybox_view {
-          cursor: pointer;
-          border: 1px solid rgba(39, 40, 34, .2);
-          @include border-radius(3px);
-          @include box-shadow(0 0 2px rgba(39, 40, 34, .1));
-          @include transition(all .5s);
-
-          &:hover {
-            @include box-shadow(0 0 5px rgba(39, 40, 34, .2));
-          }
-        }
         .button {
           @include button('blue', false);
-        }
-        a {
-          @include a();
         }
         &[colspan="2"] {
           a {
@@ -98,12 +73,4 @@
       }
     }
   }
-}
-.color {
-  display: inline-block;
-  border: 1px solid rgba(90, 117, 130, 1);
-  width: 30px;
-  height: 30px;
-
-  @include border-radius(3px);
 }
