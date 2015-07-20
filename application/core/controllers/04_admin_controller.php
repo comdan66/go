@@ -57,3 +57,38 @@ class Admin_controller extends Oa_controller {
                 ;
   }
 }
+
+class Admin_index_controller extends Admin_controller {
+
+  public function __construct () {
+    parent::__construct ();
+
+    $this->set_sides (array (
+          '頁籤' => array (
+              array ('name' => '列表', 'href' => base_url ('admin', 'index_tabs', 'index')),
+              array ('name' => '新增', 'href' => base_url ('admin', 'index_tabs', 'add')),
+            ),
+          '評分' => array (
+              array ('name' => '列表', 'href' => base_url ()),
+              array ('name' => '新增', 'href' => base_url ()),
+            ),
+          'Banner' => array (
+              array ('name' => '列表', 'href' => base_url ()),
+              array ('name' => '新增', 'href' => base_url ()),
+            ),
+          '關鍵字' => array (
+              array ('name' => '列表', 'href' => base_url ()),
+              array ('name' => '新增', 'href' => base_url ()),
+            ),
+          '熱門回應' => array (
+              array ('name' => '列表', 'href' => base_url ()),
+              array ('name' => '新增', 'href' => base_url ()),
+            ),
+          '下方推薦' => array (
+              array ('name' => '列表', 'href' => base_url ()),
+              array ('name' => '新增', 'href' => base_url ()),
+            )
+          ));
+  }
+}
+

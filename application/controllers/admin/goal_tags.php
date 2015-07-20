@@ -135,7 +135,7 @@ class Goal_tags extends Admin_controller {
   }
   public function cate_index ($offset = 0) {
     $columns = array ('id' => 'int', 'name' => 'string');
-    $configs = array ('admin', 'goal_tag_categories', '%s');
+    $configs = array ('admin', 'goal_tags', 'cate_index', '%s');
 
     $conditions = conditions (
                     $columns,

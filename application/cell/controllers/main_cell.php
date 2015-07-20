@@ -8,11 +8,12 @@
 class Main_cell extends Cell_Controller {
 
   /* render_cell ('main_cell', 'search_tags', array ()); */
-  public function _cache_search_tags () {
-    return array ('time' => 60 * 60, 'key' => null);
-  }
+  // public function _cache_search_tags () {
+  //   return array ('time' => 60 * 60, 'key' => null);
+  // }
   public function search_tags () {
-    return $this->setUseCssList (true)
+    return $this->setUseJsList (true)
+                ->setUseCssList (true)
                 ->load_view (array (
                     'tags' => GoalTag::find ('all', array ('select' => 'name', 'limit' => 10))
                   ));

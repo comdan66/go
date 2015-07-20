@@ -191,7 +191,6 @@
         padding-bottom: 10px;
         @include overflow-docx3();
       }
-
     }
   }
   .loading {
@@ -218,7 +217,7 @@
       color: rgba(50, 50, 50, 0.5);
       padding-bottom: 10px;
       letter-spacing: 3px;
-      border-bottom: 3px solid rgba(142, 142, 142, .1);
+      border-bottom: 1px solid rgba(255, 255, 255, .3);
     }
   }
 }
