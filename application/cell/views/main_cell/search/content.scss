@@ -111,6 +111,7 @@ $colors:
           margin-left: 10px;
           border-right: 0;
           margin-top: 0;
+          height: 40px;
           @include border-left-radius(3px);
           @include border-right-radius(0);
         }
@@ -259,6 +260,7 @@ $colors:
         margin-left: 40px;
         border-right: 0;
         margin-top: 0;
+        height: 40px;
         @include border-left-radius(3px);
         @include border-right-radius(0);
       }
@@ -407,9 +409,9 @@ $colors:
         padding-top: 10px;
         padding-left: 10px;
         margin-left: 30px;
-        height: 40px;
         border-right: 0;
         margin-top: 0;
+        height: 40px;
         @include border-left-radius(3px);
         @include border-right-radius(0);
       }
