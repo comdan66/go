@@ -202,7 +202,7 @@
       display: block;
     }
     & > div {
-      @include loading(rgba(229, 225, 223, 1), 50px);
+      @include loading(none, 50px);
     }
   }
   .no_data {
