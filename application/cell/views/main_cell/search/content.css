@@ -156,7 +156,8 @@
     -webkit-transition: all 0.3s;
     transition: all 0.3s;
     width: calc(100% - 145px);
-    padding: 10px;
+    padding-top: 10px;
+    padding-left: 10px;
     margin-left: 10px;
     border-right: 0;
     margin-top: 0;
@@ -468,7 +469,8 @@
     -webkit-transition: all 0.3s;
     transition: all 0.3s;
     width: calc(100% - 200px);
-    padding: 10px;
+    padding-top: 10px;
+    padding-left: 10px;
     margin-left: 40px;
     border-right: 0;
     margin-top: 0;
@@ -784,7 +786,8 @@
     -webkit-transition: all 0.3s;
     transition: all 0.3s;
     width: calc(100% - 180px);
-    padding: 10px;
+    padding-top: 10px;
+    padding-left: 10px;
     margin-left: 30px;
     height: 40px;
     border-right: 0;
