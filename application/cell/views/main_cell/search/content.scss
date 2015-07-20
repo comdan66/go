@@ -109,7 +109,9 @@ $colors:
           padding: 10px;
           margin-left: 10px;
           border-right: 0;
+          margin-top: 0;
           @include border-left-radius(3px);
+          @include border-right-radius(0);
         }
         .color_picker {
           position: relative;
@@ -254,7 +256,9 @@ $colors:
         padding: 10px;
         margin-left: 40px;
         border-right: 0;
+        margin-top: 0;
         @include border-left-radius(3px);
+        @include border-right-radius(0);
       }
       .color_picker {
         position: relative;
@@ -402,7 +406,9 @@ $colors:
         margin-left: 30px;
         height: 40px;
         border-right: 0;
+        margin-top: 0;
         @include border-left-radius(3px);
+        @include border-right-radius(0);
       }
       .color_picker {
         position: relative;
