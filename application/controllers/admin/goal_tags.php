@@ -11,13 +11,13 @@ class Goal_tags extends Admin_controller {
     parent::__construct ();
 
     $this->set_sides (array (
-          '標簽分類' => array (
-              array ('name' => '列表', 'href' => base_url ('admin', 'goal_tags', 'cate_index')),
-              array ('name' => '新增', 'href' => base_url ('admin', 'goal_tags', 'cate_add')),
-            ),
           '標簽' => array (
               array ('name' => '列表', 'href' => base_url ('admin', 'goal_tags', 'index')),
               array ('name' => '新增', 'href' => base_url ('admin', 'goal_tags', 'add')),
+            ),
+          '標簽分類' => array (
+              array ('name' => '列表', 'href' => base_url ('admin', 'goal_tags', 'cate_index')),
+              array ('name' => '新增', 'href' => base_url ('admin', 'goal_tags', 'cate_add')),
             )
           ));
   }

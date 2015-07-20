@@ -16,8 +16,8 @@ $optionWidth: 325px;
   display: block;
   margin: 0 auto;
   height: calc(100% - 20px);
-
-  max-width: calc(100% - 40px);
+  max-width: calc(100% - 20px - #{$adminSidesWidth});
+  width: 100%;
   
   .contents {
     .map {

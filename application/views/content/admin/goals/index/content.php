@@ -30,7 +30,6 @@
           <th >介紹</th>
           <th width='150'>標籤</th>
           <th width='185'>照片</th>
-          <th width='200'>地址</th>
           <th width='70'>地點</th>
           <th width='70'>街景</th>
           <th width='100'>編輯</th>
@@ -46,7 +45,6 @@
               <td class='left'><?php echo mb_strimwidth ($goal->introduction, 0, 100, '…','UTF-8');?></td>
               <td class='left'><?php echo $goal->tags ? implode ('', array_map (function ($tag) {return '<div class="tag">' . $tag . '</div>';}, column_array ($goal->tags, 'name'))) : '(無標簽)';?></td>
               <td class='left'><?php echo $goal->pictures ? implode ('', array_map (function ($picture) use ($i) {return '<div class="pic" href="' . $picture->name->url () . '" data-fancybox-group="fancybox_group_' . $i . '">' . img ($picture->name->url ('50x50c')) . '</div>';}, $goal->pictures)) : '(無照片)';?></td>
-              <td class='left'><?php echo $goal->address;?></td>
               <td class='map'><?php echo img ($goal->pic->url ('50x50c'), false, "data-id='" . $goal->id . "' class='fancybox_goal'");?></td>
               <td class='map'><?php echo $goal->view ? img ($goal->view->pic->url ('50x50c'), false, "data-id='" . $goal->id . "' class='fancybox_view'") : anchor (base_url ('admin', 'goals', 'view', $goal->id), '未設定');?></td>
               <td class='edit'>
@@ -61,7 +59,7 @@
             </tr>
     <?php }
         } else { ?>
-          <tr><td colspan='9'>目前沒有任何資料。</td></tr>
+          <tr><td colspan='8'>目前沒有任何資料。</td></tr>
     <?php
         } ?>
       <tbody>

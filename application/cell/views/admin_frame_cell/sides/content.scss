@@ -5,40 +5,59 @@
 
 @import "_oa";
 
-$footerWidth: 250px;
-$footerHeight: 50px;
 
-#footer {
-  margin: 30px auto;
-  height: $footerHeight;
-  @include clearfix();
+.sides {
+  padding: 0 5px;
 
-  > div {
-    float: left;
-    height: 100%;
+  + .sides {
+    border: 1px solid rgba(255, 0, 0, .3);
+  }
 
-    &.l, &.r {
-      display: inline-block;
-      width: calc(50% - #{$footerWidth / 2});
-      background-color: rgba(202, 200, 199, 1);
-      height: 1px;
-      margin-top: 20px;
+  .side {
+    margin: 0;
+    background-color: rgba(255, 255, 255, 1);
+    border: 1px solid rgba(39, 40, 34, .35);
+    overflow: hidden;
+    @include border-radius(3px);
+    & + .side {
+      margin-top: 10px;
     }
-    &.c {
+    .title {
+      margin: 0;
+      height: 40px;
+      padding-top: 10px;
+      border-bottom: 1px solid rgba(233, 234, 237, 1);
+      background-color: rgba(245, 245, 245, 1);
+      @include border-top-radius(3px);
+      @include box-shadow(0 1px 5px rgba(39, 40, 34, .1));
+      @include overflow-docx3();
+    }
+    a {
+      @include a();
+      font-size: 14px;
       display: inline-block;
-      width: $footerWidth;
+      width: calc(100% - 40px);
+      margin: 0 20px;
+      height: 30px;
+      line-height: 32px;
+      text-decoration: none;
+      font-weight: normal;
+      @include overflow-docx3();
 
-      > div {
-        &:first-child {
-          color: rgba(89, 89, 89, .8);
-          font-weight: bold;
-        }
-        &:last-child {
-          margin-top: 5px;
-          a {
-            @include a();
-          }
-        }
+      & +  a {
+        border-top: 1px solid rgba(233, 234, 237, 1);
+      }
+
+      &.active {
+        font-weight: bolder;
+        color: rgba(0, 55, 100, 1);
+        @include text-shadow(0 0 1px rgba(39, 40, 34, .2));
+        @include background-image(radial-gradient(50% 50%, rgba(12, 65, 109, .2) 0px, rgba(255, 255, 255, 0) 120%));
+        background-repeat: no-repeat;
+        background-position: 50% 3px;
+
+        // border-bottom-color: rgba(12, 65, 109, .4);
+        // border-bottom-width: 2px;
       }
     }
   }

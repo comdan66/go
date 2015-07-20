@@ -8,7 +8,7 @@
               <div class='title'><?php echo $title;?></div>
       <?php } 
             foreach ($sides as $side) { ?>
-              <a href='<?php echo $side['href'];?>'><?php echo $side['name'];?></a>
+              <a <?php echo $side['href'] == current_url () ? "class='active' " : '';?>href='<?php echo $side['href'];?>'><?php echo $side['name'];?></a>
       <?php }
           } ?>
         </div>
