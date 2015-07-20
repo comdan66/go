@@ -1,0 +1,93 @@
+/**
+ * @author      OA Wu <comdan66@gmail.com>
+ * @copyright   Copyright (c) 2015 OA Wu Design
+ */
+
+@import "_oa";
+
+$tagsTopPadding: 20px;
+$tagHeight: 40px;
+$tagCount: 5;
+$tagRunTime: 6.5s;
+
+.tags {
+  position: relative;
+  height: $tagHeight * $tagCount + $tagsTopPadding;
+  overflow: hidden;      
+
+  .tag {
+    position: absolute;
+    top: 0;
+    display: inline-block;
+    height: $tagHeight;
+    padding: 10px 20px;
+    padding-bottom: 12px;
+    color: rgba(50, 50, 50, 0.7);
+    text-decoration: none;
+    @include opacity(0);
+
+    @media screen and (min-width: 0px) and (max-width: #{$mediaMobileWidth - 1px}) {
+      $paddingH: 50px;
+      left: $paddingH / 2;
+      width: calc(100% - #{$paddingH});
+    }
+    @media screen and (min-width: $mediaMobileWidth) and (max-width: #{$mediaTabletWidth - 1px}) {
+      $paddingH: 100px;
+      left: $paddingH / 2;
+      width: calc(100% - #{$paddingH});
+    }
+    @media screen and (min-width: #{$mediaTabletWidth}) {
+      $paddingH: 150px;
+      left: $paddingH / 2;
+      width: calc(100% - #{$paddingH});
+    }
+
+    @for $i from 1 through 5 {
+      &:nth-child(#{$i}) {
+        @include animation(tag1#{$i} $tagRunTime * 2 infinite ease-in-out);
+      }
+      &:nth-child(#{$i + 5}) {
+        @include animation(tag2#{$i} $tagRunTime * 2 infinite ease-in-out);
+      }
+    }
+    
+    @include overflow-docx3();
+    &:not(:nth-child(5n + 1)) {
+      letter-spacing: 1px;
+      border-top: 1px solid rgba(142, 142, 142, .2);
+    }
+  }
+}
+@for $i from 1 through 10 {
+  @include keyframes(tag1#{$i}) {
+    0% {
+      @include opacity(0);
+      top: if($i == 1, $tagsTopPadding, $tagHeight * 2 * $i - $tagsTopPadding) + $tagHeight * ($tagCount + 1) + $tagsTopPadding;
+    }
+    15%, 40% {
+      @include opacity(1);
+      top: if($i == 1, $tagsTopPadding, $tagHeight * $i - $tagsTopPadding);
+    }
+    50%, 100% {
+      @include opacity(0);
+      top: if($i == 1, $tagsTopPadding, $tagHeight * 2 * $i - $tagsTopPadding) - $tagHeight * 2 * ($tagCount + 1) + $tagsTopPadding;
+    }
+  }
+}
+
+@for $i from 1 through 10 {
+  @include keyframes(tag2#{$i}) {
+    0%, 45% {
+      @include opacity(0);
+      top: if($i == 1, $tagsTopPadding, $tagHeight * 2 * $i - $tagsTopPadding) + $tagHeight * ($tagCount + 1) + $tagsTopPadding;
+    }
+    60%, 90% {
+      @include opacity(1);
+      top: if($i == 1, $tagsTopPadding, $tagHeight * $i - $tagsTopPadding);
+    }
+    100%{
+      @include opacity(0);
+      top: if($i == 1, $tagsTopPadding, $tagHeight * 2 * $i - $tagsTopPadding) - $tagHeight * 2 * ($tagCount + 1) + $tagsTopPadding;
+    }
+  }
+}

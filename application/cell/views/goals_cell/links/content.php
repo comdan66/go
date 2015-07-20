@@ -6,7 +6,7 @@
         <div class='l'>
       <?php 
           foreach ($goal->tags as $tag) { ?>
-            <a href='' class='tag'><?php echo $tag->name;?></a>
+            <a href='<?php echo base_url ('search') . '?q=' . $tag->name;?>' class='tag'><?php echo $tag->name;?></a>
       <?php 
           }?>
         </div>

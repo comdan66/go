@@ -8,11 +8,8 @@
   <div class='loading'><div></div></div>
   <div class='no_data'>
     <div class='title'>您可以試著搜尋..</div>
-    <div class='tag'>asddas</div>
-    <div class='tag'>asddas</div>
-    <div class='tag'>asddas</div>
-    <div class='tag'>asddas</div>
-    <div class='tag'>asddas</div>
+    <?php echo render_cell ('main_cell', 'search_tags');?>
+
   </div>
 </div>
 

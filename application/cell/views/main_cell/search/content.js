@@ -19,9 +19,9 @@ $(function () {
 
     var colors = input.match (/^rgb\s*\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)$/i);
     if (colors)
-      window.location.assign ('/search/?rgb[0]=' + colors[1] + '&rgb[1]=' + colors[2] + '&rgb[2]=' + colors[3]);
+      window.location.assign ('/search?rgb[0]=' + colors[1] + '&rgb[1]=' + colors[2] + '&rgb[2]=' + colors[3]);
     else
-      window.location.assign ('/search/?q=' + $input.val ().trim ());
+      window.location.assign ('/search?q=' + $input.val ().trim ());
   }
   $input.keyup (function (e) {
     if(e.keyCode == 13)

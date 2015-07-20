@@ -1,5 +1,5 @@
 <div id='search' class='<?php echo $is_search ? ' is_search' : '';?>'>
-  <a href='' class='l'>
+  <a href='<?php echo base_url ();?>' class='l'>
     <div class='logo'><span>Go!</span> Taiwan</div>
     <div class='title'>台灣景點地圖</div>
   </a>

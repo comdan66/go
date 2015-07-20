@@ -2,9 +2,9 @@
   <div class='banners'>
 <?php
     foreach ($pictures as $picture) { ?>
-        <a href='' class='banner imgLiquid_top' data-title='<?php echo $picture->goal->title;?>'>
-          <img src='<?php echo $picture->name->url ('800x800c');?>' />
-        </a>
+      <a href='<?php echo base_url ('goal', $picture->goal->id);?>' class='banner imgLiquid_top' data-title='<?php echo $picture->goal->title;?>'>
+        <img src='<?php echo $picture->name->url ('800x800c');?>' />
+      </a>
 <?php
     } ?>
     <div class='arrow left icon-chevron-left'></div>
@@ -15,7 +15,7 @@
     <h2>熱門關鍵字</h2>
 <?php 
     foreach ($tags as $tag) { ?>
-        <a class='tag <?php echo 't' . sprintf ('%02d', rand (1, 5));?>' href=''><?php echo $tag->name;?></a>
+        <a class='tag <?php echo 't' . sprintf ('%02d', rand (1, 5));?>' href='<?php echo base_url ('search') . '?q=' . $tag->name;?>'><?php echo $tag->name;?></a>
 <?php 
     } ?>
   </div>

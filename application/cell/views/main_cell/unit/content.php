@@ -2,14 +2,15 @@
   <h2>精選1</h2>
   <div class='units'>
 <?php
+    $name = '';
     foreach ($goals as $goal) { ?>
-      <a href='' class='unit'>
+      <a href='<?php echo base_url ('goal', $goal->id);?>' class='unit'>
         <img src='<?php echo $goal->cover ('400x400c');?>' />
         <div class='cover'>
           <div class='pv icon-eye'><?php echo $goal->pageview;?></div>
           <div class='tags'>
       <?php foreach ($goal->tags as $tag) { ?>
-              <div class='tag'><?php echo $tag->name;?></div>
+              <div class='tag'><?php echo $name = $tag->name;?></div>
       <?php } ?>
           </div>
         </div>
@@ -20,6 +21,10 @@
     }?>
   </div>
   <div class='more'>
-    <a href=''>MORE</a>
+    <?php
+    if ($name) { ?>
+      <a href='<?php echo base_url ('search') . '?q=' . $name;?>'>MORE</a>
+<?php
+    } ?>
   </div>
 </div>

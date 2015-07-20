@@ -4,7 +4,7 @@
     $details = $goal->star_details ();
     $count = $details['count'];
     $details = $details['details']; ?>
-    <a href='' class='detail_unit imgLiquid_top'>
+    <a href='<?php echo base_url ('goal', $goal->id);?>' class='detail_unit imgLiquid_top'>
       <img src='<?php echo $goal->cover ();?>' />
       <div class='detail' data-has_loaded='false'>
         <div class='l'>

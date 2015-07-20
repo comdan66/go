@@ -206,8 +206,10 @@
     }
   }
   .no_data {
+    position: relative;
     margin: 0 20px;
     display: none;
+
     &.show {
       display: block;
     }
@@ -217,27 +219,6 @@
       padding-bottom: 10px;
       letter-spacing: 3px;
       border-bottom: 3px solid rgba(142, 142, 142, .1);
-    }
-    .tag {
-      @media screen and (min-width: 0px) and (max-width: #{$mediaMobileWidth - 1px}) {
-        margin: 0 30px;
-        padding: 10px 20px;
-      }
-      @media screen and (min-width: $mediaMobileWidth) and (max-width: #{$mediaTabletWidth - 1px}) {
-        margin: 0 50px;
-        padding: 10px 40px;
-      }
-      @media screen and (min-width: #{$mediaTabletWidth}) {
-        margin: 0 100px;
-        padding: 10px 60px;
-      }
-      padding-bottom: 12px;
-      
-      @include overflow-docx3();
-      + .tag {
-        letter-spacing: 1px;
-        border-top: 1px solid rgba(142, 142, 142, .2);
-      }
     }
   }
 }

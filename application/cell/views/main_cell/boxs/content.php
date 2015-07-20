@@ -19,10 +19,10 @@
               <div class='rr'>
                 <div class='lll'>
                   <div class='value'><?php echo $comment->content;?></div>
-                  <a href='' class='more'>更多詳細內容..</a>
+                  <a href='<?php echo base_url ('goal', $comment->goal_id);?>' class='more'>更多詳細內容..</a>
                 </div>
                 <div class='rrr'>
-                  <a href='' class='imgLiquid_center'>
+                  <a href='<?php echo base_url ('goal', $comment->goal_id);?>' class='imgLiquid_center'>
                     <img src='<?php echo $comment->goal->cover ('100x100c');?>' />
                   </a>
                 </div>
