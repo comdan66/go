@@ -36,14 +36,6 @@ class Goals extends Admin_controller {
     $picture_links = identity ()->get_session ('picture_links', true);
          
     $this->add_hidden (array ('id' => 'marker', 'data-lat' => $goal->latitude, 'data-lng' => $goal->longitude, 'value' => $goal->id))
-         ->add_css (base_url ('resource', 'css', 'fancyBox_v2.1.5', 'jquery.fancybox.css'))
-         ->add_css (base_url ('resource', 'css', 'fancyBox_v2.1.5', 'jquery.fancybox-buttons.css'))
-         ->add_css (base_url ('resource', 'css', 'fancyBox_v2.1.5', 'jquery.fancybox-thumbs.css'))
-         ->add_css (base_url ('resource', 'css', 'fancyBox_v2.1.5', 'my.css'))
-         ->add_js (base_url ('resource', 'javascript', 'fancyBox_v2.1.5', 'jquery.fancybox.js'))
-         ->add_js (base_url ('resource', 'javascript', 'fancyBox_v2.1.5', 'jquery.fancybox-buttons.js'))
-         ->add_js (base_url ('resource', 'javascript', 'fancyBox_v2.1.5', 'jquery.fancybox-thumbs.js'))
-         ->add_js (base_url ('resource', 'javascript', 'fancyBox_v2.1.5', 'jquery.fancybox-media.js'))
          ->load_view (array (
         'goal' => $goal,
         'message' => $message,
@@ -387,15 +379,7 @@ class Goals extends Admin_controller {
     if (!($goal = Goal::find_by_id ($id)))
       return redirect (array ('admin', 'goals'));
 
-    $this->add_css (base_url ('resource', 'css', 'fancyBox_v2.1.5', 'jquery.fancybox.css'))
-         ->add_css (base_url ('resource', 'css', 'fancyBox_v2.1.5', 'jquery.fancybox-buttons.css'))
-         ->add_css (base_url ('resource', 'css', 'fancyBox_v2.1.5', 'jquery.fancybox-thumbs.css'))
-         ->add_css (base_url ('resource', 'css', 'fancyBox_v2.1.5', 'my.css'))
-         ->add_js (base_url ('resource', 'javascript', 'fancyBox_v2.1.5', 'jquery.fancybox.js'))
-         ->add_js (base_url ('resource', 'javascript', 'fancyBox_v2.1.5', 'jquery.fancybox-buttons.js'))
-         ->add_js (base_url ('resource', 'javascript', 'fancyBox_v2.1.5', 'jquery.fancybox-thumbs.js'))
-         ->add_js (base_url ('resource', 'javascript', 'fancyBox_v2.1.5', 'jquery.fancybox-media.js'))
-         ->load_view (array (
+    $this->load_view (array (
         'goal' => $goal
       ));
   }
@@ -425,15 +409,7 @@ class Goals extends Admin_controller {
 
     $message = identity ()->get_session ('_flash_message', true);
 
-    $this->add_css (base_url ('resource', 'css', 'fancyBox_v2.1.5', 'jquery.fancybox.css'))
-         ->add_css (base_url ('resource', 'css', 'fancyBox_v2.1.5', 'jquery.fancybox-buttons.css'))
-         ->add_css (base_url ('resource', 'css', 'fancyBox_v2.1.5', 'jquery.fancybox-thumbs.css'))
-         ->add_css (base_url ('resource', 'css', 'fancyBox_v2.1.5', 'my.css'))
-         ->add_js (base_url ('resource', 'javascript', 'fancyBox_v2.1.5', 'jquery.fancybox.js'))
-         ->add_js (base_url ('resource', 'javascript', 'fancyBox_v2.1.5', 'jquery.fancybox-buttons.js'))
-         ->add_js (base_url ('resource', 'javascript', 'fancyBox_v2.1.5', 'jquery.fancybox-thumbs.js'))
-         ->add_js (base_url ('resource', 'javascript', 'fancyBox_v2.1.5', 'jquery.fancybox-media.js'))
-         ->load_view (array (
+    $this->load_view (array (
         'message' => $message,
         'pagination' => $pagination,
         'goals' => $goals,

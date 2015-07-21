@@ -23,7 +23,6 @@ function getLastPosition (key) {
     return;
 }
 
-
 Array.prototype.diff = function (a) {
   return this.filter (function (i) { return a.map (function (t) { return t.id; }).indexOf (i.id) < 0; });
 };

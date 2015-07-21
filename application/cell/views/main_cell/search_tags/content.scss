@@ -49,8 +49,7 @@ $tagRunTime: 6.5s;
     height: $tagHeight;
 
     @include opacity(0);
-    @include transition(all 1.5s ease-in-out);
-    z-index: 1;
+    @include transition(all 1.2s ease-in-out);
 
     @for $i from 1 through 10 {
       &:nth-child(#{$i}) {
@@ -59,10 +58,8 @@ $tagRunTime: 6.5s;
         &.start {
           top: $tagHeight * ($i % 5) + $tagsTopPadding;
           @include opacity(1);
-          z-index: 999;
         }
         &.end {
-          z-index: 1;
           @include opacity(0);
           top: $tagHeight * (2 * (($i % 5) - ($tagCount + 1))) + $tagsTopPadding;
         }

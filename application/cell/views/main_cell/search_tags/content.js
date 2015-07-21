@@ -27,5 +27,5 @@ $(function () {
     }, 5000);
   }
 
-  setTimeout (x.bind (this, 0), 100);
+  setTimeout (x.bind (this, 0), 1000);
 });

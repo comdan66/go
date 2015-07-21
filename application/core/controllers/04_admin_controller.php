@@ -25,7 +25,9 @@ class Admin_controller extends Oa_controller {
          ->set_title ("後台管理系統 - Go! Taiwan")
 
          ->add_hidden (array ('id' => 'get_goals_url', 'value' => base_url ('admin', 'pub_method', 'get_goals')))
+         ->add_hidden (array ('id' => 'get_towns_url', 'value' => base_url ('admin', 'pub_method', 'get_towns')))
          ->add_hidden (array ('id' => 'update_goal_position_url', 'value' => base_url ('admin', 'pub_method', 'update_goal_position')))
+         ->add_hidden (array ('id' => 'update_town_position_url', 'value' => base_url ('admin', 'pub_method', 'update_town_position')))
          ->add_hidden (array ('id' => 'update_view_position_url', 'value' => base_url ('admin', 'pub_method', 'update_view_position')))
 
          ->_add_meta ()
@@ -46,7 +48,11 @@ class Admin_controller extends Oa_controller {
   }
 
   private function _add_css () {
-    return $this->add_css ('http://fonts.googleapis.com/css?family=Gafata', false);
+    return $this->add_css ('http://fonts.googleapis.com/css?family=Gafata', false)
+                ->add_css (base_url ('resource', 'css', 'fancyBox_v2.1.5', 'jquery.fancybox.css'))
+                ->add_css (base_url ('resource', 'css', 'fancyBox_v2.1.5', 'jquery.fancybox-buttons.css'))
+                ->add_css (base_url ('resource', 'css', 'fancyBox_v2.1.5', 'jquery.fancybox-thumbs.css'))
+                ->add_css (base_url ('resource', 'css', 'fancyBox_v2.1.5', 'my.css'));
   }
 
   private function _add_js () {
@@ -54,7 +60,10 @@ class Admin_controller extends Oa_controller {
                 ->add_js (base_url ('resource', 'javascript', 'markerwithlabel_d2015_06_28', 'markerwithlabel.js'))
                 ->add_js (base_url ('resource', 'javascript', 'jquery_v1.10.2', 'jquery-1.10.2.min.js'))
                 ->add_js (base_url ('resource', 'javascript', 'imgLiquid_v0.9.944', 'imgLiquid-min.js'))
-                ;
+                ->add_js (base_url ('resource', 'javascript', 'fancyBox_v2.1.5', 'jquery.fancybox.js'))
+                ->add_js (base_url ('resource', 'javascript', 'fancyBox_v2.1.5', 'jquery.fancybox-buttons.js'))
+                ->add_js (base_url ('resource', 'javascript', 'fancyBox_v2.1.5', 'jquery.fancybox-thumbs.js'))
+                ->add_js (base_url ('resource', 'javascript', 'fancyBox_v2.1.5', 'jquery.fancybox-media.js'));
   }
 }
 

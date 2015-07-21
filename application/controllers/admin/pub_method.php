@@ -11,6 +11,28 @@ class Pub_method extends Admin_controller {
     parent::__construct ();
   }
 
+  public function get_towns () {
+    if (!$this->is_ajax (false))
+      return show_error ("It's not Ajax request!<br/>Please confirm your program again.");
+
+    $north_east = $this->input_post ('NorthEast');
+    $south_west = $this->input_post ('SouthWest');
+    $town_id = ($town_id = $this->input_post ('town_id')) ? $town_id : 0;
+
+    if (!(isset ($north_east['latitude']) && isset ($south_west['latitude']) && isset ($north_east['longitude']) && isset ($south_west['longitude'])))
+      return $this->output_json (array ('status' => true, 'towns' => array ()));
+
+    $towns = array_map (function ($town) {
+      return array (
+          'id' => $town->id,
+          'lat' => $town->latitude,
+          'lng' => $town->longitude,
+          'name' => $town->name,
+        );
+    }, Town::find ('all', array ('conditions' => array ('latitude < ? AND latitude > ? AND longitude < ? AND longitude > ? AND id != ?', $north_east['latitude'], $south_west['latitude'], $north_east['longitude'], $south_west['longitude'], $town_id))));
+
+    return $this->output_json (array ('status' => true, 'towns' => $towns));
+  }
   public function get_goals () {
     if (!$this->is_ajax (false))
       return show_error ("It's not Ajax request!<br/>Please confirm your program again.");
@@ -39,6 +61,14 @@ class Pub_method extends Admin_controller {
 
     $this->load_view (array (
             'goal' => $goal
+          ));
+  }
+  public function town ($id = 0) {
+    if (!($town = Town::find ('one', array ('conditions' => array ('id = ?', $id)))))
+      return show_404();
+
+    $this->load_view (array (
+            'town' => $town
           ));
   }
   public function goal ($id = 0) {
@@ -128,6 +158,41 @@ class Pub_method extends Admin_controller {
 
     if ($is_update_pic)
       $goal->put_pic ();
+
+    return $this->output_json (array ('status' => true));
+  }
+  public function update_town_position ($id = 0) {
+    if (!$this->is_ajax (false))
+      return show_error ("It's not Ajax request!<br/>Please confirm your program again.");
+
+    $id = trim ($this->input_post ('id'));
+    $lat = trim ($this->input_post ('lat'));
+    $lng = trim ($this->input_post ('lng'));
+    $name = trim ($this->input_post ('name'));
+    $postal_code = trim ($this->input_post ('postal_code'));
+
+    if (!($id && $lat && $lng && ($town = Town::find_by_id ($id))))
+      return $this->output_json (array ('status' => false));
+    
+    if (($town->latitude == $lat) && ($town->longitude == $lng))
+      $is_update_pic = false;
+    else
+      $is_update_pic = true;
+
+    $town->latitude = $lat;
+    $town->longitude = $lng;
+    
+    if ($name)
+      $town->name = $name;
+
+    if ($postal_code)
+      $town->postal_code = $postal_code;
+
+    if (!$town->save ())
+      return $this->output_json (array ('status' => false));
+
+    if ($is_update_pic)
+      $town->put_pic ();
 
     return $this->output_json (array ('status' => true));
   }
