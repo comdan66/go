@@ -12,7 +12,7 @@ class Demo extends Site_controller {
   }
 
   public function town () {
-    foreach (Town::all () as $town)
+    foreach (Town::all (array ('conditions' => array ('id > ?', 230))) as $town)
       if (!$town->put_pic ())
         echo $town->id . " Error!\n";
       else
