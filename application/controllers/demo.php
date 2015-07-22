@@ -12,6 +12,10 @@ class Demo extends Site_controller {
   }
 
   public function town () {
+    foreach (Town::all () as $town) {
+      if (!$town->bound)
+        echo "!!!";
+    }
   }
 
   public function color2 () {
