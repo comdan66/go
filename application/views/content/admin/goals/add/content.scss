@@ -7,10 +7,6 @@
 
 $optionWidth: 325px;
 
-.gm-style-cc {
-  display: none;
-}
-
 #container {
   position: relative;
   display: block;
@@ -168,12 +164,8 @@ $optionWidth: 325px;
               margin-top: 1px;
               button {
                 @include button('green');
-
-                svg {
-                  width: 16px;
-                  height: 16px;
-                  @include svg-color(rgba(230, 230, 230, 1), rgba(230, 230, 230, 1));
-                }
+                font-weight: normal;
+                font-size: 16px;
               }
             }
           }
@@ -192,12 +184,8 @@ $optionWidth: 325px;
               margin-top: 1px;
               button {
                 @include button('green');
-
-                svg {
-                  width: 16px;
-                  height: 16px;
-                  @include svg-color(rgba(230, 230, 230, 1), rgba(230, 230, 230, 1));
-                }
+                font-weight: normal;
+                font-size: 16px;
               }
             }
           }
@@ -216,12 +204,8 @@ $optionWidth: 325px;
               margin-top: 1px;
               button {
                 @include button('green');
-
-                svg {
-                  width: 16px;
-                  height: 16px;
-                  @include svg-color(rgba(230, 230, 230, 1), rgba(230, 230, 230, 1));
-                }
+                font-weight: normal;
+                font-size: 16px;
               }
             }
           }

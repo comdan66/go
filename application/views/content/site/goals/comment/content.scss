@@ -4,21 +4,3 @@
  */
 
 @import "_oa";
-
-
-.gm-style-cc {
-  display: none;
-}
-
-#container {
-  position: relative;
-  display: block;
-  margin: 0 auto;
-  width: 100%;
-  max-width: $mainWidth;
-  padding: 0 10px;
-
-  @media screen and (min-width: #{$mainWidth}) {
-    padding: 0;
-  }
-}

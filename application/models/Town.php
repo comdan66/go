@@ -10,12 +10,14 @@ class Town extends OaModel {
   static $table_name = 'towns';
 
   static $has_one = array (
+    array ('bound', 'class_name' => 'TownBound', 'order' => 'id DESC')
   );
 
   static $has_many = array (
   );
 
   static $belongs_to = array (
+    array ('category', 'class_name' => 'TownCategory')
   );
 
   public function __construct ($attributes = array (), $guard_attributes = true, $instantiating_via_find = false, $new_record = true) {

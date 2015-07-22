@@ -5,6 +5,24 @@
  * @copyright   Copyright (c) 2015 OA Wu Design
  */
 
+if (!function_exists ('color')) {
+  function color ($string, $foreground_color = null, $background_color = null, $is_print = false) {
+    if (!strlen ($string)) return "";
+    $colored_string = "";
+    $keys = array ('n' => '30', 'w' => '37', 'b' => '34', 'g' => '32', 'c' => '36', 'r' => '31', 'p' => '35', 'y' => '33');
+    if ($foreground_color && in_array (strtolower ($foreground_color), array_map ('strtolower', array_keys ($keys)))) {
+      $foreground_color = !in_array (ord ($foreground_color[0]), array_map ('ord', array_keys ($keys))) ? in_array (ord ($foreground_color[0]) | 0x20, array_map ('ord', array_keys ($keys))) ? '1;' . $keys[strtolower ($foreground_color[0])] : null : $keys[$foreground_color[0]];
+      $colored_string .= $foreground_color ? "\033[" . $foreground_color . "m" : "";
+    }
+    $colored_string .= $background_color && in_array (strtolower ($background_color), array_map ('strtolower', array_keys ($keys))) ? "\033[" . ($keys[strtolower ($background_color[0])] + 10) . "m" : "";
+
+    if (substr ($string, -1) == "\n") { $string = substr ($string, 0, -1); $has_new_line = true; } else { $has_new_line = false; }
+    $colored_string .=  $string . "\033[0m";
+    $colored_string = $colored_string . ($has_new_line ? "\n" : "");
+    if ($is_print) printf ($colored_string);
+    return $colored_string;
+  }
+}
 if (!function_exists ('gradient')) {
   function gradient ($gradient) {
     return round ($gradient, 2);

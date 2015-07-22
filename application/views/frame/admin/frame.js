@@ -42,9 +42,25 @@ function getTowns (map, town_id, $loadingData, notSaveLast) {
               labelClass: "marker_label",
               icon: '/resource/image/map/spotlight-poi-blue.png'
             });
+          console.error ();
+          
+          var polygon = (t.bound !== null ? new google.maps.Polygon ({
+                        paths: [
+                          new google.maps.LatLng (t.bound.northeast.lat, t.bound.northeast.lng),
+                          new google.maps.LatLng (t.bound.southwest.lat, t.bound.northeast.lng),
+                          new google.maps.LatLng (t.bound.southwest.lat, t.bound.southwest.lng),
+                          new google.maps.LatLng (t.bound.northeast.lat, t.bound.southwest.lng)
+                        ],
+                        strokeColor: 'rgba(1, 50, 162, 1)',
+                        strokeOpacity: 0.8,
+                        strokeWeight: 2,
+                        fillColor: 'rgba(96, 144, 255, 1)',
+                        fillOpacity: 0.35
+                      }) : null);
           return {
             id: t.id,
-            markerWithLabel: markerWithLabel
+            markerWithLabel: markerWithLabel,
+            polygon: polygon
           };
         });
 
@@ -53,8 +69,16 @@ function getTowns (map, town_id, $loadingData, notSaveLast) {
         var delete_ids = deletes.map (function (t) { return t.id; });
         var add_ids = adds.map (function (t) { return t.id; });
 
-        deletes.map (function (t) { t.markerWithLabel.setMap (null); });
-        adds.map (function (t) { t.markerWithLabel.setMap (map); });
+        deletes.map (function (t) {
+          if (t.polygon)
+            t.polygon.setMap (null);
+          t.markerWithLabel.setMap (null);
+        });
+        adds.map (function (t) {
+          if (t.polygon)
+            t.polygon.setMap (map);
+          t.markerWithLabel.setMap (map);
+        });
 
         map.markers = map.markers.filter (function (t) { return $.inArray (t.id, delete_ids) == -1; }).concat (markers.filter (function (t) { return $.inArray (t.id, add_ids) != -1; }));
 

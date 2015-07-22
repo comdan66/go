@@ -5,7 +5,8 @@
 
 @import "_oa";
 
-@include font-face("Monaco", font-files("/resource/font/monaco/monaco.ttf", "/resource/font/monaco/monaco.otf"));
+@include font-face("Monaco", font-files("monaco/monaco.ttf", "monaco/monaco.otf"));
+@include font-face("icomoon", font-files("icomoon/icomoon.eot", "icomoon/icomoon.woff", "icomoon/icomoon.ttf", "icomoon/icomoon.svg"));
 
 [class^="icon-"], [class*=" icon-"] {
   font-family: 'icomoon';
@@ -40,6 +41,9 @@
 .icon-uniE63E:before {
   content: "\e63e";
 }
+.icon-eye2:before {
+  content: "\e613";
+}
 .icon-location:before {
   content: "\e60c";
 }
@@ -55,8 +59,17 @@
 .icon-eye:before {
   content: "\e607";
 }
+.icon-pencil2:before {
+  content: "\e906";
+}
+.icon-eyedropper:before {
+  content: "\e90a";
+}
 .icon-fire:before {
   content: "\e9a9";
+}
+.icon-bin:before {
+  content: "\e9ac";
 }
 .icon-check-circle-o:before {
   content: "\e612";
@@ -88,8 +101,8 @@
 .icon-star-2:before {
   content: "\e604";
 }
-.icon-eyedropper:before {
-  content: "\e90a";
+.icon-street-view:before {
+  content: "\e614";
 }
 
 * {
@@ -119,4 +132,8 @@ html {
     @include font-smoothing(antialiased);
     @include box-shadow(none);
   }
+}
+
+.gm-style-cc {
+  display: none;
 }

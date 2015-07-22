@@ -7,7 +7,7 @@
 
 $google['development'] = array (
     'client_key' => 'AIzaSyCCrpVf7v9_ST0ghGYwdWwINgjjpjec-B0',
-    'server_key' => 'AIzaSyCCrpVf7v9_ST0ghGYwdWwINgjjpjec-B0',
+    'server_key' => 'AIzaSyCpxcIKo9I-FUPwQZuCgDJ1EaMwY1W2diY',
   );
 $google['staging'] = array (
     'client_key' => '',

@@ -23,6 +23,8 @@ $(function () {
       var name = [];
 
       if ((status == google.maps.GeocoderStatus.OK) && result.length && (result = result[0])) {
+        console.error (result);
+        
         name = result.address_components.map (function (t) {
           return t.types.length && ($.inArray ('administrative_area_level_3', t.types) !== -1) ? t.long_name : null;
         }).filter (function (t) { return t; });
@@ -92,5 +94,6 @@ $(function () {
     google.maps.event.addListener(_map, 'zoom_changed', getTowns.bind (this, _map, 0, $('#loading_data')));
     google.maps.event.addListener(_map, 'idle', getTowns.bind (this, _map, 0, $('#loading_data')));
   }
-  google.maps.event.addDomListener (window, 'load', initialize);
+  if (!$('.create_cate').length)
+    google.maps.event.addDomListener (window, 'load', initialize);
 });

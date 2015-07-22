@@ -100,4 +100,21 @@ class Admin_index_controller extends Admin_controller {
           ));
   }
 }
+class Admin_town_controller extends Admin_controller {
+
+  public function __construct () {
+    parent::__construct ();
+
+    $this->set_sides (array (
+          '縣市' => array (
+              array ('name' => '縣市列表', 'href' => base_url ('admin', 'towns', 'cate_index')),
+              array ('name' => '新增縣市', 'href' => base_url ('admin', 'towns', 'cate_add')),
+            ),
+          '鄉鎮' => array (
+              array ('name' => '鄉鎮列表', 'href' => base_url ('admin', 'towns', 'index')),
+              array ('name' => '新增鄉鎮', 'href' => base_url ('admin', 'towns', 'add')),
+            ))
+          );
+  }
+}
 

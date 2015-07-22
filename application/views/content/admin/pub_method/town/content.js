@@ -7,6 +7,7 @@ $(function () {
   var enableUpdateTown = false;
 
   var $map = $('#map');
+  var $bound = $('#bound');
   var $marker = $('#marker');
   var $loadingData = $('#loading_data');
 
@@ -86,6 +87,34 @@ $(function () {
     _map.setMapTypeId ('map_style');
 
     marker.setMap (_map);
+
+    if ($bound.length) {
+      new google.maps.Polygon ({
+        paths: [
+          new google.maps.LatLng ($bound.data ('northeast_latitude'), $bound.data ('northeast_longitude')),
+          new google.maps.LatLng ($bound.data ('southwest_latitude'), $bound.data ('northeast_longitude')),
+          new google.maps.LatLng ($bound.data ('southwest_latitude'), $bound.data ('southwest_longitude')),
+          new google.maps.LatLng ($bound.data ('northeast_latitude'), $bound.data ('southwest_longitude'))
+        ],
+        strokeColor: 'rgba(255, 0, 0, 1)',
+        strokeOpacity: 0.2,
+        strokeWeight: 1,
+        fillColor: 'rgba(255, 0, 0, 1)',
+        fillOpacity: 0.1,
+        map: _map
+      });
+
+      new google.maps.Circle ({
+        strokeColor: '#FF0000',
+        strokeOpacity: 0.2,
+        strokeWeight: 1,
+        fillColor: '#FF0000',
+        fillOpacity: 0.1,
+        map: _map,
+        center: new google.maps.LatLng (($bound.data ('northeast_latitude') + $bound.data ('southwest_latitude')) / 2, ($bound.data ('northeast_longitude') + $bound.data ('southwest_longitude')) / 2),
+        radius: Math.max (Math.abs ($bound.data ('northeast_latitude') - $bound.data ('southwest_latitude')), Math.abs ($bound.data ('northeast_longitude') - $bound.data ('southwest_longitude'))) * 111 * 1000 / 2
+      });
+    }
 
     google.maps.event.addListener (marker, 'dragend', function () {
       updateTown ($marker.val (), marker.position);
