@@ -14,7 +14,9 @@ class Demo extends Site_controller {
   public function town () {
     foreach (Town::all () as $town)
       if (!$town->put_pic ())
-        echo $town->id . "\n";
+        echo $town->id . " Error!\n";
+      else
+        echo $town->id . " OK!\n";
   }
 
   public function color2 () {
