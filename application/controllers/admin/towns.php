@@ -77,14 +77,24 @@ class Towns extends Admin_town_controller {
                         ->set_session ('longitude', $longitude, true)
                         && redirect (array ('admin', 'towns', 'add'), 'refresh');
 
-    if (Town::find ('one', array ('select' => 'id', 'conditions' => array ('id != ? AND postal_code = ?', $town->id, $postal_code))))
-      return identity ()->set_session ('_flash_message', '郵遞區號重複！', true)
+    // if (Town::find ('one', array ('select' => 'id', 'conditions' => array ('id != ? AND postal_code = ?', $town->id, $postal_code))))
+    //   return identity ()->set_session ('_flash_message', '郵遞區號重複！', true)
+    //                     ->set_session ('town_category_id', $town_category_id, true)
+    //                     ->set_session ('name', $name, true)
+    //                     ->set_session ('postal_code', $postal_code, true)
+    //                     ->set_session ('latitude', $latitude, true)
+    //                     ->set_session ('longitude', $longitude, true)
+    //                     && redirect (array ('admin', 'towns', 'edit', $town->id), 'refresh');
+
+
+    if (Town::find ('one', array ('select' => 'id', 'conditions' => array ('id != ? AND town_category_id = ? AND name = ?', $town->id, $town_category->id, $name))))
+      return identity ()->set_session ('_flash_message', '' . $town_category->name . ' 分類下名稱重複！', true)
                         ->set_session ('town_category_id', $town_category_id, true)
                         ->set_session ('name', $name, true)
                         ->set_session ('postal_code', $postal_code, true)
                         ->set_session ('latitude', $latitude, true)
                         ->set_session ('longitude', $longitude, true)
-                        && redirect (array ('admin', 'towns', 'edit', $town->id), 'refresh');
+                        && redirect (array ('admin', 'towns', 'add'), 'refresh');
 
     if (($town->latitude == $latitude) && ($town->longitude == $longitude))
       $is_update_pic = false;
@@ -160,8 +170,17 @@ class Towns extends Admin_town_controller {
                         ->set_session ('longitude', $longitude, true)
                         && redirect (array ('admin', 'towns', 'add'), 'refresh');
 
-    if (Town::find ('one', array ('select' => 'id', 'conditions' => array ('postal_code = ?', $postal_code))))
-      return identity ()->set_session ('_flash_message', '郵遞區號重複！', true)
+    // if (Town::find ('one', array ('select' => 'id', 'conditions' => array ('postal_code = ?', $postal_code))))
+    //   return identity ()->set_session ('_flash_message', '郵遞區號重複！', true)
+    //                     ->set_session ('town_category_id', $town_category_id, true)
+    //                     ->set_session ('name', $name, true)
+    //                     ->set_session ('postal_code', $postal_code, true)
+    //                     ->set_session ('latitude', $latitude, true)
+    //                     ->set_session ('longitude', $longitude, true)
+    //                     && redirect (array ('admin', 'towns', 'add'), 'refresh');
+
+    if (Town::find ('one', array ('select' => 'id', 'conditions' => array ('town_category_id = ? AND name = ?', $town_category->id, $name))))
+      return identity ()->set_session ('_flash_message', '' . $town_category->name . ' 分類下名稱重複！', true)
                         ->set_session ('town_category_id', $town_category_id, true)
                         ->set_session ('name', $name, true)
                         ->set_session ('postal_code', $postal_code, true)
@@ -273,6 +292,11 @@ class Towns extends Admin_town_controller {
                         ->set_session ('name', $name, true)
                         && redirect (array ('admin', 'towns', 'cate_edit', $town_category->id), 'refresh');
 
+    if (TownCategory::find ('one', array ('conditions' => array ('id != ? AND name = ?', $town_category->id, $name))))
+      return identity ()->set_session ('_flash_message', '名稱重複！', true)
+                        ->set_session ('name', $name, true)
+                        && redirect (array ('admin', 'towns', 'cate_add'), 'refresh');
+
     $town_category->name = $name;
 
     if (!$town_category->save ())
@@ -335,8 +359,17 @@ class Towns extends Admin_town_controller {
                         ->set_session ('longitude', $longitude, true)
                         && redirect (array ('admin', 'towns', 'cate_edit_town', $town->id), 'refresh');
 
-    if (Town::find ('one', array ('select' => 'id', 'conditions' => array ('id != ? AND postal_code = ?', $town->id, $postal_code))))
-      return identity ()->set_session ('_flash_message', '郵遞區號重複！', true)
+    // if (Town::find ('one', array ('select' => 'id', 'conditions' => array ('id != ? AND postal_code = ?', $town->id, $postal_code))))
+    //   return identity ()->set_session ('_flash_message', '郵遞區號重複！', true)
+    //                     ->set_session ('town_category_id', $town_category_id, true)
+    //                     ->set_session ('name', $name, true)
+    //                     ->set_session ('postal_code', $postal_code, true)
+    //                     ->set_session ('latitude', $latitude, true)
+    //                     ->set_session ('longitude', $longitude, true)
+    //                     && redirect (array ('admin', 'towns', 'cate_edit_town', $town->id), 'refresh');
+
+    if (Town::find ('one', array ('select' => 'id', 'conditions' => array ('id != ? AND town_category_id = ? AND name = ?', $town->id, $town_category->id, $name))))
+      return identity ()->set_session ('_flash_message', '' . $town_category->name . ' 分類下名稱重複！', true)
                         ->set_session ('town_category_id', $town_category_id, true)
                         ->set_session ('name', $name, true)
                         ->set_session ('postal_code', $postal_code, true)
@@ -421,8 +454,18 @@ class Towns extends Admin_town_controller {
                         ->set_session ('longitude', $longitude, true)
                         && redirect (array ('admin', 'towns', 'cate_add_town', $town_category_id), 'refresh');
 
-    if (Town::find ('one', array ('select' => 'id', 'conditions' => array ('postal_code = ?', $postal_code))))
-      return identity ()->set_session ('_flash_message', '郵遞區號重複！', true)
+    // if (Town::find ('one', array ('select' => 'id', 'conditions' => array ('postal_code = ?', $postal_code))))
+    //   return identity ()->set_session ('_flash_message', '郵遞區號重複！', true)
+    //                     ->set_session ('town_category_id', $town_category_id, true)
+    //                     ->set_session ('name', $name, true)
+    //                     ->set_session ('postal_code', $postal_code, true)
+    //                     ->set_session ('latitude', $latitude, true)
+    //                     ->set_session ('longitude', $longitude, true)
+    //                     && redirect (array ('admin', 'towns', 'cate_add_town', $town_category_id), 'refresh');
+
+
+    if (Town::find ('one', array ('select' => 'id', 'conditions' => array ('town_category_id = ? AND name = ?', $town_category->id, $name))))
+      return identity ()->set_session ('_flash_message', '' . $town_category->name . ' 分類下名稱重複！', true)
                         ->set_session ('town_category_id', $town_category_id, true)
                         ->set_session ('name', $name, true)
                         ->set_session ('postal_code', $postal_code, true)
@@ -480,6 +523,11 @@ class Towns extends Admin_town_controller {
 
     if (!$name)
       return identity ()->set_session ('_flash_message', '填寫資訊有少！', true)
+                        ->set_session ('name', $name, true)
+                        && redirect (array ('admin', 'towns', 'cate_add'), 'refresh');
+
+    if (TownCategory::find ('one', array ('conditions' => array ('name = ?', $name))))
+      return identity ()->set_session ('_flash_message', '名稱重複！', true)
                         ->set_session ('name', $name, true)
                         && redirect (array ('admin', 'towns', 'cate_add'), 'refresh');
 
