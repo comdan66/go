@@ -13,7 +13,7 @@ class Demo extends Site_controller {
 
   public function town () {
     foreach (Town::all () as $town)
-      if ($town->put_pic ())
+      if (!$town->put_pic ())
         echo $town->id . "\n";
   }
 
