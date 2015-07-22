@@ -20,6 +20,36 @@
   @include font-smoothing(antialiased);
 }
 
+.icon-refresh:before {
+  content: "\e615";
+}
+.icon-home:before {
+  content: "\e601";
+}
+.icon-link-external:before {
+  content: "\e605";
+}
+.icon-link:before {
+  content: "\e606";
+}
+.icon-eye:before {
+  content: "\e607";
+}
+.icon-pencil2:before {
+  content: "\e906";
+}
+.icon-eyedropper:before {
+  content: "\e90a";
+}
+.icon-hour-glass:before {
+  content: "\e979";
+}
+.icon-fire:before {
+  content: "\e9a9";
+}
+.icon-bin:before {
+  content: "\e9ac";
+}
 .icon-th-menu:before {
   content: "\e600";
 }
@@ -46,30 +76,6 @@
 }
 .icon-location:before {
   content: "\e60c";
-}
-.icon-home:before {
-  content: "\e601";
-}
-.icon-link-external:before {
-  content: "\e605";
-}
-.icon-link:before {
-  content: "\e606";
-}
-.icon-eye:before {
-  content: "\e607";
-}
-.icon-pencil2:before {
-  content: "\e906";
-}
-.icon-eyedropper:before {
-  content: "\e90a";
-}
-.icon-fire:before {
-  content: "\e9a9";
-}
-.icon-bin:before {
-  content: "\e9ac";
 }
 .icon-check-circle-o:before {
   content: "\e612";
@@ -104,6 +110,7 @@
 .icon-street-view:before {
   content: "\e614";
 }
+
 
 * {
   &, &:after, &:before {

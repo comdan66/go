@@ -32,7 +32,8 @@
           <th width='100'>經度</th>
           <th width='100'>縣市</th>
           <th width='70'>地點</th>
-          <th width='100'>編輯</th>
+          <th width='70'>天氣</th>
+          <th width='120'>編輯</th>
         </tr>
       </thead>
       <tbody>
@@ -47,7 +48,10 @@
               <td><?php echo $town->longitude;?></td>
               <td><?php echo $town->category->name;?></td>
               <td class='map'><?php echo img ($town->pic->url ('50x50c'), false, "data-id='" . $town->id . "' class='fancybox_town'");?></td>
+              <td class='map'><?php echo $town->weather ? img ($town->weather->icon->url ('50x50c'), false, 'style="background-color: rgba(255, 255, 255, 1);" data-fancybox-group="group" title="' . $town->name . '" href="' . $town->weather->icon->url () . '" class="pic"') : '(尚未有更天氣資料)';?></td>
               <td class='edit'>
+                <a class='icon-refresh' data-id='<?php echo $town->id;?>'></a>
+                /
                 <a href='<?php echo base_url ('admin', 'towns', 'edit', $town->id);?>' class='icon-pencil2'></a>
                 /
                 <a href='<?php echo base_url ('admin', 'towns', 'destroy', $town->id);?>' class='icon-bin'></a>
@@ -55,7 +59,7 @@
             </tr>
     <?php }
         } else { ?>
-          <tr><td colspan='7'>目前沒有任何資料。</td></tr>
+          <tr><td colspan='8'>目前沒有任何資料。</td></tr>
     <?php
         } ?>
       <tbody>

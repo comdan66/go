@@ -89,6 +89,22 @@
           font-size: 20px;
         }
       }
+      .map {
+        img {
+          cursor: pointer;
+          border: 1px solid rgba(39, 40, 34, .2);
+          @include border-radius(3px);
+          @include box-shadow(0 0 2px rgba(39, 40, 34, .1));
+          @include transition(all .5s);
+
+          &:hover {
+            @include box-shadow(0 0 5px rgba(39, 40, 34, .2));
+          }
+        }
+        a {
+          @include a();
+        }
+      }
       .left {
         text-align: left;
         word-break: break-all;

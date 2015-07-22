@@ -220,6 +220,18 @@ class Towns extends Admin_town_controller {
                       && redirect (array ('admin', 'towns'), 'refresh');
   }
 
+  public function refresh_weather () {
+    if (!$this->is_ajax (false))
+      return show_error ("It's not Ajax request!<br/>Please confirm your program again.");
+
+    $id = trim ($this->input_post ('id'));
+
+    if (!($id && ($town = Town::find_by_id ($id, array ('select' => 'id, cwb_town_id')))))
+      return $this->output_json (array ('status' => false));
+
+    if ($town->weather ())
+      return $this->output_json (array ('status' => true));
+  }
   public function index ($offset = 0) {
     $columns = array ('id' => 'int', 'name' => 'string');
     $configs = array ('admin', 'towns', '%s');
@@ -242,11 +254,12 @@ class Towns extends Admin_town_controller {
     $this->pagination->initialize ($configs);
     $pagination = $this->pagination->create_links ();
 
-    $towns = Town::find ('all', array ('include' => array ('category'), 'offset' => $offset, 'limit' => $limit, 'order' => 'id DESC', 'conditions' => $conditions));
+    $towns = Town::find ('all', array ('include' => array ('category', 'weather'), 'offset' => $offset, 'limit' => $limit, 'order' => 'id DESC', 'conditions' => $conditions));
 
     $message = identity ()->get_session ('_flash_message', true);
 
-    $this->load_view (array (
+    $this->add_hidden (array ('id' => 'refresh_weather_url', 'value' => base_url ('admin', 'towns', 'refresh_weather')))
+         ->load_view (array (
         'message' => $message,
         'pagination' => $pagination,
         'towns' => $towns,

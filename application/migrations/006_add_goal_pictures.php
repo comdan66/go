@@ -12,9 +12,9 @@ class Migration_Add_goal_pictures extends CI_Migration {
         `id` int(11) NOT NULL AUTO_INCREMENT,
         `goal_id` int(11) NOT NULL,
 
-        `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT '檔案名稱',
+        `name` varchar(100) COLLATE utf8_unicode_ci NOT NULL COMMENT '檔案名稱',
 
-        `gradient` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT '斜率，height/width',
+        `gradient` varchar(100) COLLATE utf8_unicode_ci NOT NULL COMMENT '斜率，height/width',
         `color_red` int(3) NOT NULL COMMENT 'RGB 紅',
         `color_green` int(3) NOT NULL COMMENT 'RGB 綠',
         `color_blue` int(3) NOT NULL COMMENT 'RGB 藍',

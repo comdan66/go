@@ -11,6 +11,12 @@ class Demo extends Site_controller {
     parent::__construct ();
   }
 
+  public function weather () {
+    $town = Town::first ();
+    echo '<meta http-equiv="Content-type" content="text/html; charset=utf-8" /><pre>';
+    var_dump ($town->weather ());
+    exit ();
+  }
   public function town () {
     foreach (Town::all (array ('conditions' => array ('id > ?', 230))) as $town)
       if (!$town->put_pic ())

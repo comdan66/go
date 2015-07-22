@@ -26,6 +26,7 @@ class Pub_method extends Admin_controller {
   public function get_towns () {
     if (!$this->is_ajax (false))
       return show_error ("It's not Ajax request!<br/>Please confirm your program again.");
+    
     $is_use_bound = false;
 
     $north_east = $this->input_post ('NorthEast');

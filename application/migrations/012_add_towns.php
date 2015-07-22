@@ -12,12 +12,12 @@ class Migration_Add_towns extends CI_Migration {
         `id` int(11) NOT NULL AUTO_INCREMENT,
         `town_category_id` int(11) NOT NULL,
 
-        `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT '名稱',
-        `postal_code` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT '郵遞區號',
-        `cwb_town_id` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT '中央氣象局資料ID',
+        `name` varchar(10) COLLATE utf8_unicode_ci NOT NULL COMMENT '名稱',
+        `postal_code` varchar(10) COLLATE utf8_unicode_ci NOT NULL COMMENT '郵遞區號',
+        `cwb_town_id` varchar(10) COLLATE utf8_unicode_ci NOT NULL COMMENT '中央氣象局資料ID',
         `latitude` DOUBLE NOT NULL COMMENT '緯度',
         `longitude` DOUBLE NOT NULL COMMENT '經度',
-        `pic` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT '靜態圖檔',
+        `pic` varchar(100) COLLATE utf8_unicode_ci NOT NULL COMMENT '靜態圖檔',
 
         `updated_at` datetime NOT NULL DEFAULT '" . date ('Y-m-d H:i:s') . "' COMMENT '新增時間',
         `created_at` datetime NOT NULL DEFAULT '" . date ('Y-m-d H:i:s') . "' COMMENT '更新時間',

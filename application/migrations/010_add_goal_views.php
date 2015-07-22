@@ -14,11 +14,11 @@ class Migration_Add_goal_views extends CI_Migration {
 
         `latitude` DOUBLE NOT NULL COMMENT '緯度',
         `longitude` DOUBLE NOT NULL COMMENT '經度',
-        `pic` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT '靜態圖檔',
+        `pic` varchar(100) COLLATE utf8_unicode_ci NOT NULL COMMENT '靜態圖檔',
         
-        `heading` int(11) NOT NULL COMMENT '水平角度',
-        `pitch` int(11) NOT NULL COMMENT '垂直角度',
-        `zoom` int(11) NOT NULL COMMENT '放大度',
+        `heading` int(5) NOT NULL COMMENT '水平角度',
+        `pitch` int(5) NOT NULL COMMENT '垂直角度',
+        `zoom` int(5) NOT NULL COMMENT '放大度',
 
 
         `updated_at` datetime NOT NULL DEFAULT '" . date ('Y-m-d H:i:s') . "' COMMENT '新增時間',

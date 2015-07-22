@@ -21,7 +21,7 @@ class Migration_Add_goals extends CI_Migration {
 
         `latitude` DOUBLE NOT NULL COMMENT '緯度',
         `longitude` DOUBLE NOT NULL COMMENT '經度',
-        `pic` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT '靜態圖檔',
+        `pic` varchar(100) COLLATE utf8_unicode_ci NOT NULL COMMENT '靜態圖檔',
 
         `updated_at` datetime NOT NULL DEFAULT '" . date ('Y-m-d H:i:s') . "' COMMENT '新增時間',
         `created_at` datetime NOT NULL DEFAULT '" . date ('Y-m-d H:i:s') . "' COMMENT '更新時間',

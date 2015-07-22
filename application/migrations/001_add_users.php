@@ -11,7 +11,7 @@ class Migration_Add_users extends CI_Migration {
       "CREATE TABLE `users` (
         `id` int(11) NOT NULL AUTO_INCREMENT,
         `uid` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Facebook UID',
-        `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT '名稱',
+        `name` varchar(100) COLLATE utf8_unicode_ci NOT NULL COMMENT '名稱',
         `updated_at` datetime NOT NULL DEFAULT '" . date ('Y-m-d H:i:s') . "' COMMENT '註冊時間',
         `created_at` datetime NOT NULL DEFAULT '" . date ('Y-m-d H:i:s') . "' COMMENT '更新時間',
         PRIMARY KEY (`id`),
