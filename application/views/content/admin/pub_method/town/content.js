@@ -123,7 +123,7 @@ $(function () {
     google.maps.event.addListener(_map, 'zoom_changed', getTowns.bind (this, _map, $marker.val (), $('#loading_data'), true));
     google.maps.event.addListener(_map, 'idle', getTowns.bind (this, _map, $marker.val (), $('#loading_data'), true));
     
-    getGoals ( _map, $marker.val (), $('#loading_data'), true);
+    getTowns ( _map, $marker.val (), $('#loading_data'), true);
   }
 
   google.maps.event.addDomListener (window, 'load', initialize);

@@ -42,7 +42,7 @@
         if ($towns) {
           foreach ($towns as $town) {
             $weather = $town->update_weather ();
-            $special = $weather['special'] ? $weather['special'] : array (); ?>
+            $special = $weather && $weather['special'] ? $weather['special'] : array (); ?>
             <tr>
               <td><?php echo $town->id;?></td>
               <td><?php echo $town->name;?></td>

@@ -53,7 +53,7 @@ class Pub_method extends Admin_controller {
                 )
             ) : null
         );
-    }, Town::find ('all', array ('conditions' => array ('latitude < ? AND latitude > ? AND longitude < ? AND longitude > ? AND id != ?', $north_east['latitude'], $south_west['latitude'], $north_east['longitude'], $south_west['longitude'], $town_id))));
+    }, Town::find ('all', array ('conditions' => array ('id != ? AND (latitude BETWEEN ? AND ?) AND (longitude BETWEEN ? AND ?)', $town_id, $south_west['latitude'], $north_east['latitude'], $south_west['longitude'], $north_east['longitude']))));
 
     return $this->output_json (array ('status' => true, 'towns' => $towns));
   }
@@ -122,7 +122,7 @@ class Pub_method extends Admin_controller {
           'lng' => $goal->longitude,
           'title' => $goal->title,
         );
-    }, Goal::find ('all', array ('conditions' => array ('latitude < ? AND latitude > ? AND longitude < ? AND longitude > ? AND id != ?', $north_east['latitude'], $south_west['latitude'], $north_east['longitude'], $south_west['longitude'], $goal_id))));
+    }, Goal::find ('all', array ('conditions' => array ('id != ? AND (latitude BETWEEN ? AND ?) AND (longitude BETWEEN ? AND ?)', $goal_id, $south_west['latitude'], $north_east['latitude'], $south_west['longitude'], $north_east['longitude']))));
 
     return $this->output_json (array ('status' => true, 'goals' => $goals));
   }

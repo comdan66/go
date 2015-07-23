@@ -14,7 +14,7 @@ function getGoals (map, goal_id, $loadingData, notSaveLast) {
       map.markers = [];
     
     if(!map.markerCluster)
-      map.markerCluster = new MarkerClusterer(_map, [], {
+      map.markerCluster = new MarkerClusterer (_map, [], {
         styles: [{url: '/resource/image/map/pictures_1.png', height: 74, width: 75, textSize: 20, textColor: '#ffffff', backgroundPosition: "0 -4px"},
                  {url: '/resource/image/map/pictures_2.png', height: 74, width: 75, textSize: 20, textColor: '#ffffff', backgroundPosition: "0 -4px"},
                  {url: '/resource/image/map/pictures_3.png', height: 74, width: 75, textSize: 20, textColor: '#ffffff', backgroundPosition: "0 -4px"},
