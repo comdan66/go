@@ -37,13 +37,12 @@ $(function () {
     });
   });
 
-  $('.pic').imgLiquid ({verticalAlign: 'center'})
-                 .fancybox ({
-                    padding: 0,
-                    helpers: {
-                      overlay: { locked: false },
-                      title: { type: 'over' },
-                      thumbs: { width: 50, height: 50 }
-                    }
-                 });
+  $('.pic').fancybox ({
+              padding: 0,
+              helpers: {
+                overlay: { locked: false },
+                title: { type: 'over' },
+                thumbs: { width: 50, height: 50 }
+              }
+           });
 });

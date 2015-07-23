@@ -11,10 +11,14 @@ class Demo extends Site_controller {
     parent::__construct ();
   }
 
+  public function weather_all () {
+    Town::update_weather_all();
+  }
   public function weather () {
-    $town = Town::first ();
-    echo '<meta http-equiv="Content-type" content="text/html; charset=utf-8" /><pre>';
-    var_dump ($town->weather ());
+    $towns = Town::find ('all', array ('conditions' => array ('id IN (50, 51)')));
+    foreach ($towns as $town) {
+      var_dump ($town->weather->id);
+    }
     exit ();
   }
   public function town () {

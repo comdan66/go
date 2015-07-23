@@ -90,6 +90,10 @@
           cursor: pointer;
         }
       }
+      .left {
+        text-align: left;
+        word-break: break-all;
+      }
       .pic {
         cursor: pointer;
         width: 50px;

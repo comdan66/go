@@ -28,27 +28,45 @@
           <th width='60'>ID</th>
           <th >名稱</th>
           <th width='100'>郵遞區號</th>
-          <th width='100'>緯度</th>
-          <th width='100'>經度</th>
           <th width='100'>縣市</th>
           <th width='70'>地點</th>
-          <th width='70'>天氣</th>
+          <th width='70'>天氣圖示</th>
+          <th width='150'>天氣概況</th>
+          <th width='70'>特報圖示</th>
+          <th width='180'>特報內容</th>
           <th width='120'>編輯</th>
         </tr>
       </thead>
       <tbody>
     <?php
         if ($towns) {
-          foreach ($towns as $town) { ?>
+          foreach ($towns as $town) {
+            $weather = $town->update_weather ();
+            $special = $weather['special'] ? $weather['special'] : array (); ?>
             <tr>
               <td><?php echo $town->id;?></td>
               <td><?php echo $town->name;?></td>
               <td><?php echo $town->postal_code;?></td>
-              <td><?php echo $town->latitude;?></td>
-              <td><?php echo $town->longitude;?></td>
               <td><?php echo $town->category->name;?></td>
               <td class='map'><?php echo img ($town->pic->url ('50x50c'), false, "data-id='" . $town->id . "' class='fancybox_town'");?></td>
-              <td class='map'><?php echo $town->weather ? img ($town->weather->icon->url ('50x50c'), false, 'style="background-color: rgba(255, 255, 255, 1);" data-fancybox-group="group" title="' . $town->name . '" href="' . $town->weather->icon->url () . '" class="pic"') : '(尚未有更天氣資料)';?></td>
+              <td class='map'><?php echo $weather ? img ($weather['icon'], false, 'style="background-color: rgba(255, 255, 255, 1);" data-fancybox-group="group_icon" title="' . $town->name . '" href="' . $weather['icon'] . '" class="pic"') : '(尚未有更天氣資料)';?></td>
+              <td class='left'>
+                描述：<?php echo $weather ? $weather['describe'] : '尚未有天氣資料';?>
+                <br/>
+                攝氏：<?php echo $weather ? $weather['temperature'] . '°c' : '尚未有天氣資料';?>
+                <br/>
+                濕度：<?php echo $weather ? $weather['humidity'] . '％' : '尚未有天氣資料';?>
+                <br/>
+                雨量：<?php echo $weather ? $weather['rainfall'] . 'mm' : '尚未有天氣資料';?>
+              </td>
+              <td class='map'><?php echo $special ? img ($special['icon'], false, 'style="background-color: rgba(255, 255, 255, 1);" data-fancybox-group="group_special_icon" title="' . $special['status'] . '" href="' . $special['icon'] . '" class="pic"') : '(尚未有更天氣資料)';?></td>
+              <td class='left'>
+                狀態：<?php echo $special ? $special['status'] : '尚未有天氣資料';?>
+                <hr/>
+                描述：<?php echo $special ? $special['describe'] . '°c' : '尚未有天氣資料';?>
+                <hr/>
+                時間：<?php echo $special ? $special['at'] . '％' : '尚未有天氣資料';?>
+              </td>
               <td class='edit'>
                 <a class='icon-refresh' data-id='<?php echo $town->id;?>'></a>
                 /
@@ -59,7 +77,7 @@
             </tr>
     <?php }
         } else { ?>
-          <tr><td colspan='8'>目前沒有任何資料。</td></tr>
+          <tr><td colspan='10'>目前沒有任何資料。</td></tr>
     <?php
         } ?>
       <tbody>

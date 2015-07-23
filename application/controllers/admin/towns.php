@@ -229,7 +229,9 @@ class Towns extends Admin_town_controller {
     if (!($id && ($town = Town::find_by_id ($id, array ('select' => 'id, cwb_town_id')))))
       return $this->output_json (array ('status' => false));
 
-    if ($town->weather ())
+    clean_cell ('town_cell', 'update_weather', $town->id);
+
+    if ($town->update_weather ())
       return $this->output_json (array ('status' => true));
   }
   public function index ($offset = 0) {
@@ -254,7 +256,7 @@ class Towns extends Admin_town_controller {
     $this->pagination->initialize ($configs);
     $pagination = $this->pagination->create_links ();
 
-    $towns = Town::find ('all', array ('include' => array ('category', 'weather'), 'offset' => $offset, 'limit' => $limit, 'order' => 'id DESC', 'conditions' => $conditions));
+    $towns = Town::find ('all', array ('include' => array ('category', 'weathers'), 'offset' => $offset, 'limit' => $limit, 'order' => 'id DESC', 'conditions' => $conditions));
 
     $message = identity ()->get_session ('_flash_message', true);
 
