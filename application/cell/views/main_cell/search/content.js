@@ -24,7 +24,7 @@ $(function () {
       window.location.assign ('/search?q=' + $input.val ().trim ());
   }
   $input.keyup (function (e) {
-    if(e.keyCode == 13)
+    if (e.keyCode == 13)
       goSearch ();
   });
 
