@@ -42,7 +42,6 @@ function getTowns (map, town_id, $loadingData, notSaveLast) {
               labelClass: "marker_label",
               icon: '/resource/image/map/spotlight-poi-blue.png'
             });
-          console.error ();
           
           var polygon = (t.bound !== null ? new google.maps.Polygon ({
                         paths: [

@@ -21,8 +21,8 @@ class Migration_Add_goal_views extends CI_Migration {
         `zoom` int(5) NOT NULL COMMENT '放大度',
 
 
-        `updated_at` datetime NOT NULL DEFAULT '" . date ('Y-m-d H:i:s') . "' COMMENT '新增時間',
-        `created_at` datetime NOT NULL DEFAULT '" . date ('Y-m-d H:i:s') . "' COMMENT '更新時間',
+        `updated_at` datetime NOT NULL DEFAULT '" . date ('Y-m-d H:i:s') . "' COMMENT '更新時間',
+        `created_at` datetime NOT NULL DEFAULT '" . date ('Y-m-d H:i:s') . "' COMMENT '新增時間',
         PRIMARY KEY (`id`),
         KEY `goal_id_index` (`goal_id`),
         UNIQUE KEY `goal_id_unique` (`goal_id`),

@@ -339,7 +339,7 @@ class Goals extends Admin_controller {
                         ->set_session ('heading', $heading, true)
                         ->set_session ('pitch', $pitch, true)
                         ->set_session ('zoom', $zoom, true)
-                        && redirect (array ('admin', 'goals', 'view', $view->id), 'refresh');
+                        && redirect (array ('admin', 'goals', 'view', $goal->id), 'refresh');
       if (!$view->put_pic () && ($view->destroy () || true))
         return identity ()->set_session ('_flash_message', '設定失敗(取得 Static 失敗)！', true)
                         ->set_session ('latitude', $latitude, true)
@@ -347,7 +347,7 @@ class Goals extends Admin_controller {
                         ->set_session ('heading', $heading, true)
                         ->set_session ('pitch', $pitch, true)
                         ->set_session ('zoom', $zoom, true)
-                        && redirect (array ('admin', 'goals', 'view', $view->id), 'refresh');
+                        && redirect (array ('admin', 'goals', 'view', $goal->id), 'refresh');
     }
 
     return identity ()->set_session ('_flash_message', '設定成功！', true)

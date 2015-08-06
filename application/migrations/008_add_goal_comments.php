@@ -15,8 +15,8 @@ class Migration_Add_goal_comments extends CI_Migration {
 
         `content` text  COMMENT '回應內容',
 
-        `updated_at` datetime NOT NULL DEFAULT '" . date ('Y-m-d H:i:s') . "' COMMENT '新增時間',
-        `created_at` datetime NOT NULL DEFAULT '" . date ('Y-m-d H:i:s') . "' COMMENT '更新時間',
+        `updated_at` datetime NOT NULL DEFAULT '" . date ('Y-m-d H:i:s') . "' COMMENT '更新時間',
+        `created_at` datetime NOT NULL DEFAULT '" . date ('Y-m-d H:i:s') . "' COMMENT '新增時間',
         PRIMARY KEY (`id`),
         KEY `user_id_index` (`user_id`),
         KEY `goal_id_index` (`goal_id`),

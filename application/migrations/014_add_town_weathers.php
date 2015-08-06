@@ -25,8 +25,8 @@ class Migration_Add_town_weathers extends CI_Migration {
         `special_describe` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT '特報描述',
         `special_at` datetime NOT NULL DEFAULT '" . date ('Y-m-d H:i:s') . "' COMMENT '特報時間',
 
-        `updated_at` datetime NOT NULL DEFAULT '" . date ('Y-m-d H:i:s') . "' COMMENT '新增時間',
-        `created_at` datetime NOT NULL DEFAULT '" . date ('Y-m-d H:i:s') . "' COMMENT '更新時間',
+        `updated_at` datetime NOT NULL DEFAULT '" . date ('Y-m-d H:i:s') . "' COMMENT '更新時間',
+        `created_at` datetime NOT NULL DEFAULT '" . date ('Y-m-d H:i:s') . "' COMMENT '新增時間',
         PRIMARY KEY (`id`),
         KEY `town_id_index` (`town_id`),
         FOREIGN KEY (`town_id`) REFERENCES `towns` (`id`) ON DELETE CASCADE

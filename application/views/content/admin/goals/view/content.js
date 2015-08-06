@@ -133,9 +133,9 @@ $(function () {
     google.maps.event.addListener (_panorama, 'pov_changed', function () {
       clearTimeout (_povChangedTimer);
       _povChangedTimer = setTimeout (function () {
-        $heading.val (_panorama.getPov().heading);
-        $pitch.val (_panorama.getPov().pitch);
-        $zoom.val (_panorama.getPov().zoom);
+        $heading.val (_panorama.getPov ().heading);
+        $pitch.val (_panorama.getPov ().pitch);
+        $zoom.val (_panorama.getPov ().zoom);
       }, 500);
     });
     

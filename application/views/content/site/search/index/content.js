@@ -32,7 +32,7 @@ $(function () {
 
   var setGoalFeature = function ($obj) {
     $obj.imagesLoaded (function () {
-      $obj.find ('.img').css ({'height': $obj.show ().find ('.img img').css ('height')}).imgLiquid ({verticalAlign: 'center'});
+      $obj.find ('.img').css ({'height': $obj.show ().find ('.img img').css ('height')});
       $obj.find ('.created_at').timeago ();
       $obj.find ('.avatar').imgLiquid ({verticalAlign: 'top'});
 
